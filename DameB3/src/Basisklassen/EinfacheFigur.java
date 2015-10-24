@@ -5,6 +5,8 @@ public class EinfacheFigur extends Spielfigur{ // weil es eine ableitung von Spi
 	public EinfacheFigur  (Spielfeld feld, FarbEnum farbe, String ID){
 		super (feld, farbe, ID);
 		
+		System.out.println("test");
+		
 	}
 	
 
