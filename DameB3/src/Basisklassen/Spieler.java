@@ -5,7 +5,7 @@ import Game.Spiel;
 public class Spieler {
 		
 		/**
-		 * @author Sina, Tania, Tobi
+		 * @author B3-TST-Naketano
 		 */
 
 

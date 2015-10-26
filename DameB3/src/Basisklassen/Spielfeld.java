@@ -7,7 +7,7 @@ public class Spielfeld {
 	// Außerdem kann ein Spielfeld eine Spielfigur kennen.
 
 	/**
-	 * @author Sina, Tania, Tobi
+	 * @author B3-TST-Naketano
 	 */
 
 	private Spielfigur spielfigur;

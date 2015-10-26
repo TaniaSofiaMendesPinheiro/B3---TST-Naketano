@@ -2,7 +2,7 @@ package Basisklassen;
 
 public class Spielbrett {
 	/**
-	 * @author informatik Sina, Tania, Tobi
+	 * @author B3-TST-Naketano
 	 * @parm: Connection with Spielfeld Connection with FarbEnum Created Array
 	 *        Brett with height and width of 12 Created boolean istSchwarz for set
 	 *        colour of the field

@@ -8,7 +8,7 @@ public abstract class Spielfigur {
 	// stets eine gültige
 	// Position auf dem Spielbrett.
 	/**
-	 * @author Sina, Tania, Tobi
+	 * @author B3-TST-Naketano
 	 */
 
 	private Spielfeld spielfeld;
