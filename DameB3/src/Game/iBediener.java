@@ -13,17 +13,20 @@ import java.util.Set;
 
 public interface iBediener {
 
-	
 	public void spielLaden();
+
 	public void spielSpeichern();
+
 	public void neuesSpiel(String name, String farbe, boolean istKI);
+
 	public boolean zugDurchführen();
+
 	public String startID(String ID);
+
 	public String zielID(String ID);
+
 	public void spielBeenden();
+
 	public void spielerHinzufügen(String name, String farbe, boolean istKI);
-	
-		
-	
-	
+
 }
