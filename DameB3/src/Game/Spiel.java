@@ -63,10 +63,12 @@ public class Spiel implements iBediener {
 	public boolean zugDurchführen() {
 		if (brett == null)
 			throw new RuntimeException("There is no brett available!");
-		else if (startID("ID") == zielID("ID"))
+		else if (startID(brett.spielfeld.getID()) == zielID(brett.spielfeld.getID())){
 			throw new RuntimeException("Invalid move");
+	} else{
 		return true;
 	}
+}
 
 	@Override
 	public String startID(String ID) {

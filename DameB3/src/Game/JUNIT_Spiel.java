@@ -25,5 +25,12 @@ public class JUNIT_Spiel {
 		spiel.zielID("a");
 		spiel.zielID("a1548");
 	}
+	
+	@Test 
+	public void testeZugdurchführen(){
+		spiel.startID("a1");
+		spiel.zielID("b3");
+		spiel.zugDurchführen();
+	}
 
 }
