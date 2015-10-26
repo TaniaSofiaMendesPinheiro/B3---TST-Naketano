@@ -81,16 +81,14 @@ public class Spiel implements iBediener {
 			throw new RuntimeException("Field is not valid!");
 		} else {
 			brett.spielfeld.setID(zielID());
-
 		}
 		return brett.spielfeld.getID();
-
 	}
 
 	@Override
 	public void spielBeenden() {
-		// TODO Auto-generated method stub
-
+		
+		
 	}
 
 	@Override
@@ -105,7 +103,6 @@ public class Spiel implements iBediener {
 		else {
 			farbe = farbe;
 		}
-		
-		
+
 	}
 }
