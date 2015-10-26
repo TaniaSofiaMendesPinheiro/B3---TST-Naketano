@@ -30,21 +30,21 @@ public class Spiel implements iBediener{
 
 	@Override
 	public void spielLaden() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 
 	@Override
 	public void spielSpeichern() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 
 	@Override
 	public Spiel neuesSpiel(String name, String farbe, boolean KI) {
-		// TODO Auto-generated method stub
+	
 		return null;
 	}
 
