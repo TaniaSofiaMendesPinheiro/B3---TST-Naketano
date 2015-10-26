@@ -20,8 +20,8 @@ import Basisklassen.Spielfigur;
 public class Spiel implements iBediener {
 
 	private Spielbrett brett;
-	private Spieler weiss;
-	private Spieler schwarz;
+	private Spieler spielerWeiss;
+	private Spieler spielerSchwarz;
 	private boolean weiss_gerade_am_Zug = true;
 
 	public Spiel() {
@@ -103,6 +103,5 @@ public class Spiel implements iBediener {
 		else {
 			farbe = farbe;
 		}
-
 	}
 }
