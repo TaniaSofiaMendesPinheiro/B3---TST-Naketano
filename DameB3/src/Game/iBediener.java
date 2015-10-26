@@ -11,11 +11,14 @@ public interface iBediener {
 	public void spielLaden();
 	public void spielSpeichern();
 	public Spiel neuesSpiel(String name, String farbe, boolean KI);
+	public boolean zugDurchführen();
+	public String startID();
+	public String zielID();
+	
 		
 	
 	
 }
-//github.com/TaniaSofiaMendesPinheiro/B3---TST-Naketano
 
 	
 	

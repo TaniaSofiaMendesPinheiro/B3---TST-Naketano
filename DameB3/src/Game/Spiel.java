@@ -48,4 +48,25 @@ public class Spiel implements iBediener{
 		return null;
 	}
 
+
+	@Override
+	public boolean zugDurchführen() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public String startID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public String zielID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
