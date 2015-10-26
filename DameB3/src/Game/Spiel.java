@@ -108,8 +108,7 @@ public class Spiel implements iBediener {
 		else {
 			farbe = farbe;
 		}
-		if (istKI = true) {
-			
-		}
+		
+		
 	}
 }
