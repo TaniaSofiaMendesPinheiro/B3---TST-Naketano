@@ -43,9 +43,9 @@ public class Spiel implements iBediener{
 
 
 	@Override
-	public void neuesSpiel(String name, String farbe, boolean KI) {
+	public Spiel neuesSpiel(String name, String farbe, boolean KI) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 }

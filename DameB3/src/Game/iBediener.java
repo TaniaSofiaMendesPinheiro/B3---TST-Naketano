@@ -10,7 +10,7 @@ public interface iBediener {
 	
 	public void spielLaden();
 	public void spielSpeichern();
-	public void neuesSpiel(String name, String farbe, boolean KI);
+	public Spiel neuesSpiel(String name, String farbe, boolean KI);
 		
 	
 	
