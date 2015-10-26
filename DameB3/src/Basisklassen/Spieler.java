@@ -26,8 +26,8 @@ public class Spieler {
 	 * 
 	 * 
 	 */
-	public Spieler() {
-
+	public Spieler(){
+		
 	}
 
 	/**
@@ -38,9 +38,10 @@ public class Spieler {
 	 * @param spielfigur
 	 */
 
-	public Spieler(String name, FarbEnum farbe) {
+	public Spieler(String name, FarbEnum farbe, KI ki) {
 		this.name = name;
 		this.farbe = farbe;
+		ki.add(ki);
 		}
 
 	/** getter for name

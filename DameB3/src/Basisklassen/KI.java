@@ -17,4 +17,8 @@ public abstract class KI {
 		}
 	}
 
+	public KI add(KI ki) {
+		return ki;
+	}
+
 }
