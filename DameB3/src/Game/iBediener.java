@@ -16,11 +16,12 @@ public interface iBediener {
 	
 	public void spielLaden();
 	public void spielSpeichern();
-	public Spiel neuesSpiel(String name, String farbe, boolean KI);
+	public void neuesSpiel(String name, String farbe, boolean istKI);
 	public boolean zugDurchführen();
 	public String startID();
 	public String zielID();
-	public 
+	public void spielBeenden();
+	public String spielerHinzufügen(String name, String farbe, boolean istKI);
 	
 		
 	

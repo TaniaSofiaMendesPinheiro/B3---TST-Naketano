@@ -22,6 +22,7 @@ public class Spiel implements iBediener{
 	private Spieler weiss;
 	private Spieler schwarz;
 	private boolean weiss_gerade_am_Zug = true;
+	private Spielfeld spielfeld;
 	
 	
 	public Spiel(){
@@ -49,14 +50,22 @@ public class Spiel implements iBediener{
 
 
 	@Override
-	public Spiel neuesSpiel(String name, String farbe, boolean KI) {
-		return null;
-	}
+	public void neuesSpiel(String name, String farbe, boolean istKI) {
+		if(istKI == true){
+		Spiel s = new Spiel();
+		s.spielerHinzufügen(name, farbe, istKI);
+		}
+//		istKI = false;
+//		Spiel s1 = new Spiel();
+//		s1.spielerHinzufügen(name, farbe);
+		}
 
 
 	@Override
 	public boolean zugDurchführen() {
-		// TODO Auto-generated method stub
+		if(spielfeld == null){
+			return true;
+		}
 		return false;
 	}
 
@@ -70,6 +79,20 @@ public class Spiel implements iBediener{
 
 	@Override
 	public String zielID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void spielBeenden() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public String spielerHinzufügen(String name, String farbe, boolean istKI) {
 		// TODO Auto-generated method stub
 		return null;
 	}
