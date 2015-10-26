@@ -1,6 +1,6 @@
 package Basisklassen;
 
-public abstract class Spielfigur {
+public class Spielfigur {
 
 	// Implementieren Sie die Klasse Spielfigur. Jede Spielfigur hat eine Farbe,
 	// die aus einer
@@ -16,6 +16,10 @@ public abstract class Spielfigur {
 	private String ID;
 	private boolean istFigur = true;
 	private boolean istDame = false;
+	
+	public Spielfigur(){
+		
+	}
 
 	/**
 	 * constructor of spielfigur with all objects on it
@@ -24,16 +28,15 @@ public abstract class Spielfigur {
 	 * @param farbe
 	 * @param spielfeld
 	 */
-
+	
+	
 	public Spielfigur(Spielfeld spielfeld, FarbEnum farbe, String ID) {
 		this.spielfeld = spielfeld;
 		this.farbe = farbe;
 		this.setID(ID);
 
 	}
-		public Spielfigur(){
-			
-		}
+
 	/**
 	 * 
 	 * @param feld

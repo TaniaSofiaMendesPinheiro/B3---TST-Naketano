@@ -26,4 +26,26 @@ public class Spiel implements iBediener{
 	public Spiel (Spielbrett brett, Spieler weiss, Spieler schwarz, Spieler spieler_gerade_am_zug){
 	super();
 	}
+
+
+	@Override
+	public void spielLaden() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void spielSpeichern() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void neuesSpiel(String name, String farbe, boolean KI) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

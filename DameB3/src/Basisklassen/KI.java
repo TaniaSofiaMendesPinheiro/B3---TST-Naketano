@@ -2,6 +2,10 @@ package Basisklassen;
 
 public abstract class KI {
 	
+	/***
+	 * @author B3-TST-Naketano
+	 */
+	
 	private Spieler spieler;
 	
 	public KI(Spieler spieler){

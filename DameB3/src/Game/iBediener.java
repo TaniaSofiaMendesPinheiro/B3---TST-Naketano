@@ -5,8 +5,15 @@ package Game;
 
 public interface iBediener {
 	
-		
+	public void spielLaden();
+	public void spielSpeichern();
+	public void neuesSpiel(String name, String farbe, boolean KI);
+
 	
+	
+}
+
+
 		
 
 //		PrintWriter pw;
@@ -15,5 +22,4 @@ public interface iBediener {
 //		
 //		pw.close();
 	
-}
 
