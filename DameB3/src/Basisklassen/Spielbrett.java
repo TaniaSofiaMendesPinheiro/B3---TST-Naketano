@@ -9,7 +9,7 @@ public class Spielbrett {
 	 */
 
 	private Spielfeld spielfeld;
-	private Spielfeld[][] Brett = new Spielfeld[12][12];
+	private Spielfeld[][] brett = new Spielfeld[12][12];
 //	private boolean istSchwarz = true;
 
 	public Spielbrett() {
@@ -20,10 +20,10 @@ public class Spielbrett {
 	 * Create the field with the ID and colour
 	 */
 	public void erstelleSpielbrett() {
-		for (int i = 0; i < Brett.length; i++) {
-			for (char j = 0; j < Brett[i].length; j++) {
+		for (int i = 0; i < brett.length; i++) {
+			for (char j = 0; j < brett[i].length; j++) {
 				String ID = "" + (char) (j + 97) + (i + 1) + "";
-				Brett[i][j] = new Spielfeld(ID, (i + j) % 2 == 0);
+				brett[i][j] = new Spielfeld(ID, (i + j) % 2 == 0);
 
 //				System.out.print(" " + ID + "/" + (i + j) % 2 == 0 + " ");
 			}
@@ -35,13 +35,13 @@ public class Spielbrett {
 	
 	@Override
 	public String toString(){
-		String test = "";
-		for(int i = Brett.length-1; i >= 0; i--){
-			for(int j = 0; j < Brett[i].length; j++){
-				System.out.print(Brett[i][j]+" ");
+		String schachbrett = "";
+		for(int i = brett.length-1; i >= 0; i--){
+			for(int j = 0; j < brett[i].length; j++){
+				System.out.print(brett[i][j]+" ");
 			}
 			System.out.println();
 		}
-		return test;
+		return schachbrett;
 	}
 }

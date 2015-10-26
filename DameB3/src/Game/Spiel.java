@@ -22,7 +22,6 @@ public class Spiel implements iBediener{
 	private Spieler weiss;
 	private Spieler schwarz;
 	private boolean weiss_gerade_am_Zug = true;
-	private Spielfeld spielfeld;
 	
 	
 	public Spiel(){
@@ -63,7 +62,7 @@ public class Spiel implements iBediener{
 
 	@Override
 	public boolean zugDurchführen() {
-		if(spielfeld == null){
+		if(brett == null){
 			return true;
 		}
 		return false;
