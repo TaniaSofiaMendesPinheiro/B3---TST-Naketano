@@ -5,6 +5,12 @@ import java.util.Set;
 //Über das Interface erfolgt auch die Ausgabe der aktuellen Spielbrett - Belegung
 //in CSV - Notation.
 
+/**
+ * 
+ * @author B3-TST-Naketano
+ *
+ */
+
 public interface iBediener {
 
 	
@@ -19,18 +25,3 @@ public interface iBediener {
 	
 	
 }
-
-	
-	
-
-
-
-
-		
-
-//		PrintWriter pw;
-//		
-//		pw = new PrintWriter (new FileWriter("brett.txt"));
-//		
-//		pw.close();
-	

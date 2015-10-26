@@ -10,6 +10,12 @@ import Basisklassen.Spielfigur;
 //der gerade am Zug ist. Das Spiel implementiert ein Interface iBediener, welches Sie definieren müssen. Alle
 //Interaktionen der Benutzer müssen über dieses Interface statt finden.
 
+/**
+ * 
+ * @author B3-TST-Naketano
+ *
+ */
+
 public class Spiel implements iBediener{	
 	
 	private Spielbrett brett;
@@ -44,7 +50,6 @@ public class Spiel implements iBediener{
 
 	@Override
 	public Spiel neuesSpiel(String name, String farbe, boolean KI) {
-	
 		return null;
 	}
 
