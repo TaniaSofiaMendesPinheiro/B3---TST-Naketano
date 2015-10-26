@@ -44,6 +44,12 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void neuesSpiel(String name, String farbe, boolean istKI) {
+		boolean istBeginner = true;
+		if (farbe == "weiss") {
+			istBeginner = true;
+		} else {
+			istBeginner = false;
+		}
 		if (istKI == true) {
 			Spiel s = new Spiel();
 			s.spielerHinzufügen(name, farbe, istKI);
@@ -59,7 +65,8 @@ public class Spiel implements iBediener {
 			throw new RuntimeException("There is no brett available!");
 		else if (startID() == zielID())
 			throw new RuntimeException("Invalid move");
-		else if (brett.spielfeld.zielID() < startID());
+		else if (brett.spielfeld.zielID() < startID())
+			;
 
 		return false;
 	}
@@ -73,18 +80,13 @@ public class Spiel implements iBediener {
 	public String zielID() {
 		if (brett.spielfeld.getFarbe() == FarbEnum.weiss) {
 			throw new RuntimeException("white is not allowed for player or dame");
-		} else if (brett.spielfeld.getSpielfigur() != null){
+		} else if (brett.spielfeld.getSpielfigur() != null) {
 			throw new RuntimeException("Field is not valid!");
+		} else {
+			brett.spielfeld.setID(zielID());
+
 		}
-			else{
-				brett.spielfeld.setSpielfigur(spielfigur);
-				
-				
-			}
-		}
-			
-}
-			return brett.spielfeld.getID();
+		return brett.spielfeld.getID();
 
 	}
 
@@ -95,9 +97,19 @@ public class Spiel implements iBediener {
 	}
 
 	@Override
-	public String spielerHinzufügen(String name, String farbe, boolean istKI) {
-		// TODO Auto-generated method stub
-		return null;
+	public void spielerHinzufügen(String name, String farbe, boolean istKI) {
+		if (name == null || name.length() < 2)
+			throw new RuntimeException("Invalid Input!");
+		else {
+			name = name;
+		}
+		if (farbe != "weiß" || farbe != "schwarz")
+			throw new RuntimeException("You have to be black or white");
+		else {
+			farbe = farbe;
+		}
+		if (istKI = true) {
+			
+		}
 	}
-
 }

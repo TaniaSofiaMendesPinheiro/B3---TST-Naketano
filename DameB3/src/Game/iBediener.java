@@ -21,7 +21,7 @@ public interface iBediener {
 	public String startID();
 	public String zielID();
 	public void spielBeenden();
-	public String spielerHinzufügen(String name, String farbe, boolean istKI);
+	public void spielerHinzufügen(String name, String farbe, boolean istKI);
 	
 		
 	
