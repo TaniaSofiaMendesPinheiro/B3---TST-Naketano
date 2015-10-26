@@ -8,8 +8,8 @@ public class Spielbrett {
 	 *        colour of the field
 	 */
 
-	private Spielfeld spielfeld;
-	private Spielfeld[][] brett = new Spielfeld[12][12];
+	public Spielfeld spielfeld;
+	public Spielfeld[][] brett = new Spielfeld[12][12];
 //	private boolean istSchwarz = true;
 
 	public Spielbrett() {
