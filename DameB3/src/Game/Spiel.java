@@ -63,24 +63,28 @@ public class Spiel implements iBediener {
 	public boolean zugDurchführen() {
 		if (brett == null)
 			throw new RuntimeException("There is no brett available!");
-		else if (startID() == zielID())
+		else if (startID("ID") == zielID("ID"))
 			throw new RuntimeException("Invalid move");
 		return true;
 	}
 
 	@Override
-	public String startID() {
+	public String startID(String ID) {
+		if(ID == null | ID.length() < 2 | ID.length() > 3){
+			throw new RuntimeException ("This is not a valid position!");
+		}else
 		return brett.spielfeld.getID();
 	}
 
+
 	@Override
-	public String zielID() {
+	public String zielID(String ID) {
 		if (brett.spielfeld.getFarbe() == FarbEnum.weiss) {
 			throw new RuntimeException("white is not allowed for player or dame");
 		} else if (brett.spielfeld.getSpielfigur() != null) {
 			throw new RuntimeException("Field is not valid!");
 		} else {
-			brett.spielfeld.setID(zielID());
+			brett.spielfeld.setID(zielID(ID));
 		}
 		return brett.spielfeld.getID();
 	}

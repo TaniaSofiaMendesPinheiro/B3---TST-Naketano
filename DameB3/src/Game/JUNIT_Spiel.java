@@ -20,9 +20,10 @@ public class JUNIT_Spiel {
 		spiel.spielerHinzufügen(null, "rot", false);
 	}
 	
-	@Test 
+	@Test (expected = RuntimeException.class)
 	public void testeZielID(){
-		spiel.zielID();
+		spiel.zielID("a");
+		spiel.zielID("a1548");
 	}
 
 }
