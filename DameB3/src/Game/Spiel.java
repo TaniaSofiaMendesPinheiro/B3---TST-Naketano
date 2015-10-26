@@ -65,10 +65,7 @@ public class Spiel implements iBediener {
 			throw new RuntimeException("There is no brett available!");
 		else if (startID() == zielID())
 			throw new RuntimeException("Invalid move");
-		else if (brett.spielfeld.zielID() < startID())
-			;
-
-		return false;
+		return true;
 	}
 
 	@Override
