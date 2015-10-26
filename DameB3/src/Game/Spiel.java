@@ -64,11 +64,17 @@ public class Spiel implements iBediener {
 		if (brett == null)
 			throw new RuntimeException("There is no brett available!");
 		else if (startID(brett.spielfeld.getID()) == zielID(brett.spielfeld.getID())){
-			throw new RuntimeException("Invalid move");
-	} else{
+			throw new RuntimeException("Not a valid move");
+//		} else if( else if (startID(brett.spielfeld.getFarbe()) && zielID(brett.spielfeld.getFarbe())){
+//			return false;
+		}
+		else if (startID(brett.spielfeld.getID()) != zielID(brett.spielfeld.getID())){
+			zugDurchführen();
+			brett.spielfeld.setID(zielID(""));
+	} 
 		return true;
 	}
-}
+
 
 	@Override
 	public String startID(String ID) {
