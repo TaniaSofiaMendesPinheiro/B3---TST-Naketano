@@ -20,6 +20,7 @@ public interface iBediener {
 	public boolean zugDurchführen();
 	public String startID();
 	public String zielID();
+	public 
 	
 		
 	
