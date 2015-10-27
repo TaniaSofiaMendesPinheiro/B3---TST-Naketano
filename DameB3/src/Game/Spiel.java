@@ -31,6 +31,12 @@ public class Spiel implements iBediener {
 	public Spiel(Spielbrett brett, Spieler weiss, Spieler schwarz, Spieler spieler_gerade_am_zug) {
 		super();
 	}
+	
+	
+//	public void setSpielfigur(Spielbrett brett){
+//		for(int i = 0; i < brett.length(); i++)
+//			for()
+//	}
 
 	@Override
 	public void spielLaden() {
@@ -122,5 +128,9 @@ public class Spiel implements iBediener {
 		}		
 	}
 
+	@Override
+	public String toString(){
+		return ("" +  "" + brett);
+	}
 	
 	}
