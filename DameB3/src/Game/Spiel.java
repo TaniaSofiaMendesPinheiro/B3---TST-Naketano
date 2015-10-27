@@ -31,6 +31,12 @@ public class Spiel implements iBediener {
 	public Spiel(Spielbrett brett, Spieler weiss, Spieler schwarz, Spieler spieler_gerade_am_zug) {
 		super();
 	}
+	
+	
+//	public void setSpielfigur(Spielbrett brett){
+//		for(int i = 0; i < brett.length(); i++)
+//			for()
+//	}
 
 	@Override
 	public void spielLaden() {
@@ -97,7 +103,7 @@ public class Spiel implements iBediener {
 			System.out.println("Invalid name, it has to have 3 letters");
 		}
 		if( (farbe != farbe.schwarz) ||  (farbe != farbe.weiss )){	
-		System.out.println("You have to chose a colour!");
+		System.out.println("You have to choose a colour!");
 	} if ( spieler == spieler.KI){
 		System.out.println("Du spielst gegen eine KI!");
 	} else {
@@ -122,5 +128,9 @@ public class Spiel implements iBediener {
 		}		
 	}
 
+	@Override
+	public String toString(){
+		return ("" +  "" + brett);
+	}
 	
 	}
