@@ -92,23 +92,35 @@ public class Spiel implements iBediener {
 	}
 
 	@Override
-	public void neuesSpiel(String name, String farbe, Game.Spieler spieler) {
-		// TODO Auto-generated method stub
-		
+	public void neuesSpiel(String name, Game.FarbEnum farbe, Game.Spieler spieler) {
+		if(name == null || name.length() < 2){
+			System.out.println("Invalid name, it has to have 3 letters");
+		}
+		if( (farbe != farbe.schwarz) ||  (farbe != farbe.weiss )){	
+		System.out.println("You have to chose a colour!");
+	} if ( spieler == spieler.KI){
+		System.out.println("Du spielst gegen eine KI!");
+	} else {
+		if (spieler == spieler.spieler){
+			spielerHinzufügen(name, farbe, spieler);
+		}
+	}
+	
 	}
 
 	@Override
-	public void spielerHinzufügen(String name, String farbe, Game.Spieler spieler) {
-			if (name == null || name.length() < 2)
-				throw new RuntimeException("Invalid Input!");
-			else {
-				name = name;
-			}
-			if (farbe != "weiß" || farbe != "schwarz")
-				throw new RuntimeException("You have to be black or white");
-			else {
-				farbe = farbe;
-			}
+	public void spielerHinzufügen(String name, Game.FarbEnum farbe, Game.Spieler spieler) {
+		if (name == null || name.length() < 2)
+			throw new RuntimeException("Invalid Input!");
+		else {
+			name = name;
 		}
-		
+		if (farbe != farbe.weiss || farbe != farbe.schwarz)
+			throw new RuntimeException("You have to be black or white");
+		else {
+			farbe = farbe;
+		}		
+	}
+
+	
 	}
