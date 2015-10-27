@@ -8,6 +8,7 @@ import org.junit.Test;
 public class JUNIT_Spiel {
 	
 	private Spiel spiel;
+	public FarbEnum rot;
 
 	@Before
 	public void vorMethode(){
@@ -17,7 +18,7 @@ public class JUNIT_Spiel {
 	
 	@Test (expected = RuntimeException.class)
 	public void testeSpielerhinzufügen(){
-		spiel.spielerHinzufügen(null, "rot", Spieler.KI);
+		spiel.spielerHinzufügen(null, FarbEnum.rot , Spieler.KI);
 	}
 	
 	@Test (expected = RuntimeException.class)
