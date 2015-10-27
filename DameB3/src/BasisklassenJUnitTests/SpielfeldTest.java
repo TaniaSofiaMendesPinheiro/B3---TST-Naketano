@@ -21,6 +21,6 @@ public class SpielfeldTest {
 	public void testeGetID() {
 		spielfeld.setID("A115");
 		spielfeld.setID("A");
-
+		
 	}
 }

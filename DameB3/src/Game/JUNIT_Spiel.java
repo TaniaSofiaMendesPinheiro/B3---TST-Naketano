@@ -18,7 +18,7 @@ public class JUNIT_Spiel {
 	
 	@Test (expected = RuntimeException.class)
 	public void testeSpielerhinzufügen(){
-		spiel.spielerHinzufügen(null, FarbEnum.rot , Spieler.KI);
+		spiel.spielerHinzufügen(null, FarbEnum.rot, Spieler.KI);
 	}
 	
 	@Test (expected = RuntimeException.class)
