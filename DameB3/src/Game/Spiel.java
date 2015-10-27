@@ -103,7 +103,7 @@ public class Spiel implements iBediener {
 			System.out.println("Invalid name, it has to have 3 letters");
 		}
 		if( (farbe != farbe.schwarz) ||  (farbe != farbe.weiss )){	
-		System.out.println("You have to chose a colour!");
+		System.out.println("You have to choose a colour!");
 	} if ( spieler == spieler.KI){
 		System.out.println("Du spielst gegen eine KI!");
 	} else {
