@@ -17,8 +17,8 @@ public interface iBediener {
 
 	public void spielSpeichern();
 
-	public void neuesSpiel(String name, String farbe, boolean istKI);
-
+	public void neuesSpiel(String name, String farbe, Spieler spieler);
+	
 	public boolean zugDurchführen();
 
 	public String startID(String ID);
@@ -27,6 +27,6 @@ public interface iBediener {
 
 	public void spielBeenden();
 
-	public void spielerHinzufügen(String name, String farbe, boolean istKI);
+	public void spielerHinzufügen(String name, String farbe, Spieler spieler);
 
 }

@@ -42,22 +42,10 @@ public class Spiel implements iBediener {
 
 	}
 
-	@Override
-	public void neuesSpiel(String name, String farbe, boolean istKI) {
-		boolean istBeginner = true;
-		if (farbe == "weiss") {
-			istBeginner = true;
-		} else {
-			istBeginner = false;
-		}
-		if (istKI == true) {
-			Spiel s = new Spiel();
-			s.spielerHinzufügen(name, farbe, istKI);
-		}
 		// istKI = false;
 		// Spiel s1 = new Spiel();
 		// s1.spielerHinzufügen(name, farbe);
-	}
+	
 
 	@Override
 	public boolean zugDurchführen() {
@@ -104,16 +92,23 @@ public class Spiel implements iBediener {
 	}
 
 	@Override
-	public void spielerHinzufügen(String name, String farbe, boolean istKI) {
-		if (name == null || name.length() < 2)
-			throw new RuntimeException("Invalid Input!");
-		else {
-			name = name;
-		}
-		if (farbe != "weiß" || farbe != "schwarz")
-			throw new RuntimeException("You have to be black or white");
-		else {
-			farbe = farbe;
-		}
+	public void neuesSpiel(String name, String farbe, Game.Spieler spieler) {
+		// TODO Auto-generated method stub
+		
 	}
-}
+
+	@Override
+	public void spielerHinzufügen(String name, String farbe, Game.Spieler spieler) {
+			if (name == null || name.length() < 2)
+				throw new RuntimeException("Invalid Input!");
+			else {
+				name = name;
+			}
+			if (farbe != "weiß" || farbe != "schwarz")
+				throw new RuntimeException("You have to be black or white");
+			else {
+				farbe = farbe;
+			}
+		}
+		
+	}
