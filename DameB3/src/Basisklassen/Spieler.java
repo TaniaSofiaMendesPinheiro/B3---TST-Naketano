@@ -91,7 +91,7 @@ public class Spieler {
 		if ( farbe == null ){
 			throw new RuntimeException ("colour cannot be null");
 		}
-			if(farbe != farbe.schwarz | farbe != farbe.weiss) throw new RuntimeException("you need the colour black or withe");
+			if(farbe != farbe.schwarz | farbe != farbe.weiss) throw new RuntimeException("you need the colour black or w");
 			else{
 			this.farbe = farbe.schwarz;
 			this.farbe = farbe.weiss;
