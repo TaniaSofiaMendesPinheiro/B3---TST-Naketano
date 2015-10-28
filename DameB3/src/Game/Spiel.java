@@ -1,6 +1,6 @@
 package Game;
 
-import Game.FarbEnum;
+import Basisklassen.FarbEnum;
 import Basisklassen.Spielbrett;
 import Basisklassen.Spieler;
 import Basisklassen.Spielfeld;
@@ -23,7 +23,8 @@ public class Spiel implements iBediener {
 	private Spieler spielerWeiss;
 	private Spieler spielerSchwarz;
 	private boolean weiss_gerade_am_Zug = true;
-	private FarbEnum farbe;
+	private boolean istDame = false;
+	private boolean istKI = false;
 
 	public Spiel() {
 
@@ -84,10 +85,21 @@ public class Spiel implements iBediener {
 
 	}
 
+	@Override
+	public void neuesSpiel() {
+		if (istKI = true) {
+			System.out.println("Du spielst gegen eine KI!");
+		} else {
+			spielerHinzufügen("harald", "weiss");
+			spielerHinzufügen("dome", "schwarz");
+		
+	}
+	}
+
 
 	@Override
-	public String spielerHinzufügen(String name, FarbEnum farbe, Game.Spieler spieler) {
-		if (name == null || name.length() < 2)
+	public String spielerHinzufügen(String name, String farbe) {
+		if (name == null | name.length() < 2)
 			throw new RuntimeException("Invalid Input!");
 		else {
 			name = name;
@@ -99,24 +111,10 @@ public class Spiel implements iBediener {
 		}
 		System.out.println("Sie haben erfolgreich einen neuen Spieler hinzugefügt!");
 		return " ";
+	
 	}
+}
 
-	@Override
-	public void neuesSpiel(String name, FarbEnum farbe, Game.Spieler spieler, Game.Spieler spieler1) {
-		if (name == null || name.length() < 2) {
-			System.out.println("Invalid name, it has to have 3 letters");
-		}
-		if ((farbe != farbe.schwarz) | (farbe != farbe.weiss)) {
-			System.out.println("You have to choose weiss or schwarz!");
-		}
-		if (spieler == spieler.KI) {
-			System.out.println("Du spielst gegen eine KI!");
-		} else {
-			if (spieler == spieler.menschlspieler) {
-				spielerHinzufügen(name, farbe, spieler);
-			}
-		}
-	}
 
 	
-}
+

@@ -17,7 +17,7 @@ public interface iBediener {
 
 	public void spielSpeichern();
 
-	public void neuesSpiel(String name, FarbEnum farbe, Spieler spieler, Spieler spieler1);
+	public void neuesSpiel();
 	
 	public boolean zugDurchführen();
 
@@ -27,6 +27,6 @@ public interface iBediener {
 
 	public void spielBeenden();
 
-	public String spielerHinzufügen(String name, FarbEnum farbe, Spieler spieler);
+	public String spielerHinzufügen(String name, String farbe);
 
 }

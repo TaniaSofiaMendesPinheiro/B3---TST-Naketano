@@ -10,6 +10,7 @@ public class SpielTest {
 		Spielbrett b = new Spielbrett();
 		System.out.println(b);
 		s1.spielerHinzufügen("Kira", FarbEnum.schwarz, Spieler.menschlspieler);
+		s1.neuesSpiel("Ha", FarbEnum.weiss, Spieler.menschlspieler, Spieler.menschlspieler);
 		
 		
 		
