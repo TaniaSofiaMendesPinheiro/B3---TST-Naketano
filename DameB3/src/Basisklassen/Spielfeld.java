@@ -13,7 +13,7 @@ public class Spielfeld {
 	private Spielfigur spielfigur;
 	private FarbEnum farbe;
 	private String ID;
-	private Spielbrett spielbrett;
+	private Spielbrett brett;
 	
 	
 	public Spielfeld(){
@@ -110,6 +110,15 @@ public class Spielfeld {
 
 	@Override
 	public String toString() {
-		return this.spielfigur + " " + this.farbe +" "+ this.ID;
+		char x = 0;
+		for ( int i = 0; i  < (char) (x + 97); i++){
+			if( i <= (char) (x + 108)){
+				for( int j = 0; j <= 12; j++) {
+					
+				}
+			}
+		}
+		
+		return " "+ this.spielfigur + " " + this.farbe +" "+ this.ID;
 	}
 }

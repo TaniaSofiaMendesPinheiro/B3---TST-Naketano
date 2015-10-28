@@ -88,6 +88,7 @@ public class Spiel implements iBediener {
 	@Override
 	public void neuesSpiel() {
 		if (istKI = true) {
+			spielerHinzufügen("Tania", "weiss");
 			System.out.println("Du spielst gegen eine KI!");
 		} else {
 			spielerHinzufügen("harald", "weiss");
@@ -98,19 +99,19 @@ public class Spiel implements iBediener {
 
 
 	@Override
-	public String spielerHinzufügen(String name, String farbe) {
+	public void spielerHinzufügen(String name, String farbe) {
 		if (name == null | name.length() < 2)
 			throw new RuntimeException("Invalid Input!");
 		else {
 			name = name;
 		}
-		if ( !(farbe == FarbEnum.weiss | farbe == FarbEnum.schwarz)){
+		if ( !(farbe == "weiss" | farbe == "schwarz")){
 				throw new ArithmeticException("Please choose a colour between weiss or schwarz");
 		}else {
 			farbe = farbe;
 		}
 		System.out.println("Sie haben erfolgreich einen neuen Spieler hinzugefügt!");
-		return " ";
+		
 	
 	}
 }

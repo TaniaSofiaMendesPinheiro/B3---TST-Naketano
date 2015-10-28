@@ -27,12 +27,16 @@ public class Spielbrett {
 				String ID = "" + (char) (j + 97) + (i + 1) + "";
 				brett[i][j] = new Spielfeld(ID, (i + j) % 2 == 0);
 
-				// System.out.print(" " + ID + "/" + (i + j) % 2 == 0 + " ");
 			}
-			// System.out.println("");
 		}
 
-		// return istSchwarz;
+	}
+	
+	public void setzeSteine(){
+		erstelleSpielbrett();
+	
+		
+		
 	}
 
 	@Override
