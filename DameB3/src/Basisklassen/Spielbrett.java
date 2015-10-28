@@ -34,7 +34,7 @@ public class Spielbrett {
 	
 	public void setzeSteine(){
 		erstelleSpielbrett();
-	
+			
 		
 		
 	}
@@ -50,5 +50,4 @@ public class Spielbrett {
 		}
 		return schachbrett;
 	}
-
 }
