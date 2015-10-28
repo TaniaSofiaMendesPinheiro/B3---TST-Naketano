@@ -32,6 +32,15 @@ public class Spielbrett {
 
 	}
 	
+<<<<<<< HEAD
+=======
+	public void setzeSteine(){
+		erstelleSpielbrett();
+			
+		
+		
+	}
+>>>>>>> branch 'master' of https://github.com/TaniaSofiaMendesPinheiro/B3---TST-Naketano
 
 	@Override
 	public String toString() {
@@ -44,5 +53,4 @@ public class Spielbrett {
 		}
 		return schachbrett;
 	}
-
 }
