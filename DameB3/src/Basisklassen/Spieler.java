@@ -41,7 +41,7 @@ public class Spieler {
 	public Spieler(String name, FarbEnum farbe, KI ki) {
 		this.name = name;
 		this.farbe = farbe;
-		ki.add(ki);
+		this.ki = ki;
 		}
 
 	/** getter for name

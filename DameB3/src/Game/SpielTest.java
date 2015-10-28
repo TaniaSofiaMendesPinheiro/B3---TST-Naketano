@@ -1,13 +1,15 @@
 package Game;
 
+import Basisklassen.Spielbrett;
+
 public class SpielTest {
 
 	public static void main(String[] args) {
 		
 		Spiel s1 = new Spiel();
-		s1.spielerHinzufügen("Alex", FarbEnum.weiss, Spieler.spieler);
-		
-		System.out.println(s1);
+		Spielbrett b = new Spielbrett();
+		System.out.println(b);
+		s1.spielerHinzufügen("Kira", FarbEnum.schwarz, Spieler.menschlspieler);
 		
 		
 		

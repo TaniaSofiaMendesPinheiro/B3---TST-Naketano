@@ -2,6 +2,6 @@ package Game;
 
 public enum Spieler {
 	
-	spieler, KI;
+	menschlspieler, KI;
 
 }

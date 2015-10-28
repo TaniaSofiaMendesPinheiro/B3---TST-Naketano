@@ -27,6 +27,6 @@ public interface iBediener {
 
 	public void spielBeenden();
 
-	public void spielerHinzufügen(String name, FarbEnum farbe, Spieler spieler);
+	public String spielerHinzufügen(String name, FarbEnum farbe, Spieler spieler);
 
 }

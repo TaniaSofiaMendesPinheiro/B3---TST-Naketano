@@ -19,11 +19,5 @@ public abstract class KI {
 		}
 		this.name = name;
 		this.farbe = farbe;
-	}
-
-	public KI add(KI ki) {
-		return ki;
-	}
-	
-	
+	}	
 }
