@@ -114,7 +114,9 @@ public class Spiel implements iBediener {
 		}else {
 			farbe = farbe;
 		}
-		return "Sie haben erfolgreich einen Spieler hinzugefügt";
+		System.out.println("Sie haben erfolgreich einen neuen Spieler hinzugefügt!");
+		return " ";
 	}
+
 	
 }
