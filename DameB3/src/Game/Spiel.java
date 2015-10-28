@@ -84,23 +84,6 @@ public class Spiel implements iBediener {
 
 	}
 
-	@Override
-	public void neuesSpiel(String name, Game.FarbEnum farbe, Game.Spieler spieler) {
-		if (name == null || name.length() < 2) {
-			System.out.println("Invalid name, it has to have 3 letters");
-		}
-		if ((farbe != farbe.schwarz) | (farbe != farbe.weiss)) {
-			System.out.println("You have to choose weiss or schwarz!");
-		}
-		if (spieler == spieler.KI) {
-			System.out.println("Du spielst gegen eine KI!");
-		} else {
-			if (spieler == spieler.menschlspieler) {
-				spielerHinzufügen(name, farbe, spieler);
-			}
-		}
-
-	}
 
 	@Override
 	public String spielerHinzufügen(String name, FarbEnum farbe, Game.Spieler spieler) {
@@ -116,6 +99,23 @@ public class Spiel implements iBediener {
 		}
 		System.out.println("Sie haben erfolgreich einen neuen Spieler hinzugefügt!");
 		return " ";
+	}
+
+	@Override
+	public void neuesSpiel(String name, FarbEnum farbe, Game.Spieler spieler, Game.Spieler spieler1) {
+		if (name == null || name.length() < 2) {
+			System.out.println("Invalid name, it has to have 3 letters");
+		}
+		if ((farbe != farbe.schwarz) | (farbe != farbe.weiss)) {
+			System.out.println("You have to choose weiss or schwarz!");
+		}
+		if (spieler == spieler.KI) {
+			System.out.println("Du spielst gegen eine KI!");
+		} else {
+			if (spieler == spieler.menschlspieler) {
+				spielerHinzufügen(name, farbe, spieler);
+			}
+		}
 	}
 
 	
