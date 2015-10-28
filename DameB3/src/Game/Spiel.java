@@ -112,7 +112,6 @@ public class Spiel implements iBediener {
 		}
 		System.out.println("Sie haben erfolgreich einen neuen Spieler hinzugefügt!");
 		
-	
 	}
 }
 
