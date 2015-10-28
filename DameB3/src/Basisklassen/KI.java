@@ -20,4 +20,32 @@ public abstract class KI {
 		this.name = name;
 		this.farbe = farbe;
 	}	
+	
+	/**
+	 * This method want a Spielfigur to get a Dame as fast as possbile.
+	 */
+	public void werdeDame(){
+				
+	}
+	
+	/**
+	 * This method want to beat a Spielfigur of the opposite.
+	 */
+	public void schlageGegner(){
+		
+	}
+	
+	/**
+	 * This method don`t want to get beat by a Spielfigur of the opposite.
+	 */
+	public void ausweichen(){
+		
+	}
+	/**
+	 * This method is to move the Spielfigur.
+	 */
+	public void bewegen(){
+		
+	}
+	
 }
