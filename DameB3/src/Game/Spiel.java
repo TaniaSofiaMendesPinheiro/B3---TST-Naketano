@@ -114,7 +114,21 @@ public class Spiel implements iBediener {
 		
 	
 	}
-}
+	
+	public String setzeFigurAufBrett(Spielfigur spielfigur, FarbEnum farbe) {
+		char x = 0;
+			for (int i = 0; i <= 12; i++){
+				for (char j = 0; j <= (char) (x + 101); j++) {
+					if (!(farbe == FarbEnum.schwarz)) {
+						brett.spielfeld.setSpielfigur(spielfigur);
+					}
+				}
+			}
+			return "x" ; 
+	} 
+} 
+
+			
 
 
 	

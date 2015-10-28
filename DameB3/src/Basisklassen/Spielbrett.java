@@ -32,12 +32,6 @@ public class Spielbrett {
 
 	}
 	
-	public void setzeSteine(){
-		erstelleSpielbrett();
-	
-		
-		
-	}
 
 	@Override
 	public String toString() {

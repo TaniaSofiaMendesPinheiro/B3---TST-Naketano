@@ -14,12 +14,12 @@ public class Spielfeld {
 	private FarbEnum farbe;
 	private String ID;
 	private Spielbrett brett;
-	
-	
-	public Spielfeld(){
-		
+	private Spielfeld feld;
+
+	public Spielfeld() {
+
 	}
-	
+
 	/**
 	 * constructor, if spielfeld is without spielfigur // spielfeld = empty
 	 * 
@@ -29,13 +29,13 @@ public class Spielfeld {
 
 	public Spielfeld(String ID, boolean istSchwarz) {
 		this.ID = ID;
-		if(istSchwarz)
+		if (istSchwarz)
 			this.farbe = FarbEnum.schwarz;
 		else
 			this.farbe = FarbEnum.weiss;
 
 	}
-	
+
 	/**
 	 * constructor with id, farbe and spielfigur --> my field is complete!
 	 * 
@@ -49,14 +49,12 @@ public class Spielfeld {
 		this.spielfigur = spielfigur;
 		this.farbe = farbe;
 	}
-	
-	
-	public FarbEnum getFarbe(){
+
+	public FarbEnum getFarbe() {
 		return farbe;
 	}
-	
-	
-	public void setFarbe(FarbEnum farbe){
+
+	public void setFarbe(FarbEnum farbe) {
 		this.farbe = farbe;
 	}
 
@@ -71,7 +69,7 @@ public class Spielfeld {
 		return ID;
 	}
 
-		/**
+	/**
 	 * setter for ID
 	 * 
 	 * @param iD
@@ -79,10 +77,10 @@ public class Spielfeld {
 	 *           my ID has to have min 2 symbols, but max 3 symbols
 	 */
 
-	public void setID(String ID){
-		if (ID.length() <= 2 || ID.length()  >= 3) 
+	public void setID(String ID) {
+		if (ID.length() <= 2 || ID.length() >= 3)
 			throw new RuntimeException("This is not a valid ID!");
-		 else {
+		else {
 			this.ID = ID;
 		}
 
@@ -95,6 +93,7 @@ public class Spielfeld {
 	 */
 
 	public Spielfigur getSpielfigur() {
+	
 		return this.spielfigur;
 	}
 
@@ -105,20 +104,13 @@ public class Spielfeld {
 	 */
 
 	public void setSpielfigur(Spielfigur spielfigur) {
+	
 		this.spielfigur = spielfigur;
 	}
 
 	@Override
-	public String toString() {
-		char x = 0;
-		for ( int i = 0; i  < (char) (x + 97); i++){
-			if( i <= (char) (x + 108)){
-				for( int j = 0; j <= 12; j++) {
-					
-				}
-			}
-		}
+	public String toString(){
 		
-		return " "+ this.spielfigur + " " + this.farbe +" "+ this.ID;
+		return " " + this.spielfigur+ " " + this.farbe + " " + this.ID;
 	}
 }
