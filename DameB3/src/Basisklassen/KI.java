@@ -25,7 +25,8 @@ public abstract class KI {
 	 * This method want a Spielfigur to get a Dame as fast as possbile.
 	 */
 	public void werdeDame(){
-				
+			
+		
 	}
 	
 	/**
@@ -47,5 +48,4 @@ public abstract class KI {
 	public void bewegen(){
 		
 	}
-	
 }
