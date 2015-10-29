@@ -121,10 +121,9 @@ public class Spiel implements iBediener {
 	 */
 
 	public void setzeFigurenAufsBrett() {
-
 		char x = 0;
-		for (int i = 0; i <= 12; i++) {
-			for (char j = 0; j <= (char) (x + 101); j++) {
+		for (int i = 0; i <= 5; i++) {
+			for (char j = 0; j <= (char) (x + 108); j++) {
 				if (!(brett.spielfeld.getFarbe() == FarbEnum.weiss)) {
 					brett.getSpielfeld().setSpielfigur(new Spielfigur());
 				}
@@ -135,7 +134,7 @@ public class Spiel implements iBediener {
 		for (int i = 8; i <= 12; i++) {
 			for (char j = 0; j <= (char) (y + 108); j++) {
 				if (!(brett.spielfeld.getFarbe() == FarbEnum.weiss)) {
-					brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
+					brett.getSpielfeld().setSpielfigur(new Spielfigur());
 				}
 			}
 		}
