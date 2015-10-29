@@ -102,20 +102,21 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void spielerHinzufügen(String name, String farbe) {
-		if (name == null | name.length() < 2)
-			throw new RuntimeException("Invalid Input!");
-		else {
-			name = name;
+		if (istKI = false) {
+			if (name == null | name.length() < 2)
+				throw new RuntimeException("Invalid Input!");
+			else {
+				name = name;
+			}
+			if (!(farbe == "weiss" | farbe == "schwarz")) {
+				throw new ArithmeticException("Please choose a colour between weiss or schwarz");
+			} else {
+				farbe = farbe;
+			}
+			System.out.println("Sie haben erfolgreich einen neuen Spieler hinzugefügt!");
 		}
-		if (!(farbe == "weiss" | farbe == "schwarz")) {
-			throw new ArithmeticException("Please choose a colour between weiss or schwarz");
-		} else {
-			farbe = farbe;
-		}
-		System.out.println("Sie haben erfolgreich einen neuen Spieler hinzugefügt!");
-
 	}
-	
+
 	/**
 	 * this is a method for our figures to set on our brett.
 	 */
@@ -124,7 +125,7 @@ public class Spiel implements iBediener {
 		char x = 0;
 		for (int i = 0; i <= 5; i++) {
 			for (char j = 0; j <= (char) (x + 108); j++) {
-				if (!(brett.spielfeld.getFarbe() == FarbEnum.weiss)) {
+				if (brett.spielfeld.getFarbe() == FarbEnum.schwarz) {
 					brett.getSpielfeld().setSpielfigur(new Spielfigur());
 				}
 			}
@@ -133,7 +134,7 @@ public class Spiel implements iBediener {
 		char y = 0;
 		for (int i = 8; i <= 12; i++) {
 			for (char j = 0; j <= (char) (y + 108); j++) {
-				if (!(brett.spielfeld.getFarbe() == FarbEnum.weiss)) {
+				if (brett.spielfeld.getFarbe() == FarbEnum.schwarz) {
 					brett.getSpielfeld().setSpielfigur(new Spielfigur());
 				}
 			}

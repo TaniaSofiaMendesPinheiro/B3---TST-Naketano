@@ -1,8 +1,7 @@
 package Game;
 
-import Basisklassen.FarbEnum;
 import Basisklassen.Spielbrett;
-import Basisklassen.Spielfigur;
+
 
 public class SpielTest {
 
@@ -12,7 +11,7 @@ public class SpielTest {
 		Spielbrett b = new Spielbrett();
 		System.out.println(b);
 		s1.neuesSpiel();
-//		s1.setzeFigurenAufsBrett();
+		s1.setzeFigurenAufsBrett();
 
 		
 		

@@ -1,5 +1,6 @@
 package Game;
 
+import java.io.PrintWriter;
 import java.util.Set;
 
 //Über das Interface erfolgt auch die Ausgabe der aktuellen Spielbrett - Belegung
@@ -28,5 +29,16 @@ public interface iBediener {
 	public void spielBeenden();
 
 	public void spielerHinzufügen(String name, String farbe);
-
+	
 }
+
+//	PrintWriter pw;
+//	pw = new PrintWriter ( new FileWriter ("brett.txt"));
+//	for (int i = 1; i < 10; i++){
+//		pw.println( i + ";" + i*i + ";" + Math.sqrt(i));
+//	}
+//	pw.close();
+//	
+//}
+
+
