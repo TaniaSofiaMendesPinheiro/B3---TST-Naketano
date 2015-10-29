@@ -14,7 +14,7 @@ public class Spielfeld {
 	private FarbEnum farbe;
 	private String ID;
 	private Spielbrett brett;
-	private Spielfeld feld;
+
 
 	public Spielfeld() {
 
@@ -75,6 +75,7 @@ public class Spielfeld {
 	 * @param iD
 	 * @throws RuntimeException
 	 *           my ID has to have min 2 symbols, but max 3 symbols
+	 *           "a1 - a12"
 	 */
 
 	public void setID(String ID) {

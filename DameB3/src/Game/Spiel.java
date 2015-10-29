@@ -25,8 +25,6 @@ public class Spiel implements iBediener {
 	private boolean weiss_gerade_am_Zug = true;
 	private boolean istDame = false;
 	private boolean istKI = false;
-	private String zielID;
-	private String startID;
 
 	public Spiel() {
 
@@ -71,8 +69,12 @@ public class Spiel implements iBediener {
 
 	@Override
 	public String zielID(String ID) {
+		weiss_gerade_am_Zug = true;
 		if (brett.spielfeld.getFarbe() != FarbEnum.schwarz) {
 			throw new RuntimeException("white is not allowed for player or dame");
+		}
+		if (brett.spielfeld.getSpielfigur() != null) {
+
 		} else if (brett.spielfeld.getSpielfigur() != null) {
 			throw new RuntimeException("Field is not valid!");
 		} else {
@@ -83,7 +85,7 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void spielBeenden() {
-			
+
 	}
 
 	@Override
@@ -94,10 +96,9 @@ public class Spiel implements iBediener {
 		} else {
 			spielerHinzufügen("harald", "weiss");
 			spielerHinzufügen("dome", "schwarz");
-		
-	}
-	}
 
+		}
+	}
 
 	@Override
 	public void spielerHinzufügen(String name, String farbe) {
@@ -106,34 +107,38 @@ public class Spiel implements iBediener {
 		else {
 			name = name;
 		}
-		if ( !(farbe == "weiss" | farbe == "schwarz")){
-				throw new ArithmeticException("Please choose a colour between weiss or schwarz");
-		}else {
+		if (!(farbe == "weiss" | farbe == "schwarz")) {
+			throw new ArithmeticException("Please choose a colour between weiss or schwarz");
+		} else {
 			farbe = farbe;
 		}
 		System.out.println("Sie haben erfolgreich einen neuen Spieler hinzugefügt!");
-		
+
 	}
 	
-	public String setzeFigurAufBrett(String ID) {
-		
+	/**
+	 * this is a method for our figures to set on our brett.
+	 */
+
+	public void setzeFigurenAufsBrett() {
+
 		char x = 0;
-			for (int i = 0; i <= 12; i++){
-				for (char j = 0; j <= (char) (x + 101); j++) {
-					if (!(brett.spielfeld.getFarbe() == FarbEnum.weiss)) {
-						brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
-					}
+		for (int i = 0; i <= 12; i++) {
+			for (char j = 0; j <= (char) (x + 101); j++) {
+				if (!(brett.spielfeld.getFarbe() == FarbEnum.weiss)) {
+					brett.getSpielfeld().setSpielfigur(new Spielfigur());
 				}
 			}
-			
-			char y = 0;
-			for (int i = 8; i <= 12; i++){
-				for(char j = 0; j <= (char) y + 108; j++){
-					if(!(brett.spielfeld.getFarbe() == FarbEnum.weiss)){
-						brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
-					}
+		}
+
+		char y = 0;
+		for (int i = 8; i <= 12; i++) {
+			for (char j = 0; j <= (char) (y + 108); j++) {
+				if (!(brett.spielfeld.getFarbe() == FarbEnum.weiss)) {
+					brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
 				}
 			}
-			return "x" + x + "y" + y;
-	} 
-} 
+		}
+		// return "x" + x + "y" + y;
+	}
+}

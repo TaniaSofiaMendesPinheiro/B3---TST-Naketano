@@ -17,9 +17,13 @@ public class Spielbrett {
 		this.erstelleSpielbrett();
 	}
 	
-	public String getSpielfeld(String ID){
-		return spielfeld.getID(ID);
+	public Spielfeld getSpielfeld(String ID){
+		return this.spielfeld;
 	}
+	
+//	public String getSpielfeld(String ID){
+//		return spielfeld.getID(ID);
+//	}
 
 
 	/**
