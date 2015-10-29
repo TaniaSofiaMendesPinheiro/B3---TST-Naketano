@@ -65,7 +65,7 @@ public class Spielfeld {
 	 * 
 	 */
 
-	public String getID() {
+	public String getID(String ID) {
 		return ID;
 	}
 
@@ -93,7 +93,6 @@ public class Spielfeld {
 	 */
 
 	public Spielfigur getSpielfigur() {
-	
 		return this.spielfigur;
 	}
 
@@ -104,13 +103,12 @@ public class Spielfeld {
 	 */
 
 	public void setSpielfigur(Spielfigur spielfigur) {
-	
 		this.spielfigur = spielfigur;
 	}
 
 	@Override
-	public String toString(){
-		
-		return " " + this.spielfigur+ " " + this.farbe + " " + this.ID;
+	public String toString() {
+
+		return " " + this.spielfigur + " " + this.farbe + " " + this.ID;
 	}
 }

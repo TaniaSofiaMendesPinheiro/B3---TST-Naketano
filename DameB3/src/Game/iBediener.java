@@ -19,7 +19,7 @@ public interface iBediener {
 
 	public void neuesSpiel();
 	
-	public boolean zugDurchführen();
+	public boolean zugDurchführen(String ID);
 
 	public String startID(String ID);
 

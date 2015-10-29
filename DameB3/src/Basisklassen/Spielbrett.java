@@ -16,6 +16,11 @@ public class Spielbrett {
 	public Spielbrett() {
 		this.erstelleSpielbrett();
 	}
+	
+	public Spielfeld getSpielfeld(String ID){
+		return this.spielfeld;
+	}
+
 
 	/**
 	 * Create the field with the ID and colour

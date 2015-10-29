@@ -45,16 +45,16 @@ public class Spiel implements iBediener {
 	}
 
 	@Override
-	public boolean zugDurchführen() {
+	public boolean zugDurchführen(String ID) {
 		if (brett == null)
 			throw new RuntimeException("There is no brett available!");
-		else if (startID(brett.spielfeld.getID()) == zielID(brett.spielfeld.getID())) {
+		else if (startID(brett.spielfeld.getID(ID)) == zielID(brett.spielfeld.getID(ID))) {
 			throw new RuntimeException("Not a valid move");
 			// } else if( else if (startID(brett.spielfeld.getFarbe()) &&
 			// zielID(brett.spielfeld.getFarbe())){
 			// return false;
-		} else if (startID(brett.spielfeld.getID()) != zielID(brett.spielfeld.getID())) {
-			zugDurchführen();
+		} else if (startID(brett.spielfeld.getID(ID)) != zielID(brett.spielfeld.getID(ID))) {
+			zugDurchführen(zielID.setID(ID));
 			brett.spielfeld.setID(zielID(""));
 		}
 		return true;
@@ -65,7 +65,7 @@ public class Spiel implements iBediener {
 		if (ID == null | ID.length() < 2 | ID.length() > 3) {
 			throw new RuntimeException("This is not a valid position!");
 		} else
-			return brett.spielfeld.getID();
+			return brett.spielfeld.getID(ID);
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class Spiel implements iBediener {
 		} else {
 			brett.spielfeld.setID(zielID(ID));
 		}
-		return brett.spielfeld.getID();
+		return brett.spielfeld.getID(ID);
 	}
 
 	@Override
@@ -114,21 +114,24 @@ public class Spiel implements iBediener {
 		
 	}
 	
-	public String setzeFigurAufBrett(Spielfigur spielfigur, FarbEnum farbe) {
+	public String setzeFigurAufBrett() {
 		char x = 0;
 			for (int i = 0; i <= 12; i++){
 				for (char j = 0; j <= (char) (x + 101); j++) {
-					if (!(farbe == FarbEnum.schwarz)) {
-						brett.spielfeld.setSpielfigur(spielfigur);
+					if (!(brett.spielfeld.getFarbe() == FarbEnum.schwarz)) {
+						brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
 					}
 				}
 			}
-			return "x" ; 
+			
+			char y = 0;
+			for (int i = 8; i <= 12; i++){
+				for(char j = 0; j <= (char) y + 108; j++){
+					if(!(brett.spielfeld.getFarbe() == FarbEnum.schwarz)){
+						brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
+					}
+				}
+			}
+			return "x" + x + "y" + y;
 	} 
 } 
-
-			
-
-
-	
-
