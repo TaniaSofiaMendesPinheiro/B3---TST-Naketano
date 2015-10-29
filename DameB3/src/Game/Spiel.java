@@ -62,6 +62,7 @@ public class Spiel implements iBediener {
 
 	@Override
 	public String startID(String ID) {
+		String startID = brett.spielfeld.getID(ID);
 		if (ID == null | ID.length() < 2 | ID.length() > 3) {
 			throw new RuntimeException("This is not a valid position!");
 		} else
@@ -70,6 +71,7 @@ public class Spiel implements iBediener {
 
 	@Override
 	public String zielID(String ID) {
+//		String zielID = brett.spielfeld.setID(ID);
 		weiss_gerade_am_Zug = true;
 		if (brett.spielfeld.getFarbe() != FarbEnum.schwarz) {
 			throw new RuntimeException("white is not allowed for player or dame");
@@ -122,12 +124,12 @@ public class Spiel implements iBediener {
 	 * this is a method for our figures to set on our brett.
 	 */
 
-	public void setzeFigurenAufsBrett() {
+	public void setzeFigurenAufsBrett(String ID) {
 		char x = 0;
 		for (int i = 0; i <= 5; i++) {
 			for (char j = 0; j <= (char) (x + 108); j++) {
 				if (brett.spielfeld.getFarbe() == FarbEnum.schwarz) {
-					brett.getSpielfeld().setSpielfigur(new Spielfigur());
+					brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
 				}
 			}
 		}
@@ -136,7 +138,7 @@ public class Spiel implements iBediener {
 		for (int i = 8; i <= 12; i++) {
 			for (char j = 0; j <= (char) (y + 108); j++) {
 				if (brett.spielfeld.getFarbe() == FarbEnum.schwarz) {
-					brett.getSpielfeld().setSpielfigur(new Spielfigur());
+					brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
 				}
 			}
 		}
