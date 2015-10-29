@@ -25,6 +25,8 @@ public class Spiel implements iBediener {
 	private boolean weiss_gerade_am_Zug = true;
 	private boolean istDame = false;
 	private boolean istKI = false;
+	private String zielID;
+	private String startID;
 
 	public Spiel() {
 
@@ -54,7 +56,6 @@ public class Spiel implements iBediener {
 			// zielID(brett.spielfeld.getFarbe())){
 			// return false;
 		} else if (startID(brett.spielfeld.getID(ID)) != zielID(brett.spielfeld.getID(ID))) {
-			zugDurchführen(zielID.setID(ID));
 			brett.spielfeld.setID(zielID(""));
 		}
 		return true;
@@ -82,7 +83,7 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void spielBeenden() {
-
+			
 	}
 
 	@Override
@@ -114,11 +115,12 @@ public class Spiel implements iBediener {
 		
 	}
 	
-	public String setzeFigurAufBrett() {
+	public String setzeFigurAufBrett(String ID) {
+		
 		char x = 0;
 			for (int i = 0; i <= 12; i++){
 				for (char j = 0; j <= (char) (x + 101); j++) {
-					if (!(brett.spielfeld.getFarbe() == FarbEnum.schwarz)) {
+					if (!(brett.spielfeld.getFarbe() == FarbEnum.weiss)) {
 						brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
 					}
 				}
@@ -127,7 +129,7 @@ public class Spiel implements iBediener {
 			char y = 0;
 			for (int i = 8; i <= 12; i++){
 				for(char j = 0; j <= (char) y + 108; j++){
-					if(!(brett.spielfeld.getFarbe() == FarbEnum.schwarz)){
+					if(!(brett.spielfeld.getFarbe() == FarbEnum.weiss)){
 						brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
 					}
 				}
