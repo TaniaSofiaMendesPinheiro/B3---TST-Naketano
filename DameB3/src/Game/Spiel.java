@@ -36,6 +36,7 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void spielLaden() {
+		// ruft die methoden von laden und speicher aus dem package speichern und laden
 
 	}
 

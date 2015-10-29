@@ -30,7 +30,12 @@ public interface iBediener {
 
 	public void spielerHinzufügen(String name, String farbe);
 	
+	
+	
 }
+
+
+
 
 //	PrintWriter pw;
 //	pw = new PrintWriter ( new FileWriter ("brett.txt"));
