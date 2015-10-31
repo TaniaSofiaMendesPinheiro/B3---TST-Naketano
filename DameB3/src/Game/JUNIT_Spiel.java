@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import Basisklassen.FarbEnum;
+import Basisklassen.Spieler;
+
 public class JUNIT_Spiel {
 	
 	private Spiel spiel;
@@ -18,7 +21,7 @@ public class JUNIT_Spiel {
 	
 	@Test (expected = RuntimeException.class)
 	public void testeSpielerhinzufügen(){
-		spiel.spielerHinzufügen(null, FarbEnum.rot, Spieler.KI);
+		spiel.spielerHinzufügen(null, null);
 	}
 	
 	@Test (expected = RuntimeException.class)
@@ -31,7 +34,7 @@ public class JUNIT_Spiel {
 	public void testeZugdurchführen(){
 		spiel.startID("a1");
 		spiel.zielID("b3");
-		spiel.zugDurchführen();
+		
 	}
 
 }

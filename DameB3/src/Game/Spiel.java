@@ -34,16 +34,6 @@ public class Spiel implements iBediener {
 		super();
 	}
 
-	@Override
-	public void spielLaden() {
-		// ruft die methoden von laden und speicher aus dem package speichern und laden
-
-	}
-
-	@Override
-	public void spielSpeichern() {
-
-	}
 
 	@Override
 	public boolean zugDurchführen(String ID) {
@@ -144,4 +134,5 @@ public class Spiel implements iBediener {
 		}
 		// return "x" + x + "y" + y;
 	}
+
 }

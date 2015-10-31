@@ -12,11 +12,7 @@ import java.util.Set;
  *
  */
 
-public interface iBediener {
-
-	public void spielLaden();
-
-	public void spielSpeichern();
+public interface iBediener{
 
 	public void neuesSpiel();
 	
@@ -33,7 +29,6 @@ public interface iBediener {
 	
 	
 }
-
 
 
 
