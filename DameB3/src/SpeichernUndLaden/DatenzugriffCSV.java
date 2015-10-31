@@ -61,7 +61,7 @@ public class DatenzugriffCSV implements iDatenzugriff{
 		ArrayList<Spieler> spieler1 = new ArrayList<>();
 		while((linie = br.readLine()) != null) {
 			linien.add(linie);
-			String[] readedAttributes = new String[2];			
+			String[] readedAttributes = new String[3];			
 			for(int i = 0; i < readedAttributes.length; i++) {
     			readedAttributes = linien.get(0).split(",");
     		}
@@ -71,15 +71,20 @@ public class DatenzugriffCSV implements iDatenzugriff{
     		} else {
     			String farbe = readedAttributes[0];
     			String name = readedAttributes[1];
+    			String ID = readedAttributes[2];
     			Spiel s1 = new Spiel();
     			Spielfigur figur1 = new Spielfigur();
     			Spielfigur figur2 = new Spielfigur();
-    			figur1.setSpielfeld(new Spielfeld());	// spielfigur auf feld
-    			figur1.setID(new String());			// spielfigur auf id
+    			figur1.setSpielfeld(new String());;	// spielfigur auf feld - no need for figur1.setID() because id = spielfeld
+    			figur1.getFarbEnum();
+    			figur2.setSpielfeld(new String());
+    			figur2.getFarbEnum();
+    			spieler1.addAll(0, spieler1);
+    			
     		}
 			linien.remove(linie);
 		}			
-		return s1;
+		return spieler1;
 	}
 
 	@Override
@@ -97,4 +102,4 @@ public class DatenzugriffCSV implements iDatenzugriff{
 		
 	}
 
-}
+

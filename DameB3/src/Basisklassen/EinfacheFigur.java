@@ -9,8 +9,8 @@ public class EinfacheFigur extends Spielfigur implements Serializable{ // weil e
 	 */
 	private static final long serialVersionUID = 4419712583299476866L;
 
-	public EinfacheFigur  (Spielfeld feld, FarbEnum farbe, String ID){
-		super (feld, farbe, ID);
+	public EinfacheFigur  (Spielfeld feld, FarbEnum farbe){
+		super (feld, farbe);
 		
 			
 	}
