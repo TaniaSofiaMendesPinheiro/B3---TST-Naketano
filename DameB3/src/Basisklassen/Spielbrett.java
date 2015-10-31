@@ -17,69 +17,11 @@ public class Spielbrett implements Serializable{
 	public Spielfeld spielfeld;
 	public Spielfeld[][] brett = new Spielfeld[12][12];
 	protected Spielbrett[][]brett1;
-	public Spielfigur[][] spielfigur;
-	private Spielfigur [][] figur1;
-
-	// private boolean istSchwarz = true;
-	
-	/**
-	 * 
-	 * @param rows number of rows(zeilen)
-	 * @param cols number of cols (spalten)
-	 */
-
-	public Spielbrett(int rows, int cols) {
-		spielfigur = new Spielfigur[rows][cols];
-	}
 	
 	public Spielbrett(){
 		this.erstelleSpielbrett();
 	}
 	
-	/**
-	 * number of colums
-	 * @return
-	 */
-	
-	public int getNumOfColumns(){
-		return spielfigur[0].length;
-	}
-	
-	/**
-	 * number of rows
-	 * @return
-	 */
-	
-	public int getNumOfRows(){
-		return spielfigur.length;
-	}
-	
-	/**
-	 * content of brett on a given position
-	 * @param row rowindex from 0
-	 * @param col columnindex from 0
-	 * @return content of brett on a given position,
-	 * 					null, if there is no figure
-	 */
-	
-	public Spielfigur getContent(int row, int col){
-		return spielfigur[row][col];
-	}
-	
-	
-	/**
-	 * reserves a field with a figure
-	 * this method does not looks, if the move is rigth
-	 * @param row rowindex from 0
-	 * @param col colindex from 0
-	 * @param spielfigur the moving figure
-	 * @return content, which figure was on that field bevore
-	 */
-	public Spielfigur setContent(int row, int col, Spielfigur spielfigur){
-		Spielfigur result = figur1[row][col];
-		figur1[row][col] = spielfigur;
-		return result;
-	}
 	
 	public Spielfeld getSpielfeld(String ID){
 		return this.spielfeld;
