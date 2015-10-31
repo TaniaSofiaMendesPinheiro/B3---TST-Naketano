@@ -1,11 +1,17 @@
 package Basisklassen;
 
-public class Spielfeld {
+import java.io.Serializable;
+
+public class Spielfeld implements Serializable{
 
 	// Implementieren Sie die Klasse Spielfeld.
 	// Jedes Spielfeld hat eine ID gemäß der Schachnotation.
 	// Außerdem kann ein Spielfeld eine Spielfigur kennen.
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 961135637441496019L;
 	/**
 	 * @author B3-TST-Naketano
 	 */

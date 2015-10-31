@@ -1,16 +1,18 @@
 package Basisklassen;
+// Implementieren Sie die Klasse Spielfigur. Jede Spielfigur hat eine Farbe,
+// die aus einer
+// FarbEnum (schwarz, weiß) zu wählen ist. Außerdem hat eine Spielfigur
+// stets eine gültige
+// Position auf dem Spielbrett.
 
-public class Spielfigur {
+import java.io.Serializable;
 
-	// Implementieren Sie die Klasse Spielfigur. Jede Spielfigur hat eine Farbe,
-	// die aus einer
-	// FarbEnum (schwarz, weiß) zu wählen ist. Außerdem hat eine Spielfigur
-	// stets eine gültige
-	// Position auf dem Spielbrett.
+public class Spielfigur implements Serializable{
+
 	/**
 	 * @author B3-TST-Naketano
 	 */
-
+	private static final long serialVersionUID = -1153301073951482590L;
 	private Spielfeld spielfeld;
 	FarbEnum farbe;
 	private String ID;

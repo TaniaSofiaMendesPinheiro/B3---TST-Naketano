@@ -1,6 +1,12 @@
 package Basisklassen;
 
-public class Spielbrett {
+import java.io.Serializable;
+
+public class Spielbrett implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5465100426783802281L;
 	/**
 	 * @author B3-TST-Naketano
 	 * @parm: Connection with Spielfeld Connection with FarbEnum Created Array

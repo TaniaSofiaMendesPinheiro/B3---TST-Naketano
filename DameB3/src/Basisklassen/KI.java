@@ -1,7 +1,13 @@
 package Basisklassen;
 
-public abstract class KI {
+import java.io.Serializable;
+
+public abstract class KI implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3230841103787560281L;
 	/***
 	 * @author B3-TST-Naketano
 	 */

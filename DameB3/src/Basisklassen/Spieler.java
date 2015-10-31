@@ -1,9 +1,15 @@
 package Basisklassen;
 
+import java.io.Serializable;
+
 import Game.Spiel;
 
-public class Spieler {
+public class Spieler implements Serializable{
 		
+		/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2289924887751584485L;
 		/**
 		 * @author B3-TST-Naketano
 		 */
