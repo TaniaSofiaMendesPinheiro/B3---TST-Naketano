@@ -1,6 +1,12 @@
 package Game;
 
-import Basisklassen.FarbEnum;import Basisklassen.Spielbrett;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+import Basisklassen.FarbEnum;
+import Basisklassen.Spielbrett;
 import Basisklassen.Spieler;
 import Basisklassen.Spielfeld;
 import Basisklassen.Spielfigur;
@@ -19,19 +25,87 @@ import Basisklassen.Spielfigur;
 public class Spiel implements iBediener {
 
 	private Spielbrett brett;
-	private Spieler spielerWeiss;
-	private Spieler spielerSchwarz;
-	private boolean weiss_gerade_am_Zug = true;
+	private Spieler [] spielerliste;
+	private Spieler spieler;
+	private Spieler amZug;
 	private boolean istDame = false;
 	private boolean istKI = false;
-	private Spielfigur [][] spielfigur;
+
+	
 
 	public Spiel() {
+		this.brett = new Spielbrett();
+		spielerliste = new Spieler[2];
+		this.spielen();
+	}
+
+	public void spielen(){
+		
+		try{
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		String ses = "";
+		
+		do{
+			if(amZug != null){
+				System.out.println(brett);
+				if(amZug.hatGewonnen()){
+					System.out.println(amZug.getName() + " hat gewonnen!");
+					return;
+				}
+				System.out.println(amZug.getName() + " ist am Zug.");
+			}
+				ses = reader.readLine().toLowerCase();
+				switch (ses) {
+
+
+				// adds new Player if input is valid, else continues the loop
+				case "add":
+					System.out.println("Wie heißt du?");
+					String name = reader.readLine();
+					System.out.println("Welche Farbe möchtest du sein\n" + "\t Tippe 'weiss' für weiß und\n"
+							+ "\t Tippe 'schwarz' für schwarz");
+					String color = reader.readLine();
+					if (color == "schwarz"){
+						spielerHinzufügen(name, color);
+					}
+					else if(color == "weiss"){
+						spielerHinzufügen(name, color);
+					}
+					else{
+						System.out.println("Bitte wähle schwarz oder weiss!");
+					}
+				break;
+				
+				
+				
+				
+				
+				case "beenden": System.out.println("Bis zum nächsten Mal.");
+				break;
+				
+				
+			}
+			
+			
+			
+		}while(!ses.equals("beenden"));
+		 
+		}catch(IOException e){
+			System.out.println("Fehler");
+		}
+}
+	
+	
+	
+	@Override
+	public void spielLaden() {
+		// ruft die methoden von laden und speicher aus dem package speichern und laden
 
 	}
 
-	public Spiel(Spielbrett brett, Spieler weiss, Spieler schwarz, Spieler spieler_gerade_am_zug) {
-		super();
+	@Override
+	public void spielSpeichern() {
+
 	}
 
 
@@ -62,7 +136,7 @@ public class Spiel implements iBediener {
 	@Override
 	public String zielID(String ID) {
 //		String zielID = brett.spielfeld.setID(ID);
-		weiss_gerade_am_Zug = true;
+		
 		if (brett.spielfeld.getFarbe() != FarbEnum.schwarz) {
 			throw new RuntimeException("white is not allowed for player or dame");
 		}
@@ -75,6 +149,19 @@ public class Spiel implements iBediener {
 		}
 		return brett.spielfeld.getID(ID);
 	}
+	
+	/**
+	 * Am Ende der Runde ist der andere Spieler an der Reihe
+	 * spieler an der stelle 0 ist immer am zug, deswegen wechselt nach 
+	 * jeder runde die position im array
+	 */
+	
+	public void zugEnde(){
+		Spieler wechseln = spielerliste[0];
+		spielerliste [0] = spielerliste[1];
+		spielerliste [1] = wechseln;
+	}
+	
 
 	@Override
 	public void spielBeenden() {
@@ -95,19 +182,17 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void spielerHinzufügen(String name, String farbe) {
-		if (istKI = false) {
-			if (name == null | name.length() < 2)
-				throw new RuntimeException("Invalid Input!");
-			else {
-				spielerHinzufügen(name,farbe);
+		if(spielerliste[0] == null | spielerliste[1] == null){
+			switch(farbe){
+			case "weiss": spielerliste[0] = new Spieler(name, FarbEnum.weiss);
+			System.out.println("Hallo " + spieler.getName() + ", du bist weiss");
+			break;
+			case "schwarz": spielerliste [1] = new Spieler(name, FarbEnum.schwarz);
+			System.out.println("Hallo " + spieler.getName() + ", du bist schwarz");
+			break;
+			default: System.out.println("Wähle schwarz oder weiss");
 			}
-			if (!(farbe == "weiss" | farbe == "schwarz")) {
-				throw new ArithmeticException("Please choose a colour between weiss or schwarz");
-			} else {
-				farbe = farbe;
-			}
-			System.out.println("Sie haben erfolgreich einen neuen Spieler hinzugefügt!");
-		}
+		}else{System.out.println("Es können nur zwei Spieler gleichzeitig spielen!");}
 	}
 
 	/**
@@ -118,18 +203,25 @@ public class Spiel implements iBediener {
 		char x = 0;
 		for (int i = 0; i <= 5; i++) {
 			for (char j = 0; j <= (char) (x + 108); j++) {
+				if (brett.spielfeld.getFarbe() == FarbEnum.schwarz) {
 					brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
 				}
 			}
+		}
 
 		char y = 0;
 		for (int i = 8; i <= 12; i++) {
 			for (char j = 0; j <= (char) (y + 108); j++) {
+				if (brett.spielfeld.getFarbe() == FarbEnum.schwarz) {
 					brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
 				}
 			}
 		}
 		// return "x" + x + "y" + y;
+	}
+
+}
+
 	
 //	/**
 //	 * if 2 coordinates in valid brett
@@ -142,5 +234,5 @@ public class Spiel implements iBediener {
 //				
 //			
 //		}
-	}
+	
 	
