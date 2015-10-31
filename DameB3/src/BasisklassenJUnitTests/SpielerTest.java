@@ -21,7 +21,7 @@ public class SpielerTest {
 	
 	@Test (expected = RuntimeException.class)
 	public void testeFarbenum(){
-		spieler.setFarbenum(null);
+		spieler.setFarbEnum(null);
 	}
 	
 	@Test (expected = RuntimeException.class)

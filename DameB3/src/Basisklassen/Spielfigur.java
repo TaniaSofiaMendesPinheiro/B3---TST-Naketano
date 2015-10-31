@@ -15,6 +15,7 @@ public class Spielfigur implements Serializable{
 	private static final long serialVersionUID = -1153301073951482590L;
 	private Spielfeld spielfeld;
 	FarbEnum farbe;
+	private String ID;
 	private boolean istFigur = true;
 	private boolean istDame = false;
 	
