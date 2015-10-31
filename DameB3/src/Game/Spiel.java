@@ -30,6 +30,7 @@ public class Spiel implements iBediener {
 	private Spieler amZug;
 	private boolean istDame = false;
 	private boolean istKI = false;
+	private boolean mensch = true;
 
 	
 
@@ -68,27 +69,52 @@ public class Spiel implements iBediener {
 					System.out.println("Welche Farbe möchtest du sein\n" + "\t Tippe 'weiss' für weiß und\n"
 							+ "\t Tippe 'schwarz' für schwarz");
 					String color = reader.readLine();
-					if (color == "schwarz"){
-						spielerHinzufügen(name, color);
-					}
-					else if(color == "weiss"){
-						spielerHinzufügen(name, color);
-												
-					}
-//					else{
-//						System.out.println("Bitte wähle schwarz oder weiss!");
-//					}
 					
+//					if(spielerHinzufügen(name,color)){
 					System.out.println("Willkommen: " + name + " du hast dir die Farbe \n" + color + " ausgesucht." );
-					System.out.println("Um das Spiel zu beenden gebe 'beenden' in der Konsole ein.");
+								
+					System.out.println("Entscheide nun, ob du gegen eine istKI oder gegen einen Mensch spielen willst.");
+					String KI = reader.readLine();
+					if(istKI == true){
+					System.out.println("Du spielst nun gegen eine KI");
+					} if (istKI == false){
+//					String Mensch = reader.readLine();
+					System.out.println("Du spielst gegen einen anderen Menschen.");
+					System.out.println("Jetzt der zweite Spieler: ");
+					}
+					String name2 = reader.readLine();
+					if(name2.length() < 2 || name2 == null || name2 == name){
+						throw new RuntimeException("Bitte gebe einen Namen mit mind 2 Buchstaben ein");
+					}
+					System.out.println("Welche Farbe möchtest du sein\n" + "\t Tippe 'weiss' für weiß und\n"
+							+ "\t Tippe 'schwarz' für schwarz");
+					String color2 = reader.readLine();
+					if ( !(color2 == color)){
+						throw new RuntimeException("Du darfst nicht dieselbe Farbe haben wie dein Mitspieler");
+						// bitte noch schauen wie ich die exception fangen kann und trotzdem weiter machen kann!!
+					}
+					
+					System.out.println("Willkommen: " + name2 + " du hast dir die Farbe \n" + color2 + " ausgesucht." );
+					System.out.println(name2 + " du spielst nun gegen " + name2 + ".");
+					System.out.println("Willst du jetzt doch nicht mehr spielen gebe 'beenden' ein.\n"
+							+ "Um das Spiel zu einem anderen Zeitpunkt zu beenden gebe 'beenden' in der Konsole ein.");
 					
 				break;
 				
+						
+					
 				
+				case "zeigeBrett" :
+					Spielbrett b1 = new Spielbrett();
+					b1.erstelleSpielbrett();
+					
+					break;
 				
 							
 				case "beenden": System.out.println("Bis zum nächsten Mal.");
 				break;
+				
+				
 				
 				
 			}
@@ -186,7 +212,7 @@ public class Spiel implements iBediener {
 			break;
 			default: System.out.println("Wähle schwarz oder weiss");
 			}
-		}else{System.out.println("Es können nur zwei Spieler gleichzeitig spielen!");}
+		}else{System.err.println("Es können nur zwei Spieler gleichzeitig spielen!");}
 	}
 
 	/**

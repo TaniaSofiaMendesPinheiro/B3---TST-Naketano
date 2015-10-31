@@ -16,7 +16,7 @@ public class Spielbrett implements Serializable{
 
 	public Spielfeld spielfeld;
 	public Spielfeld[][] brett = new Spielfeld[12][12];
-	protected Spielbrett[][]brett1;
+//	protected Spielbrett[][]brett1;
 	
 	public Spielbrett(){
 		this.erstelleSpielbrett();
@@ -47,6 +47,27 @@ public class Spielbrett implements Serializable{
 
 	}
 	
+//  @Override
+//  public String toString() {
+//      String test = "";
+//      for (int i = 0; i < this.brett.length; i++) {
+//          for (int j = 0; j < this.brett[i].length; j++) {
+//              test += "-------";
+//          }
+//          test += "\n";
+//          for (int j = 0; j < this.brett[i].length; j++) {
+//              test += "| " + brett[i][j] + " |";
+//          }
+//          test += "\n";
+//          for (int j = 0; j < this.brett[i].length; j++) {
+//              test += "-------";
+//          }
+//          test += "\n";
+//          System.out.println();
+//					
+//      }
+//      return test;
+//  } 
 
 
 	@Override
