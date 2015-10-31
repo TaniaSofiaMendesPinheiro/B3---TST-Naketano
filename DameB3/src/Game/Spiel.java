@@ -80,7 +80,7 @@ public class Spiel implements iBediener {
 //					}
 					
 					System.out.println("Willkommen: " + name + " du hast dir die Farbe \n" + color + " ausgesucht." );
-						
+					System.out.println("Um das Spiel zu beenden gebe 'beenden' in der Konsole ein.");
 					
 				break;
 				
