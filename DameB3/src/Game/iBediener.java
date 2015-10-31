@@ -26,6 +26,8 @@ public interface iBediener{
 
 	public void spielerHinzufügen(String name, String farbe);
 	
+//	public boolean istNochImBrett(int row, int col);
+	
 	
 	
 }

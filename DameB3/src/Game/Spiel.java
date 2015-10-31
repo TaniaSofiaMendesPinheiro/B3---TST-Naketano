@@ -1,7 +1,6 @@
 package Game;
 
-import Basisklassen.FarbEnum;
-import Basisklassen.Spielbrett;
+import Basisklassen.FarbEnum;import Basisklassen.Spielbrett;
 import Basisklassen.Spieler;
 import Basisklassen.Spielfeld;
 import Basisklassen.Spielfigur;
@@ -25,6 +24,7 @@ public class Spiel implements iBediener {
 	private boolean weiss_gerade_am_Zug = true;
 	private boolean istDame = false;
 	private boolean istKI = false;
+	private Spielfigur [][] spielfigur;
 
 	public Spiel() {
 
@@ -99,7 +99,7 @@ public class Spiel implements iBediener {
 			if (name == null | name.length() < 2)
 				throw new RuntimeException("Invalid Input!");
 			else {
-				name = name;
+				spielerHinzufügen(name,farbe);
 			}
 			if (!(farbe == "weiss" | farbe == "schwarz")) {
 				throw new ArithmeticException("Please choose a colour between weiss or schwarz");
@@ -118,21 +118,29 @@ public class Spiel implements iBediener {
 		char x = 0;
 		for (int i = 0; i <= 5; i++) {
 			for (char j = 0; j <= (char) (x + 108); j++) {
-				if (brett.spielfeld.getFarbe() == FarbEnum.schwarz) {
 					brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
 				}
 			}
-		}
 
 		char y = 0;
 		for (int i = 8; i <= 12; i++) {
 			for (char j = 0; j <= (char) (y + 108); j++) {
-				if (brett.spielfeld.getFarbe() == FarbEnum.schwarz) {
 					brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
 				}
 			}
 		}
 		// return "x" + x + "y" + y;
+	
+//	/**
+//	 * if 2 coordinates in valid brett
+//	 */
+//
+//	@Override
+//	public boolean istNochImBrett(int row, int col) {
+//		return row >= 0 && col >= 0 &&
+//				row < spielfigur.length && col < spielfigur[0].length;
+//				
+//			
+//		}
 	}
-
-}
+	
