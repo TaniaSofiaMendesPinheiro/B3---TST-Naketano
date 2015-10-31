@@ -44,6 +44,7 @@ public class Spiel implements iBediener {
 		try{
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		String ses = "";
+		System.out.println("Um das Spiel zu beginnen gebe bitte 'add' in die Konsole ein!");
 		
 		do{
 			if(amZug != null){
@@ -57,11 +58,13 @@ public class Spiel implements iBediener {
 				ses = reader.readLine().toLowerCase();
 				switch (ses) {
 
-
 				// adds new Player if input is valid, else continues the loop
 				case "add":
 					System.out.println("Wie heißt du?");
 					String name = reader.readLine();
+					if ( name.length() < 2 || name == null){
+						throw new RuntimeException ("Bitte gebe einen Namen mit mind 2 Buchstaben ein");
+					}
 					System.out.println("Welche Farbe möchtest du sein\n" + "\t Tippe 'weiss' für weiß und\n"
 							+ "\t Tippe 'schwarz' für schwarz");
 					String color = reader.readLine();
@@ -70,16 +73,20 @@ public class Spiel implements iBediener {
 					}
 					else if(color == "weiss"){
 						spielerHinzufügen(name, color);
+												
 					}
-					else{
-						System.out.println("Bitte wähle schwarz oder weiss!");
-					}
+//					else{
+//						System.out.println("Bitte wähle schwarz oder weiss!");
+//					}
+					
+					System.out.println("Willkommen: " + name + " du hast dir die Farbe \n" + color + " ausgesucht." );
+						
+					
 				break;
 				
 				
 				
-				
-				
+							
 				case "beenden": System.out.println("Bis zum nächsten Mal.");
 				break;
 				
@@ -96,19 +103,6 @@ public class Spiel implements iBediener {
 }
 	
 	
-	
-	@Override
-	public void spielLaden() {
-		// ruft die methoden von laden und speicher aus dem package speichern und laden
-
-	}
-
-	@Override
-	public void spielSpeichern() {
-
-	}
-
-
 	@Override
 	public boolean zugDurchführen(String ID) {
 		if (brett == null)
