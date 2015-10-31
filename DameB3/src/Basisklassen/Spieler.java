@@ -14,7 +14,7 @@ public class Spieler implements Serializable{
 		 * @author B3-TST-Naketano
 		 */
 
-
+	private boolean gewonnen = false;
 	private String name;
 	private FarbEnum farbe;
 	
@@ -44,17 +44,17 @@ public class Spieler implements Serializable{
 	 * @param spielfigur
 	 */
 
-	public Spieler(String name, FarbEnum farbe, KI ki) {
+	public Spieler(String name, FarbEnum farbe) {
 		this.name = name;
 		this.farbe = farbe;
-		this.ki = ki;
+		
 		}
 
 	/** getter for name
 	 * 
 	 * @return name
 	 */
-	public String getname() {
+	public String getName() {
 		return name;
 	}
 
@@ -102,5 +102,22 @@ public class Spieler implements Serializable{
 			this.farbe = farbe.schwarz;
 			this.farbe = farbe.weiss;
 		}
+	}
+	
+	/**
+	 * Abfrage ob es einene Gewinner gibt
+	 * @return
+	 */
+	public boolean hatGewonnen(){
+		return gewonnen;
+	}
+	
+	/**
+	 * Methode zum Setzen eines Gewinners
+	 * @param gewonnen
+	 */
+	
+	public void setGewinner(boolean gewonnen){
+		this.gewonnen = gewonnen;
 	}
 }
