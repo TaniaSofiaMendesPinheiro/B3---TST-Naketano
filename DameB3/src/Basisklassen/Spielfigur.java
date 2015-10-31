@@ -15,7 +15,6 @@ public class Spielfigur implements Serializable{
 	private static final long serialVersionUID = -1153301073951482590L;
 	private Spielfeld spielfeld;
 	FarbEnum farbe;
-	private String ID;
 	private boolean istFigur = true;
 	private boolean istDame = false;
 	
@@ -32,19 +31,18 @@ public class Spielfigur implements Serializable{
 	 */
 	
 	
-	public Spielfigur(Spielfeld spielfeld, FarbEnum farbe, String ID) {
+	public Spielfigur(Spielfeld spielfeld, FarbEnum farbe) {
 		this.spielfeld = spielfeld;
 		this.farbe = farbe;
-		this.setID(ID);
-
+		
 	}
 
 	/**
 	 * 
 	 * @param feld
 	 */
-	public void setSpielfeld(Spielfeld spielfeld) {
-		this.spielfeld = spielfeld;
+	public void setSpielfeld(String ID) {
+		this.ID = ID;
 
 	}
 
@@ -56,12 +54,15 @@ public class Spielfigur implements Serializable{
 		return farbe;
 
 	}
-
-	public String getID() {
-		return ID;
-	}
-
-	public void setID(String iD) {
-		this.ID = iD;
-	}
+	
+	/**
+	 * my figure gets and takes the ID of my field.. so i don't need a special getter and setter for ID
+	 */
+//	public String getID() {
+//		return ID;
+//	}
+//
+//	public void setID(String iD) {
+//		this.ID = iD;
+//	}
 }

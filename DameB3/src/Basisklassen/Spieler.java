@@ -80,7 +80,7 @@ public class Spieler implements Serializable{
 	 * @return farbe
 	 */
 
-	public FarbEnum getFarbenum() {
+	public FarbEnum getFarbEnum() {
 		return farbe;
 	}
 
@@ -93,7 +93,7 @@ public class Spieler implements Serializable{
 	 *           	the colors are only schwarz or weiss,
 	 */
 
-	public void setFarbenum(FarbEnum farbe){
+	public void setFarbEnum(FarbEnum farbe){
 		if ( farbe == null ){
 			throw new RuntimeException ("colour cannot be null");
 		}

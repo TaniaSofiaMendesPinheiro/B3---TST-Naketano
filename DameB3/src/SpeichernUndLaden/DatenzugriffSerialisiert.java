@@ -1,24 +1,49 @@
 package SpeichernUndLaden;
 
+import java.io.IOException;
+import java.util.Properties;
+
 //Implementieren Sie das Interface iDatenzugriff in der Klasse DatenzugriffSerialisiert , bei dem ein Spiel mit seinem
 //gesamten Zustand serialisiert gespeichert und geladen werden kann.
 
-import java.io.Serializable;
 
-public class DatenzugriffSerialisiert implements Serializable, iDatenzugriff{
+
+public class DatenzugriffSerialisiert implements iDatenzugriff{
 
 	/**
 	 * default serialnr.
 	 */
-	private static final long serialVersionUID = 1L;
 	
-
 	
 public DatenzugriffSerialisiert(){
 	
 }
 
-//	
+	@Override
+	public void open(Properties properties) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void write(Object object) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Object read() throws IOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void close(Object object) throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 //	/**
 //	 * method for SpielLaden()
 //	 * saved positions and moves are on screen
@@ -46,17 +71,7 @@ public DatenzugriffSerialisiert(){
 //	
 //	}
 
-	@Override
-	public void saveSerialize() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public Object loadSerialize() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 
 	}
