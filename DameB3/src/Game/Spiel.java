@@ -66,12 +66,12 @@ public class Spiel implements iBediener {
 					if ( name.length() < 2 || name == null){
 						throw new RuntimeException ("Bitte gebe einen Namen mit mind 2 Buchstaben ein");
 					}
-					System.out.println("Welche Farbe möchtest du sein\n" + "\t Tippe 'weiss' für weiß und\n"
-							+ "\t Tippe 'schwarz' für schwarz");
+					System.out.println("Welche Farbe möchtest du sein\n" + "\t Tippe 'w' für weiß und\n"
+							+ "\t Tippe 's' für schwarz");
 					String color = reader.readLine();
 					
 //					if(spielerHinzufügen(name,color)){
-					System.out.println("Willkommen: " + name + " du hast dir die Farbe \n" + color + " ausgesucht." );
+//					System.out.println("Willkommen: " + name + " du hast dir die Farbe \n" + color + " ausgesucht." );
 								
 					System.out.println("Entscheide nun, ob du gegen eine istKI oder gegen einen Mensch spielen willst.");
 					String KI = reader.readLine();
@@ -86,18 +86,19 @@ public class Spiel implements iBediener {
 					if(name2.length() < 2 || name2 == null || name2 == name){
 						throw new RuntimeException("Bitte gebe einen Namen mit mind 2 Buchstaben ein");
 					}
-					System.out.println("Welche Farbe möchtest du sein\n" + "\t Tippe 'weiss' für weiß und\n"
-							+ "\t Tippe 'schwarz' für schwarz");
+					System.out.println("Welche Farbe möchtest du sein\n" + "\t Tippe 'w' für weiß und\n"
+							+ "\t Tippe 's' für schwarz");
 					String color2 = reader.readLine();
-					if ( !(color2 == color)){
-						throw new RuntimeException("Du darfst nicht dieselbe Farbe haben wie dein Mitspieler");
-						// bitte noch schauen wie ich die exception fangen kann und trotzdem weiter machen kann!!
+					if( color2 != color){
+						System.out.println(name2 + " du spielst nun gegen " + name + ".");
+						System.out.println("Willst du jetzt doch nicht mehr spielen gebe 'beenden' ein.\n"
+								+ "Um das Spiel zu einem anderen Zeitpunkt zu beenden gebe 'beenden' in der Konsole ein.");
+					}else if ( !(color2 == color)){
+						throw new RuntimeException();
 					}
 					
-					System.out.println("Willkommen: " + name2 + " du hast dir die Farbe \n" + color2 + " ausgesucht." );
-					System.out.println(name2 + " du spielst nun gegen " + name2 + ".");
-					System.out.println("Willst du jetzt doch nicht mehr spielen gebe 'beenden' ein.\n"
-							+ "Um das Spiel zu einem anderen Zeitpunkt zu beenden gebe 'beenden' in der Konsole ein.");
+						// bitte noch schauen wie ich die exception fangen kann und trotzdem weiter machen kann!!		
+
 					
 				break;
 				
@@ -125,6 +126,8 @@ public class Spiel implements iBediener {
 		 
 		}catch(IOException e){
 			System.out.println("Fehler");
+		}catch(RuntimeException re){
+			System.err.print("Bitte wähle eine andere Farbe!");
 		}
 }
 	
