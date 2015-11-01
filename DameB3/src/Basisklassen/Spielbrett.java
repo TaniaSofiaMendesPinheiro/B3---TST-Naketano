@@ -27,8 +27,8 @@ public class Spielbrett implements Serializable{
 	
 	public Spielbrett(){
 		this.erstelleSpielbrett();
-		spielfiguren = new ArrayList<Spielfigur>();
-		this.setzeFigurenAufFeld();
+//		spielfiguren = new ArrayList<Spielfigur>();
+//		this.setzeFigurenAufFeld();
 	}
 	
 	
