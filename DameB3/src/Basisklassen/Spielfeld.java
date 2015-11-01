@@ -2,6 +2,8 @@ package Basisklassen;
 
 import java.io.Serializable;
 
+import sonstiges.Spielbrett;
+
 public class Spielfeld implements Serializable{
 
 	// Implementieren Sie die Klasse Spielfeld.

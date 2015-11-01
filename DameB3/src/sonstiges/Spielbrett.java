@@ -1,8 +1,13 @@
-package Basisklassen;
+package sonstiges;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import Basisklassen.EinfacheFigur;
+import Basisklassen.FarbEnum;
+import Basisklassen.Spielfeld;
+import Basisklassen.Spielfigur;
 
 public class Spielbrett implements Serializable {
 	/**

@@ -30,6 +30,8 @@ public interface iBediener{
 	
 	public void removeZielPosition();
 	
+	public String gibMirCSV(String s1);
+	
 	
 	
 	

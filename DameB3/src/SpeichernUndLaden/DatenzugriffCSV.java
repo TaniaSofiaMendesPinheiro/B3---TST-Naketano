@@ -10,10 +10,10 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import sonstiges.Spielbrett;
 import Basisklassen.FarbEnum;
 import Basisklassen.Spieler;
 import Basisklassen.Spielfeld;
-import Basisklassen.Spielbrett;
 import Basisklassen.Spielfigur;
 import Game.Spiel;
 

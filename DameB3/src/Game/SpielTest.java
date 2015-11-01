@@ -1,6 +1,6 @@
 package Game;
 
-import Basisklassen.Spielbrett;
+import sonstiges.Spielbrett;
 
 
 public class SpielTest {

@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import sonstiges.Spielbrett;
 import Basisklassen.FarbEnum;
-import Basisklassen.Spielbrett;
 import Basisklassen.Spieler;
 import Basisklassen.Spielfeld;
 import Basisklassen.Spielfigur;
@@ -238,6 +238,14 @@ public class Spiel implements iBediener {
 	public void removeZielPosition() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public String gibMirCSV(String s1) {
+
+		
+		s1 = "";
+		return s1;
 	}
 
 }

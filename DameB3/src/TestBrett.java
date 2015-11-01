@@ -1,4 +1,4 @@
-import Basisklassen.Spielbrett;
+import sonstiges.Spielbrett;
 
 
 public class TestBrett {
