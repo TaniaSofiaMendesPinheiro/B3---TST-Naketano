@@ -68,6 +68,10 @@ public class Spielbrett implements Serializable{
 		return this.spielfeld;
 	}
 	
+	public Spielfeld getFeld(int x, int y){
+		return this.spielfeld;
+	}
+	
 	/**
 	 * change the person who is next
 	 */
@@ -148,6 +152,19 @@ public class Spielbrett implements Serializable{
 //		}
 //
 //	}
+	
+	public Spielfeld getIndexById(String id){
+		if(id.length() == 3){
+			int x = (char)id.indexOf(0)-97;
+			int y = (int)id.indexOf(1) + id.indexOf(2) -1;
+			return Spielfeld(x, y);
+		}
+		else if(id.length() == 2){
+			int x = (char)id.indexOf(0)-97;
+			int y = (int)id.indexOf(1)-1;
+			return spielfeld.g
+		}
+	}
 	
 	public void erstelleSpielbrett() {
 	for (int i = 0; i < brett.length; i++) {
