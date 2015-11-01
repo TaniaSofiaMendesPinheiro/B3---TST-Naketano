@@ -141,35 +141,12 @@ public class Spielbrett implements Serializable{
 
 	}
 	
-//  @Override
-//  public String toString() {
-//      String test = "";
-//      for (int i = 0; i < this.brett.length; i++) {
-//          for (int j = 0; j < this.brett[i].length; j++) {
-//              test += "-------";
-//          }
-//          test += "\n";
-//          for (int j = 0; j < this.brett[i].length; j++) {
-//              test += "| " + brett[i][j] + " |";
-//          }
-//          test += "\n";
-//          for (int j = 0; j < this.brett[i].length; j++) {
-//              test += "-------";
-//          }
-//          test += "\n";
-//          System.out.println();
-//					
-//      }
-//      return test;
-//  } 
-
-
 	@Override
 	public String toString() {
 		String schachbrett = "";
-		for (int y = brett.length - 1; y >= 0; y--) {
-			for (int x = 0; x < brett[y].length; x++) {
-				System.out.print(brett[y][x] + " ");
+		for (int i = brett.length - 1; i >= 0; i--) {
+			for (int j = 0; j < brett[i].length; j++) {
+				System.out.print(brett[i][j] + " ");
 			}
 			System.out.println();
 		}
