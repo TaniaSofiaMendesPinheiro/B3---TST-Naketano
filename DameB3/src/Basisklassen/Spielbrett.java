@@ -22,6 +22,10 @@ public class Spielbrett implements Serializable{
 		this.erstelleSpielbrett();
 	}
 	
+	public int [] idToIndex(String ID){
+		
+	}
+	
 	
 	public Spielfeld getSpielfeld(String ID){
 		return this.spielfeld;
