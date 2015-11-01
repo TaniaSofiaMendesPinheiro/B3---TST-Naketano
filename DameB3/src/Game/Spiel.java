@@ -66,7 +66,6 @@ public class Spiel implements iBediener {
 					}
 					System.out.println("Welche Farbe möchtest du sein\n" + "\t Tippe 'w' für weiß und\n" + "\t Tippe 's' für schwarz");
 					String color = reader.readLine();
-				
 
 					System.out.println("Entscheide nun, ob du gegen eine istKI oder gegen einen Mensch spielen willst.");
 					String KI = reader.readLine();
@@ -81,29 +80,29 @@ public class Spiel implements iBediener {
 					if (name2.length() < 2 || name2 == null || name2 == name) {
 						throw new RuntimeException("Bitte gebe einen Namen mit mind 2 Buchstaben ein");
 					}
-					System.out.println("Welche Farbe möchtest du sein\n" + "\t Tippe 'w' für weiß und\n" + 
-																	"\t Tippe 's' für schwarz");
+					System.out.println("Welche Farbe möchtest du sein\n" + "\t Tippe 'w' für weiß und\n" + "\t Tippe 's' für schwarz");
 					String color2 = reader.readLine();
 					if (color2 == color) {
 						throw new RuntimeException("Du darfst nicht dieselbe Farbe wie dein Gegner haben!");
-					} 
+					}
 					System.out.println(name2 + " du spielst nun gegen " + name + ".");
 					System.out.println("Willst du jetzt doch nicht mehr spielen gebe 'beenden' ein.");
-				
 
 					// bitte noch schauen wie ich die exception fangen kann und trotzdem
 					// weiter machen kann!!
-					
+
 					// Probleme:
 					// 1. wenn ich gegen eine KI spielen will kommt nur müll raus
 					// heißt, wenn ich istKI eingebe, kommt zwar nach kurzer zeit
-					//"du spielst nun gegen eine KI
+					// "du spielst nun gegen eine KI
 					// jedoch wenn ich nochmal enter drück...wirft er mir eine Exception
 					// dass ich einen Namen eingeben muss
-					
-					// 2. das mit der Farbe funktioniert noch nicht so wie ich mir das vorstelle
+
+					// 2. das mit der Farbe funktioniert noch nicht so wie ich mir das
+					// vorstelle
 					// ich kann die exception zwar catchen...jedoch kommt dann sowohl
-					// wenn ich dieselbe als auch eine andere Farbe hab dieser syso vom catch
+					// wenn ich dieselbe als auch eine andere Farbe hab dieser syso vom
+					// catch
 
 					break;
 
@@ -111,7 +110,7 @@ public class Spiel implements iBediener {
 					System.out.println("Gebe nun 'start' in die Konsole ein um zu beginnen.\n" + "Willst du das Spiel beenden, so gebe bitte 'beenden' in die Konsole ein.");
 
 					break;
-					
+
 				case "zeigeBrett":
 					Spielbrett b1 = new Spielbrett();
 					b1.erstelleSpielbrett();
@@ -128,9 +127,9 @@ public class Spiel implements iBediener {
 
 		} catch (IOException e) {
 			System.out.println("Fehler");
-		} //catch (RuntimeException re) {
-			//System.err.print("Bitte wähle eine andere Farbe!");
-		//}
+		} // catch (RuntimeException re) {
+			// System.err.print("Bitte wähle eine andere Farbe!");
+		// }
 	}
 
 	@Override
@@ -229,19 +228,16 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void setZielPosition(int x, int y) {
-//		if ( x >= 0 && x < 12 && y >= 0 && y < 12){
-//			for ()
-//		}
-		
+		// if ( x >= 0 && x < 12 && y >= 0 && y < 12){
+		// for ()
+		// }
+
 	}
 
 	@Override
 	public void removeZielPosition() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
-
-
-

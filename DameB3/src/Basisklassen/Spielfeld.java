@@ -124,7 +124,7 @@ public class Spielfeld implements Serializable{
 	@Override
 	public String toString() {
 
-		return this.spielfigur + "" + this.ID + " " + this.farbe ;
+		return "[" + this.spielfigur + "] " + "[" + this.ID + "] "  + "["+ this.farbe + "]";
 	}
 
 }
