@@ -16,7 +16,7 @@ public class Spielbrett implements Serializable{
 	 *        colour of the field
 	 */
 
-	private List<Spielfigur> spielfiguren;
+	private ArrayList<Spielfigur> spielfiguren;
 	public Spielfeld spielfeld;
 	public Spielfeld[][] brett = new Spielfeld[12][12];
 //	protected Spielbrett[][]brett1;
