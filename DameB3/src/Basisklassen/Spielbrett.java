@@ -133,21 +133,32 @@ public class Spielbrett implements Serializable{
 	public boolean istDasSpielZuEnde(){
 		return spielIstZuEnde;
 	}
-	/**
-	 * Create the field with the ID and colour
-	 */
-
+//	/**
+//	 * Create the field with the ID and colour
+//	 */
+//
+//	public void erstelleSpielbrett() {
+//		for (int i = 0; i < brett.length; i++) {
+//			for (char j = 0; j < brett[i].length; j++) {
+//				int x  = (char) (i + 97) ;
+//						int y = (j + 1);
+//				brett[i][j] = new Spielfeld( x +  y + (y + x) % 2 == 0);
+//
+//			}
+//		}
+//
+//	}
+	
 	public void erstelleSpielbrett() {
-		for (int i = 0; i < brett.length; i++) {
-			for (char j = 0; j < brett[i].length; j++) {
-				int x  = (char) (i + 97) ;
-						int y = (j + 1);
-				brett[i][j] = new Spielfeld( x +  y + (y + x) % 2 == 0);
+	for (int i = 0; i < brett.length; i++) {
+		for (char j = 0; j < brett[i].length; j++) {
+			String ID = "" + (char) (j + 97) + (i + 1) + "";
+			brett[i][j] = new Spielfeld(ID, (i + j) % 2 == 0);
 
-			}
 		}
-
 	}
+
+}
 	
 	@Override
 	public String toString() {
