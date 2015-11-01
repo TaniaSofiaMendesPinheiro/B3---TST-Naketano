@@ -25,8 +25,11 @@ public interface iBediener{
 	public void spielBeenden();
 
 	public void spielerHinzufügen(String name, String farbe);
+
+	public void setZielPosition(int x, int y);
 	
-//	public boolean istNochImBrett(int row, int col);
+	public void removeZielPosition();
+	
 	
 	
 	

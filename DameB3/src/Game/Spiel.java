@@ -227,38 +227,21 @@ public class Spiel implements iBediener {
 	 * this is a method for our figures to set on our brett.
 	 */
 
-	public void setzeFigurenAufsBrett(String ID) {
-		char x = 0;
-		for (int i = 0; i <= 5; i++) {
-			for (char j = 0; j <= (char) (x + 108); j++) {
-				if (brett.spielfeld.getFarbe() == FarbEnum.schwarz) {
-					brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
-				}
-			}
-		}
+	@Override
+	public void setZielPosition(int x, int y) {
+//		if ( x >= 0 && x < 12 && y >= 0 && y < 12){
+//			for ()
+//		}
+		
+	}
 
-		char y = 0;
-		for (int i = 8; i <= 12; i++) {
-			for (char j = 0; j <= (char) (y + 108); j++) {
-				if (brett.spielfeld.getFarbe() == FarbEnum.schwarz) {
-					brett.getSpielfeld(ID).setSpielfigur(new Spielfigur());
-				}
-			}
-		}
-		// return "x" + x + "y" + y;
+	@Override
+	public void removeZielPosition() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
 
-// /**
-// * if 2 coordinates in valid brett
-// */
-//
-// @Override
-// public boolean istNochImBrett(int row, int col) {
-// return row >= 0 && col >= 0 &&
-// row < spielfigur.length && col < spielfigur[0].length;
-//
-//
-// }
+
 

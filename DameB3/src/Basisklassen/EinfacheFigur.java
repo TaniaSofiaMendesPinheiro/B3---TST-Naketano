@@ -11,8 +11,11 @@ public class EinfacheFigur extends Spielfigur implements Serializable{ // weil e
 
 	public EinfacheFigur  (Spielfeld feld, FarbEnum farbe){
 		super (feld, farbe);
-		
-			
+	}
+	
+	public EinfacheFigur (int x, int y){
+		this.posX = x;
+		this.posY = y;
 	}
 	
 
