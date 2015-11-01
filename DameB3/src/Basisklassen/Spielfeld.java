@@ -8,9 +8,6 @@ public class Spielfeld implements Serializable{
 	// Jedes Spielfeld hat eine ID gemäß der Schachnotation.
 	// Außerdem kann ein Spielfeld eine Spielfigur kennen.
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 961135637441496019L;
 	/**
 	 * @author B3-TST-Naketano
@@ -61,9 +58,6 @@ public class Spielfeld implements Serializable{
 		
 	}
 
-	public Spielfeld(boolean b) {
-		
-	}
 
 	public FarbEnum getFarbe() {
 		return farbe;
@@ -125,10 +119,11 @@ public class Spielfeld implements Serializable{
 	public void setStein(EinfacheFigur stein){
 		this.stein = stein;
 	}
+	
 
 	@Override
 	public String toString() {
 
-		return " " + this.spielfigur + " " + this.farbe + " " + this.ID;
+		return this.spielfigur + " " + this.ID + " " + this.farbe ;
 	}
 }

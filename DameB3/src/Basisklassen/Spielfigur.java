@@ -113,6 +113,10 @@ public class Spielfigur implements Serializable{
 		bewegDich = bewegen;
 	}
 	
+	/**
+	 * for the field...to set the black ones on board
+	 */
+	
 	public void setSchwarzenStein(){
 		weiss = false;
 	}

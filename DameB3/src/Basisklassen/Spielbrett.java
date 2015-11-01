@@ -32,6 +32,21 @@ public class Spielbrett implements Serializable{
 	}
 	
 	
+	public int [] IdToIndex(String ID){
+		for (int i = 0; i < brett.length; i++){
+			for (int j = 0; j < brett[i].length; j++){
+				if ( ID.equals(ID)){
+				}
+			}
+		}
+		return null ;
+	}
+	
+	public String IndexToID(){
+		return null;
+	}
+	
+	
 	public void setzeFigurenAufFeld() {
 		
 		/**
@@ -154,18 +169,23 @@ public class Spielbrett implements Serializable{
 		for (char j = 0; j < brett[i].length; j++) {
 			String ID = "" + (char) (j + 97) + (i + 1) + "";
 			brett[i][j] = new Spielfeld(ID, (i + j) % 2 == 0);
+			
+			}
 
 		}
-	}
+
 
 }
+	
 	
 	@Override
 	public String toString() {
 		String schachbrett = "";
 		for (int i = brett.length - 1; i >= 0; i--) {
 			for (int j = 0; j < brett[i].length; j++) {
+				
 				System.out.print(brett[i][j] + " ");
+	
 			}
 			System.out.println();
 		}
