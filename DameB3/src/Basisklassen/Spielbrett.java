@@ -34,6 +34,10 @@ public class Spielbrett implements Serializable{
 	
 	public void setzeFigurenAufFeld() {
 		
+		/**
+		 * set white figures on field
+		 */
+		
 		for(int y = 0; y < 5; y++){
 			for ( int x = 0 ; x < 12; x++){
 				if ( (x+y) % 2 == 0){
@@ -42,6 +46,10 @@ public class Spielbrett implements Serializable{
 				}
 			}
 		}
+		
+		/**
+		 * set black figures on field
+		 */
 				for ( int y = 8 ; y < 12; y++){
 					for (int x = 0; x < 12; x++ ){
 						if (spielfeld.getFarbe().schwarz == FarbEnum.schwarz){
