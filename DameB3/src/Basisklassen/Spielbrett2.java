@@ -88,15 +88,16 @@ public class Spielbrett2 implements Serializable {
 	 * Methode wandelt ID in Index um
 	 */
 	 public int [] getIndexById(String id) {
+	 int [] index = new int [2];
 	 for (int i = 0; i < brett.length; i++) {
-	 for (char j = 0; j < brett[i].length; j++) {
-	 if (id.equals(id)) {
-	 posX = i;
-	 posY = j;
+		 for (char j = 0; j < brett[i].length; j++) {
+			 if (id.equals(id)) {
+				 index[0] = i;
+				 index[1] = j;
+			 }
+		 }
 	 }
-	 }
-	 }
-	 return posX + posY;
+	 return index;
 	 }
 
 	/**
