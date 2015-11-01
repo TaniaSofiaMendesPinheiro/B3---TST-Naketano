@@ -89,7 +89,7 @@ public class Spiel implements iBediener {
 					} 
 					System.out.println(name2 + " du spielst nun gegen " + name + ".");
 					System.out.println("Willst du jetzt doch nicht mehr spielen gebe 'beenden' ein.");
-					
+				
 
 					// bitte noch schauen wie ich die exception fangen kann und trotzdem
 					// weiter machen kann!!

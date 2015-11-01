@@ -28,8 +28,45 @@ public class Spielbrett implements Serializable {
 
 	public Spielbrett() {
 		this.erstelleSpielbrett();
+
 		// spielfiguren = new ArrayList<Spielfigur>();
 		// this.setzeFigurenAufFeld();
+
+//		spielfiguren = new ArrayList<Spielfigur>();
+//		this.setzeFigurenAufFeld();
+	}
+	
+	
+	public void setzeFigurenAufFeld() {
+		
+		/**
+		 * set white figures on field
+		 */
+		
+		for(int y = 0; y < 5; y++){
+			for ( int x = 0 ; x < 12; x++){
+				if ( (x+y) % 2 == 0){
+					EinfacheFigur ef = new EinfacheFigur(x,y);
+					spielfiguren.add(ef);
+				}
+			}
+		}
+		
+		/**
+		 * set black figures on field
+		 */
+				for ( int y = 8 ; y < 12; y++){
+					for (int x = 0; x < 12; x++ ){
+						if (spielfeld.getFarbe().schwarz == FarbEnum.schwarz){
+						EinfacheFigur ef = new EinfacheFigur( x,y);
+						ef.setSchwarzenStein();
+						spielfiguren.add(ef);
+				}
+			}
+		}
+				weissAmZug = true;
+		
+
 	}
 
 	// public void setzeFigurenAufFeld() {
@@ -144,6 +181,7 @@ public class Spielbrett implements Serializable {
 		return spielIstZuEnde;
 	}
 
+
 	// /**
 	// * Create the field with the ID and colour
 	// */
@@ -160,24 +198,48 @@ public class Spielbrett implements Serializable {
 	//
 	// }
 
-	public Spielfeld getIndexById(String id) {
-		if (id.length() == 3) {
-			int x = (char) id.indexOf(0) - 97;
-			int y = (int) id.indexOf(1) + id.indexOf(2) - 1;
-			return Spielfeld(x, y);
-		} else if (id.length() == 2) {
-			int x = (char) id.indexOf(0) - 97;
-			int y = (int) id.indexOf(1) - 1;
-			return Spielfeld(x, y);
+//	/**
+//	 * Create the field with the ID and colour
+//	 */
+//
+//	public void erstelleSpielbrett() {
+//		for (int i = 0; i < brett.length; i++) {
+//			for (char j = 0; j < brett[i].length; j++) {
+//				int x  = (char) (i + 97) ;
+//						int y = (j + 1);
+//				brett[i][j] = new Spielfeld( x +  y + (y + x) % 2 == 0);
+//
+//			}
+//		}
+//
+//	}
+	
+
+	
+	/**
+	 * Methode wandelt ID in Index um
+	 */
+	public int getIndexById(String id){
+		int posX = 0;
+		int posY = 0;
+		for (int i = 0; i < brett.length; i++) {
+			for (char j = 0; j < brett[i].length; j++) {
+				if(brett[i][j].equals(id)){
+					posX = i;
+					posY = j;
+				}
+			}
 		}
-		return spielfeld;
+		return posX + posY;
 	}
 
 	private Spielfeld Spielfeld(int x, int y) {
 		return null;
 	}
 
+
 	public void erstelleSpielbrett() {
+
 		for (int i = 0; i < brett.length; i++) {
 			for (char j = 0; j < brett[i].length; j++) {
 				String ID = "" + (char) (j + 97) + (i + 1) + "";
@@ -185,6 +247,7 @@ public class Spielbrett implements Serializable {
 			}
 		}
 	}
+
 
 	public void setzeFigurenAufsBrett() {
 
@@ -198,8 +261,8 @@ public class Spielbrett implements Serializable {
 				}
 			}
 		}
-
 	}
+	
 
 	@Override
 	public String toString() {
