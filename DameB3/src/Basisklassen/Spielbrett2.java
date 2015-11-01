@@ -33,7 +33,7 @@ public class Spielbrett2 implements Serializable {
 	 * change the person who is next
 	 */
 
-	public void wechselDenDerAmZug() {
+	public void wechseltDenDerAmZug() {
 		if (weissAmZug) {
 			weissAmZug = false;
 		} else {
