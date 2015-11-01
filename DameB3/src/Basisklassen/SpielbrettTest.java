@@ -4,8 +4,9 @@ public class SpielbrettTest {
 
 	public static void main(String[] args) {
 
-		Spielbrett b = new Spielbrett();
+		Spielbrett2 b = new Spielbrett2();
 //		b.setzeFigurenAufsBrett();
+//		b.setzDieFigurenAufsFeld();
 
 
 //		System.out.println(b.getIndexById("a1"));

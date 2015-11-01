@@ -43,6 +43,13 @@ public class Spielfigur implements Serializable{
 		
 	}
 
+	public Spielfigur(int posX, int posY) {
+
+		this.posX = posX;
+		this.posY = posY;
+		
+	}
+
 	/**
 	 * 
 	 * @param feld
@@ -119,6 +126,11 @@ public class Spielfigur implements Serializable{
 	
 	public void setSchwarzenStein(){
 		weiss = false;
+	}
+	
+	@Override
+	public String toString(){
+		return "x";
 	}
 	
 }
