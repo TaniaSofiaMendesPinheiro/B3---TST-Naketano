@@ -6,6 +6,8 @@ public class SpielbrettTest {
 
 		Spielbrett b = new Spielbrett();
 		b.erstelleSpielbrett();
+		b.setzeFigurenAufFeld();
+		System.out.println(b);
 	}
 
 }

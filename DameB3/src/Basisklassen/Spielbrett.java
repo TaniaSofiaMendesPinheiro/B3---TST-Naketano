@@ -28,11 +28,11 @@ public class Spielbrett implements Serializable{
 	public Spielbrett(){
 		this.erstelleSpielbrett();
 		spielfiguren = new ArrayList<Spielfigur>();
-		setzeFigurenAufFeld();
+		this.setzeFigurenAufFeld();
 	}
 	
 	
-	private void setzeFigurenAufFeld() {
+	public void setzeFigurenAufFeld() {
 		
 		for(int y = 0; y < 5; y++){
 			for ( int x = 0 ; x < 12; x++){
@@ -44,7 +44,7 @@ public class Spielbrett implements Serializable{
 		}
 				for ( int y = 8 ; y < 12; y++){
 					for (int x = 0; x < 12; x++ ){
-						if ( (x+y)% 2 == 0){
+						if (spielfeld.getFarbe().schwarz == FarbEnum.schwarz){
 						EinfacheFigur ef = new EinfacheFigur( x,y);
 						ef.setSchwarzenStein();
 						spielfiguren.add(ef);
