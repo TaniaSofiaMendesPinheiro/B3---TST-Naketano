@@ -130,10 +130,11 @@ public class Spielbrett implements Serializable{
 	 */
 
 	public void erstelleSpielbrett() {
-		for (int y = 0; y < brett.length; y++) {
-			for (char x = 0; x < brett[y].length; x++) {
-				String ID = "" + (char) (x + 97) + (y + 1) + "";
-				brett[y][x] = new Spielfeld(ID, (y + x) % 2 == 0);
+		for (int i = 0; i < brett.length; i++) {
+			for (char j = 0; j < brett[i].length; j++) {
+				int x  = (char) (i + 97) ;
+						int y = (j + 1);
+				brett[i][j] = new Spielfeld( x +  y + (y + x) % 2 == 0);
 
 			}
 		}

@@ -56,6 +56,10 @@ public class Spielfeld implements Serializable{
 		this.farbe = farbe;
 	}
 
+	public Spielfeld(boolean b) {
+		
+	}
+
 	public FarbEnum getFarbe() {
 		return farbe;
 	}
