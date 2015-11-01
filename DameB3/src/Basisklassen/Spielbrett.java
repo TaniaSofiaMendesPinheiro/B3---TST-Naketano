@@ -31,6 +31,7 @@ public class Spielbrett implements Serializable{
 //		this.setzeFigurenAufFeld();
 	}
 	
+	
 	public void setzeFigurenAufFeld() {
 		
 		/**
@@ -152,47 +153,43 @@ public class Spielbrett implements Serializable{
 //
 //	}
 	
-	public Spielfeld getIndexById(String id){
-		if(id.length() == 3){
-			int x = (char)id.indexOf(0)-97;
-			int y = (int)id.indexOf(1) + id.indexOf(2) -1;
-			return Spielfeld(x, y);
+
+	
+	/**
+	 * Methode wandelt ID in Index um
+	 */
+	public int getIndexById(String id){
+		int posX = 0;
+		int posY = 0;
+		for (int i = 0; i < brett.length; i++) {
+			for (char j = 0; j < brett[i].length; j++) {
+				if(brett[i][j].equals(id)){
+					posX = i;
+					posY = j;
+				}
+			}
 		}
-		else if(id.length() == 2){
-			int x = (char)id.indexOf(0)-97;
-			int y = (int)id.indexOf(1)-1;
-			return Spielfeld(x,y);
-		}
-		return spielfeld;
+		return posX + posY;
 	}
 	
-	private Spielfeld Spielfeld(int x, int y) {
-		return null;
-	}
-
-
+	
 	public void erstelleSpielbrett() {
 	for (int i = 0; i < brett.length; i++) {
 		for (char j = 0; j < brett[i].length; j++) {
 			String ID = "" + (char) (j + 97) + (i + 1) + "";
 			brett[i][j] = new Spielfeld(ID, (i + j) % 2 == 0);
-			
-			}
 
 		}
-
+	}
 
 }
-	
 	
 	@Override
 	public String toString() {
 		String schachbrett = "";
 		for (int i = brett.length - 1; i >= 0; i--) {
 			for (int j = 0; j < brett[i].length; j++) {
-				
 				System.out.print(brett[i][j] + " ");
-	
 			}
 			System.out.println();
 		}
