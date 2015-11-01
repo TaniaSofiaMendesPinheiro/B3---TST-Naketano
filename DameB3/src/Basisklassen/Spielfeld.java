@@ -16,6 +16,7 @@ public class Spielfeld implements Serializable{
 	 * @author B3-TST-Naketano
 	 */
 
+	private EinfacheFigur stein;
 	private Spielfigur spielfigur;
 	private FarbEnum farbe;
 	private String ID;
@@ -54,6 +55,10 @@ public class Spielfeld implements Serializable{
 		this.ID = ID;
 		this.spielfigur = spielfigur;
 		this.farbe = farbe;
+	}
+	
+	public Spielfeld(String ID, FarbEnum fabre, EinfacheFigur stein){
+		
 	}
 
 	public Spielfeld(boolean b) {
@@ -115,6 +120,10 @@ public class Spielfeld implements Serializable{
 
 	public void setSpielfigur(Spielfigur spielfigur) {
 		this.spielfigur = spielfigur;
+	}
+	
+	public void setStein(EinfacheFigur stein){
+		this.stein = stein;
 	}
 
 	@Override
