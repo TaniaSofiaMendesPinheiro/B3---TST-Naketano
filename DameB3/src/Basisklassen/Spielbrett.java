@@ -31,22 +31,6 @@ public class Spielbrett implements Serializable{
 //		this.setzeFigurenAufFeld();
 	}
 	
-	
-	public int [] IdToIndex(String ID){
-		for (int i = 0; i < brett.length; i++){
-			for (int j = 0; j < brett[i].length; j++){
-				if ( ID.equals(ID)){
-				}
-			}
-		}
-		return null ;
-	}
-	
-	public String IndexToID(){
-		return null;
-	}
-	
-	
 	public void setzeFigurenAufFeld() {
 		
 		/**
@@ -80,6 +64,10 @@ public class Spielbrett implements Serializable{
 
 		
 	public Spielfeld getSpielfeld(String ID){
+		return this.spielfeld;
+	}
+	
+	public Spielfeld getFeld(int x, int y){
 		return this.spielfeld;
 	}
 	
@@ -164,6 +152,25 @@ public class Spielbrett implements Serializable{
 //
 //	}
 	
+	public Spielfeld getIndexById(String id){
+		if(id.length() == 3){
+			int x = (char)id.indexOf(0)-97;
+			int y = (int)id.indexOf(1) + id.indexOf(2) -1;
+			return Spielfeld(x, y);
+		}
+		else if(id.length() == 2){
+			int x = (char)id.indexOf(0)-97;
+			int y = (int)id.indexOf(1)-1;
+			return Spielfeld(x,y);
+		}
+		return spielfeld;
+	}
+	
+	private Spielfeld Spielfeld(int x, int y) {
+		return null;
+	}
+
+
 	public void erstelleSpielbrett() {
 	for (int i = 0; i < brett.length; i++) {
 		for (char j = 0; j < brett[i].length; j++) {
