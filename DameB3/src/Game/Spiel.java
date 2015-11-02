@@ -238,9 +238,13 @@ public class Spiel implements iBediener {
 		}
 	}
 	public boolean prüfeDif(String startId, String zielId){
-		if(brett.getIndexById(startId))
+		int [] liste1 = brett.getIndexById(startId);
+		int [] liste2 = brett.getIndexById(zielId);
 		
-		return true;
+		if(liste2[0] - liste1[0] == 1  &&  liste2[1] - liste1[1] == 1){
+			return true;
+		}
+		return false;
 	}
 	
 	/**
