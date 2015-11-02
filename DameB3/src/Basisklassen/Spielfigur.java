@@ -61,7 +61,7 @@ public class Spielfigur implements Serializable{
 		if ( farbe == FarbEnum.weiss){
 			return "o";
 		}
-		return "x";
+			return "x";
 	}
 	
 }
