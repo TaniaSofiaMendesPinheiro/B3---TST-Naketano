@@ -48,9 +48,8 @@ public class SpielTest {
 						}
 					}
 					else if (KI.equals("n")) {
-						System.out.println("Du spielst gegen einen anderen Menschen.");
+						System.out.println("Du bist ein Mensch.");
 						s1.spielerHinzufügen(name, color, false);
-						System.out.println("Jetzt der zweite Spieler: ");
 					}
 
 					break;
@@ -63,16 +62,19 @@ public class SpielTest {
 					
 				case "zug":
 					
+					System.out.println(s1.gibMirCSV());
 					System.out.println("Startfeld eingeben: ");
 					String start = reader.readLine();
 					System.out.println("Zielfeld eingeben: ");
 					String ende = reader.readLine();
 					s1.zugDurchführen(start, ende);
 					
+	
 					break;
 
 				case "zeigebrett":
-					s1.gibMirCSV();
+					
+				System.out.println(s1.gibMirCSV());
 
 					break;
 
