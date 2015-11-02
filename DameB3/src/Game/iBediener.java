@@ -16,21 +16,17 @@ public interface iBediener{
 
 	public void neuesSpiel();
 	
-	public boolean zugDurchführen(String ID);
-
-	public String startID(String ID);
-
-	public String zielID(String ID);
+	public boolean zugDurchführen(String startID, String zielID);
 
 	public void spielBeenden();
 
-	public void spielerHinzufügen(String name, String farbe);
+	public void spielerHinzufügen(String name, String farbe, boolean KI);
 
-	public void setZielPosition(int x, int y);
+	public String gibMirCSV();
 	
-	public void removeZielPosition();
+	public void speichern(String pfad, String name, String typ);
 	
-	public String gibMirCSV(String s1);
+	public void laden(String pfad, String name, String typ);
 	
 	
 	

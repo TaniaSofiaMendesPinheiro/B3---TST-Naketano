@@ -15,11 +15,11 @@ public class Spielfeld implements Serializable{
 	 * @author B3-TST-Naketano
 	 */
 
-	private EinfacheFigur stein;
+//	private EinfacheFigur stein;
 	private Spielfigur spielfigur;
 	private FarbEnum farbe;
 	private String ID;
-	private Spielbrett brett;
+//	private Spielbrett brett;
 
 
 	public Spielfeld() {
@@ -49,16 +49,16 @@ public class Spielfeld implements Serializable{
 	 * @param farbe
 	 * @param spielfigur
 	 */
-
-	public Spielfeld(String ID, FarbEnum farbe, Spielfigur spielfigur) {
-		this.ID = ID;
-		this.spielfigur = spielfigur;
-		this.farbe = farbe;
-	}
-	
-	public Spielfeld(String ID, FarbEnum fabre, EinfacheFigur stein){
-		
-	}
+//
+//	public Spielfeld(String ID, FarbEnum farbe, Spielfigur spielfigur) {
+//		this.ID = ID;
+//		this.spielfigur = spielfigur;
+//		this.farbe = farbe;
+//	}
+//	
+//	public Spielfeld(String ID, FarbEnum fabre, EinfacheFigur stein){
+//		
+//	}
 
 
 	public FarbEnum getFarbe() {
@@ -118,15 +118,15 @@ public class Spielfeld implements Serializable{
 		this.spielfigur = spielfigur;
 	}
 	
-	public void setStein(EinfacheFigur stein){
-		this.stein = stein;
-	}
+//	public void setStein(EinfacheFigur stein){
+//		this.stein = stein;
+//	}
 	
 
 	@Override
 	public String toString() {
 
-		return "[" + this.spielfigur + "] " + "[" + this.ID + "] "  + "["+ this.farbe + "]";
+		return this.spielfigur + ";" + this.ID + ";" + this.farbe ;
 	}
 
 }

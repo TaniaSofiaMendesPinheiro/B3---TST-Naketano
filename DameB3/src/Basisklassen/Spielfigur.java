@@ -130,6 +130,9 @@ public class Spielfigur implements Serializable{
 	
 	@Override
 	public String toString(){
+		if ( farbe == FarbEnum.weiss){
+			return "o";
+		}
 		return "x";
 	}
 	

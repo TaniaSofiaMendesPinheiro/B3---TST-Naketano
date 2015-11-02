@@ -4,7 +4,7 @@ public class SpielbrettTest {
 
 	public static void main(String[] args) {
 
-		Spielbrett2 b = new Spielbrett2();
+		Spielbrett b = new Spielbrett();
 //		b.setzeFigurenAufsBrett();
 //		b.setzDieFigurenAufsFeld();
 

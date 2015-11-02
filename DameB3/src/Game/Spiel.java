@@ -26,16 +26,11 @@ public class Spiel implements iBediener {
 
 	private Spielbrett brett;
 	private Spieler[] spielerliste;
-	private Spieler spieler;
-	private Spieler amZug;
-	private boolean istDame = false;
-	private boolean istKI = true;
-	private boolean mensch = true;
-
+//	private Spieler amZug;
+	
 	public Spiel() {
 		this.brett = new Spielbrett();
 		spielerliste = new Spieler[2];
-		this.spielen();
 	}
 
 	public void spielen() {
@@ -132,47 +127,8 @@ public class Spiel implements iBediener {
 		// }
 	}
 
-	@Override
-	public boolean zugDurchführen(String ID) {
-		if (brett == null)
-			throw new RuntimeException("There is no brett available!");
-		else if (startID(brett.spielfeld.getID()) == zielID(brett.spielfeld.getID())) {
-			throw new RuntimeException("Not a valid move");
-			// } else if( else if (startID(brett.spielfeld.getFarbe()) &&
-			// zielID(brett.spielfeld.getFarbe())){
-			// return false;
-		} else if (startID(brett.spielfeld.getID()) != zielID(brett.spielfeld.getID())) {
-			brett.spielfeld.setID(zielID(""));
-		}
-		return true;
-	}
 
-	@Override
-	public String startID(String ID) {
-		String startID = brett.spielfeld.getID();
-		if (ID == null | ID.length() < 2 | ID.length() > 3) {
-			throw new RuntimeException("This is not a valid position!");
-		} else
-			return brett.spielfeld.getID();
-	}
-
-	@Override
-	public String zielID(String ID) {
-		// String zielID = brett.spielfeld.setID(ID);
-
-		if (brett.spielfeld.getFarbe() != FarbEnum.schwarz) {
-			throw new RuntimeException("white is not allowed for player or dame");
-		}
-		if (brett.spielfeld.getSpielfigur() != null) {
-
-		} else if (brett.spielfeld.getSpielfigur() != null) {
-			throw new RuntimeException("Field is not valid!");
-		} else {
-			brett.spielfeld.setID(zielID(ID));
-		}
-		return brett.spielfeld.getID();
-	}
-
+	
 	/**
 	 * Am Ende der Runde ist der andere Spieler an der Reihe spieler an der stelle
 	 * 0 ist immer am zug, deswegen wechselt nach jeder runde die position im
@@ -192,60 +148,93 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void neuesSpiel() {
-		if (istKI = true) {
-			spielerHinzufügen("Tania", "weiss");
-			System.out.println("Du spielst gegen eine KI!");
-		} else {
-			spielerHinzufügen("harald", "weiss");
-			spielerHinzufügen("dome", "schwarz");
-
-		}
+		this.spielen();
+//		if (istKI = true) {
+//			spielerHinzufügen("Tania", "weiss");
+//			System.out.println("Du spielst gegen eine KI!");
+//		} else {
+//			spielerHinzufügen("harald", "weiss");
+//			spielerHinzufügen("dome", "schwarz");
+//
+//		}
 	}
 
 	@Override
-	public void spielerHinzufügen(String name, String farbe) {
-		if (spielerliste[0] == null | spielerliste[1] == null) {
+	public void spielerHinzufügen(String name, String farbe, boolean KI) {
+		if (spielerliste[0] == null) {
 			switch (farbe) {
 			case "weiss":
-				spielerliste[0] = new Spieler(name, FarbEnum.weiss);
-				System.out.println("Hallo " + spieler.getName() + ", du bist weiss");
+				spielerliste[0] = new Spieler(name, FarbEnum.weiss, KI, this);
+				System.out.println("Hallo " + spielerliste[0].getName() + ", du bist weiss");
 				break;
 			case "schwarz":
-				spielerliste[1] = new Spieler(name, FarbEnum.schwarz);
-				System.out.println("Hallo " + spieler.getName() + ", du bist schwarz");
+				spielerliste[0] = new Spieler(name, FarbEnum.schwarz, KI, this);
+				System.out.println("Hallo " + spielerliste[0].getName() + ", du bist schwarz");
 				break;
 			default:
 				System.out.println("Wähle schwarz oder weiss");
 			}
-		} else {
+		} else if (spielerliste[1] == null){
+			switch (farbe) {
+			case "weiss":
+				if ( spielerliste[0].getFarbEnum() == FarbEnum.schwarz){
+					spielerliste[1] = new Spieler(name, FarbEnum.weiss, KI, this);
+					System.out.println("Hallo " + spielerliste[1].getName() + ", du bist weiss");
+					
+				} else {
+					System.err.println("Es gibt schon einen weißen Spieler.");
+				}
+				break;
+			case "schwarz":
+				if ( spielerliste[0].getFarbEnum() == FarbEnum.weiss){
+				spielerliste[1] = new Spieler(name, FarbEnum.schwarz, KI, this);
+				System.out.println("Hallo " + spielerliste[1].getName() + ", du bist schwarz");
+				} else {
+					System.err.println("Es gibt schon einen schwarzen Spieler.");
+				}
+				break;
+			default:
+				System.out.println("Wähle schwarz oder weiss");
+			}
+			
+		}
+		else {
 			System.err.println("Es können nur zwei Spieler gleichzeitig spielen!");
 		}
 	}
 
-	/**
-	 * this is a method for our figures to set on our brett.
-	 */
-
+	
 	@Override
-	public void setZielPosition(int x, int y) {
-		// if ( x >= 0 && x < 12 && y >= 0 && y < 12){
-		// for ()
-		// }
+	public String gibMirCSV() {
 
+		return this.brett.toString();
 	}
 
 	@Override
-	public void removeZielPosition() {
+	public boolean zugDurchführen(String startID, String zielID) {
+		if (brett == null)
+			throw new RuntimeException("There is no brett available!");
+		else if (startID.equals(zielID)) {
+			throw new RuntimeException("Not a valid move");
+
+		} else {
+			brett.gibMirDiePosition(startID);
+//			brett.spielfeld.setID(zielID(""));
+		}
+		return true;
+	}
+
+
+	@Override
+	public void speichern(String pfad, String name, String typ) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public String gibMirCSV(String s1) {
-
+	public void laden(String pfad, String name, String typ) {
+		// TODO Auto-generated method stub
 		
-		s1 = "";
-		return s1;
 	}
 
 }

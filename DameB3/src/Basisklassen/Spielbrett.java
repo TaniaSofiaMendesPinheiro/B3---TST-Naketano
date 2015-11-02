@@ -4,84 +4,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Spielbrett2 implements Serializable {
+public class Spielbrett implements Serializable {
 
 	/**
 		 * 
 		 */
 	private static final long serialVersionUID = 5465100426783802281L;
-	/**
-	 * @author B3-TST-Naketano
-	 * @parm: Connection with Spielfeld Connection with FarbEnum Created Array
-	 *        Brett with height and width of 12 Created boolean istSchwarz for set
-	 *        colour of the field
-	 */
-
-	public Spielfeld spielfeld;
+		
 	public Spielfeld[][] brett = new Spielfeld[12][12];
-	// protected Spielbrett[][]brett1;
-	private boolean weissAmZug;
-	private boolean weissGewonnen;
-	private boolean spielIstZuEnde;
 
-	public Spielbrett2() {
+
+	public Spielbrett() {
 		this.erstelleSpielbrett();
 		setzDieFigurenAufsFeld();
-	}
-
-	/**
-	 * change the person who is next
-	 */
-
-	public void wechseltDenDerAmZug() {
-		if (weissAmZug) {
-			weissAmZug = false;
-		} else {
-			weissAmZug = true;
-		}
-	}
-
-	public boolean istWeissGeradeDran() {
-		return weissAmZug;
-	}
-
-	/**
-	 * my figur gets her figures back on position x and y
-	 * 
-	 * @param x
-	 * @param y
-	 * @return
-	 */
-
-	/**
-	 * gets back the winner in white sets our player in white to winner
-	 * 
-	 * @param gewonnen
-	 */
-
-	public void setWeissGewinner(boolean gewonnen) {
-		weissGewonnen = gewonnen;
-	}
-
-	/**
-	 * is our player in white winner?
-	 * 
-	 * @return
-	 */
-	public boolean istWeissGewinner() {
-		return weissGewonnen;
-	}
-
-	/**
-	 * game ends
-	 */
-
-	public void spielIstZuEnde() {
-		spielIstZuEnde = true;
-	}
-
-	public boolean istDasSpielZuEnde() {
-		return spielIstZuEnde;
 	}
 
 	 /**
@@ -126,6 +61,11 @@ public class Spielbrett2 implements Serializable {
 
 	public Spielfeld gibMirDiePosition(int posY, int posX) {
 		return brett[posY][posX];
+	}
+	
+	public Spielfeld gibMirDiePosition(String ID) {
+		int [] index = getIndexById(ID);
+		return brett[index[0]][index[1]];
 	}
 
 	public void setzDieFigurenAufsFeld() {

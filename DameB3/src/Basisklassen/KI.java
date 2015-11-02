@@ -2,7 +2,12 @@ package Basisklassen;
 
 import java.io.Serializable;
 
+import Game.Spiel;
+import Game.iBediener;
+
 public abstract class KI implements Serializable{
+	
+	private iBediener x;
 	
 	/**
 	 * 
@@ -12,20 +17,27 @@ public abstract class KI implements Serializable{
 	 * @author B3-TST-Naketano
 	 */
 	
-	private Spieler spieler;
-	private String name;
-	private FarbEnum farbe;
+	public KI (Spiel spiel){
+		x = spiel;
+	}
+//	
+//	private Spieler spieler;
+//	private String name;
+//	private FarbEnum farbe;
+//	
+//	public KI(Spieler spieler, String name, FarbEnum farbe){
+//		if(spieler == null){
+//			throw new RuntimeException("KI can`t exist without a Spieler");
+//		}
+//		else{
+//			this.spieler = spieler;
+//		}
+//		this.name = name;
+//		this.farbe = farbe;
+//	}	
 	
-	public KI(Spieler spieler, String name, FarbEnum farbe){
-		if(spieler == null){
-			throw new RuntimeException("KI can`t exist without a Spieler");
-		}
-		else{
-			this.spieler = spieler;
-		}
-		this.name = name;
-		this.farbe = farbe;
-	}	
+	
+	public abstract void denken();
 	
 	/**
 	 * This method want a Spielfigur to get a Dame as fast as possbile.
