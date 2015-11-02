@@ -47,7 +47,7 @@ public class Spiel implements iBediener {
 
 	public void zugEnde() {
 		
-		//hate gepustet?
+		//hat gepustet?
 		
 		Spieler wechseln = spielerliste[0];
 		spielerliste[0] = spielerliste[1];
