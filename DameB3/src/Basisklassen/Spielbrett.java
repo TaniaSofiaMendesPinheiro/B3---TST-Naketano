@@ -72,7 +72,7 @@ public class Spielbrett implements Serializable {
 		for (int x = 0; x < 5; x++) {
 			for (int y = 0; y < 12; y++) {
 				if (brett[x][y].getFarbe() == FarbEnum.schwarz) {
-					Spielfigur figurweiss = new Spielfigur(x, y);
+					Spielfigur figurweiss = new Spielfigur();
 					figurweiss.farbe = FarbEnum.weiss;
 					brett[x][y].setSpielfigur(figurweiss);
 				}
@@ -82,7 +82,7 @@ public class Spielbrett implements Serializable {
 		for (int x = 7; x < 12; x++) {
 			for (char y = 0; y < 12; y++) {
 				if (brett[x][y].getFarbe() == FarbEnum.schwarz) {
-					Spielfigur figurschwarz = new Spielfigur(x, y);
+					Spielfigur figurschwarz = new Spielfigur();
 					figurschwarz.farbe = FarbEnum.schwarz;
 					brett[x][y].setSpielfigur(figurschwarz);
 				}
