@@ -159,7 +159,10 @@ public class Spiel implements iBediener {
 			if (brett.gibMirDiePosition(startID).getSpielfigur().equals(brett.gibMirDiePosition(zielID).getSpielfigur())){
 				throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
 			}
-		} else {
+		} else if(brett.gibMirDiePosition(zielID).getSpielfigur() != brett.gibMirDiePosition(startID).getSpielfigur()){
+//			if (schlagen(brett.gibMirDiePosition(startID), brett.gibMirDiePosition(startID))){
+				return false;
+		}else {
 			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
 
