@@ -194,7 +194,8 @@ public class Spiel implements iBediener {
 			throw new RuntimeException("Not a valid move");
 		} else if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss) {
 			throw new RuntimeException("Not a valid move on a white field");
-		} else if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+			
+		}else if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
 			if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
 				schlagen(zielID, startID);
 				updateFeld();
@@ -207,10 +208,10 @@ public class Spiel implements iBediener {
 			}
 		} else if (brett.gibMirDiePosition(startID).getSpielfigur().equals(brett.gibMirDiePosition(zielID).getSpielfigur())) {
 			throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
-		} else {
-			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-			brett.gibMirDiePosition(startID).setSpielfigur(null);
-			updateFeld();
+//		} else {
+//			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+//			brett.gibMirDiePosition(startID).setSpielfigur(null);
+//			updateFeld();
 
 		}
 		return true;
@@ -218,13 +219,13 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void speichern(String pfad, String name, String typ) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void laden(String pfad, String name, String typ) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
@@ -235,6 +236,11 @@ public class Spiel implements iBediener {
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
 
 		}
+	}
+	public boolean prüfeDif(String startId, String zielId){
+		if(brett.getIndexById(startId))
+		
+		return true;
 	}
 	
 	/**
