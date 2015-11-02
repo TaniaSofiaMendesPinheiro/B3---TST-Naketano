@@ -153,7 +153,8 @@ public class Spiel implements iBediener {
 			throw new RuntimeException("There is no brett available!");
 		else if (startID.equals(zielID)) {
 			throw new RuntimeException("Not a valid move");
-
+		} else if ( brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss){
+			throw new RuntimeException ("Not a valid move on a white field");
 		} else {
 			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
