@@ -17,6 +17,9 @@ public class SpielTest {
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 			String ses = "";
+			System.out.println("Help : \n" + "add = Spieler hinzufügen \n" + "start = beginne ein neues Spiel\n" 
+			+ "zug = gebe startID und zielID ein\n" + "zeigebrett = zeigt dir die aktuelle Spielbrettbelegung\n" +
+					"beenden = beendet das Spiel.");
 			System.out.println("Um das Spiel zu beginnen gebe bitte 'add' in die Konsole ein!");
 
 			do {
@@ -37,7 +40,7 @@ public class SpielTest {
 					System.out.println("Entscheide nun, ob du eine KI sein willst (y) oder nicht (n).");
 					String KI = reader.readLine();
 					if (KI.equals("y")) {
-						System.out.println("Du bist nun gegen eine KI");
+						System.out.println("Du bist nun eine KI");
 						try {
 							s1.spielerHinzufügen(name, color, true);
 						}catch (Exception e){
