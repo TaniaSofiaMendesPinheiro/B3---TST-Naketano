@@ -1,7 +1,6 @@
 package SpeichernUndLaden;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.BufferedReader;import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,7 +9,7 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import sonstiges.Spielbrett;
+import Basisklassen.Spielbrett;
 import Basisklassen.FarbEnum;
 import Basisklassen.Spieler;
 import Basisklassen.Spielfeld;
@@ -45,13 +44,10 @@ public class DatenzugriffCSV implements iDatenzugriff{
 
 	@Override
 	public void write(Object object) throws IOException {
+		if (object instanceof String){
 		String daten = (String)object;
-		if(daten.equals("#")) {
-			bw.write("\n");
-		} else {
-			bw.write(daten + ",");
+		bw.write(daten);
 		}
-		
 	}
 
 	@Override
