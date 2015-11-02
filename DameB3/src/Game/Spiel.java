@@ -179,4 +179,13 @@ public class Spiel implements iBediener {
 
 	}
 
+	private void schlagen(String startID, String zielID){
+		if(!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))){
+			brett.gibMirDiePosition(zielID).setSpielfigur(null);
+			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+			brett.gibMirDiePosition(startID).setSpielfigur(null);
+			
+		}
+	}
+
 }

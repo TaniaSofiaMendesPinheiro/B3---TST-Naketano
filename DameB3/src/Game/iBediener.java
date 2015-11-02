@@ -28,6 +28,8 @@ public interface iBediener{
 	
 	public void laden(String pfad, String name, String typ);
 	
+
+	
 	
 	
 	
