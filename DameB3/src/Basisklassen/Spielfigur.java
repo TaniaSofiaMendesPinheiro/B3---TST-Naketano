@@ -130,10 +130,18 @@ public class Spielfigur implements Serializable{
 	
 	@Override
 	public String toString(){
+		if(istDame){
+			if ( farbe == FarbEnum.weiss){
+				return "O";
+			}else{
+				return "X";
+			}
+		}
 		if ( farbe == FarbEnum.weiss){
 			return "o";
 		}
 		return "x";
 	}
+	
 	
 }
