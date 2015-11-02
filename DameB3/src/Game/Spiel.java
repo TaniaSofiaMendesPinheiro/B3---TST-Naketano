@@ -155,6 +155,10 @@ public class Spiel implements iBediener {
 			throw new RuntimeException("Not a valid move");
 		} else if ( brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss){
 			throw new RuntimeException ("Not a valid move on a white field");
+		} else if (brett.gibMirDiePosition(zielID).getSpielfigur() != null){
+			if (brett.gibMirDiePosition(startID).getSpielfigur().equals(brett.gibMirDiePosition(zielID).getSpielfigur())){
+				throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
+			}
 		} else {
 			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
