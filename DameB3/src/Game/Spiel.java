@@ -1,11 +1,10 @@
 package Game;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.BufferedReader;import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import sonstiges.Spielbrett;
+import Basisklassen.Spielbrett;
 import Basisklassen.FarbEnum;
 import Basisklassen.Spieler;
 import Basisklassen.Spielfeld;
