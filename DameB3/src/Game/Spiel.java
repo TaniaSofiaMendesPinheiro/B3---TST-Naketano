@@ -223,9 +223,11 @@ public class Spiel implements iBediener {
 	 */
 
 	private void schlagen(String startID, String zielID) {
+	try{
 		if(brett.gibMirDiePosition(startID).getSpielfigur() == null ){
 			System.err.println("Auf deinem Startfeld ist keine Figur");
 		}
+		//prüfung ob startfeld weiss eig unnötig, da zuvor auf figur null geprüft wird und weisse felder immer figur = null ist
 		else if(brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss){
 			System.err.println("Weisse Felder sind ungültig!");
 		}
@@ -241,7 +243,12 @@ public class Spiel implements iBediener {
 			liste1[1] += 1;
 			brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+			brett.gibMirDiePosition(startID).setSpielfigur(null);
 		}
+	}catch(Exception e){
+			System.out.println("Schlagen hat nicht geklappt, bitte versuche es nochmal");
+		}
+	
 		
 		
 //		if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
