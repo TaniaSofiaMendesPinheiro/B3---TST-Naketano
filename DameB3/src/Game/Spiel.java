@@ -296,12 +296,16 @@ public class Spiel implements iBediener {
 		return false;
 	}
 	
-	public void updateFeld(){
+	//soll array durchlaufen und überall wo feld eine figur hat auf dem brett x oder o setzen..
+	public String updateFeld(){
 		for(int i = 0; i < 12; i++){
 			for(int j = 0; j < 12; j++){
 				if(this.brett.gibMirDiePosition(i, j).getSpielfigur() != null){
 					if(this.brett.gibMirDiePosition(i, j).getSpielfigur().getFarbEnum() == FarbEnum.weiss){
-						
+						return "o";
+					}
+					else if(this.brett.gibMirDiePosition(i, j).getSpielfigur().getFarbEnum() == FarbEnum.schwarz){
+						return "x";
 					}
 				}
 			}
