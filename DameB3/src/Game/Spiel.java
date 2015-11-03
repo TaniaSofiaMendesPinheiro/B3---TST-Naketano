@@ -194,7 +194,13 @@ public class Spiel implements iBediener {
 			throw new RuntimeException("Not a valid move");
 		} else if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss) {
 			throw new RuntimeException("Not a valid move on a white field");
+
 		} else if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+
+		}
+		else if(prüfeDif(startID, zielID) == true){
+			
+		if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
 			if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
 				schlagen(zielID, startID);
 				updateFeld();
@@ -212,29 +218,49 @@ public class Spiel implements iBediener {
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
 			updateFeld();
 
+//		} else {
+//			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+//			brett.gibMirDiePosition(startID).setSpielfigur(null);
+//			updateFeld();
+			}
 		}
 		return true;
 	}
 
 	@Override
 	public void speichern(String pfad, String name, String typ) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	public void laden(String pfad, String name, String typ) {
-		// TODO Auto-generated method stub
+		
 
 	}
 
 	private void schlagen(String startID, String zielID) {
 		if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
 			brett.gibMirDiePosition(zielID).setSpielfigur(null);
+			//brett.gibMirDiePosition(zielID).setSpielfigur(null);
 			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
 
 		}
+	}
+	
+	/**
+	 * prüft diferent zwischen start und ziel id, diferenz muss genau 1 sein!
+	 */
+	
+	public boolean prüfeDif(String startId, String zielId){
+		int [] liste1 = brett.getIndexById(startId);
+		int [] liste2 = brett.getIndexById(zielId);
+		
+		if(liste2[0] - liste1[0] == 1  &&  liste2[1] - liste1[1] == 1){
+			return true;
+		}
+		return false;
 	}
 	
 	/**

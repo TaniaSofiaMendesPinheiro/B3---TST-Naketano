@@ -14,7 +14,6 @@ public class Spielfeld implements Serializable{
 	 * @author B3-TST-Naketano
 	 */
 
-//	private EinfacheFigur stein;
 	private Spielfigur spielfigur;
 	private FarbEnum farbe;
 	private String ID;
