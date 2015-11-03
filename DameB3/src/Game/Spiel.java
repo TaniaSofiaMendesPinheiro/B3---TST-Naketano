@@ -62,22 +62,6 @@ public class Spiel implements iBediener {
 
 	}
 
-	// private boolean andererMussPusten(int[] tokenKoords){
-	// Spielfigur token = map.getField(tokenKoords[0],
-	// tokenKoords[1]).getSpielfigur();
-	// ArrayList<Spielfigur> bullies = map.getFigurenDieSchlagenKoennen(); //das
-	// müsste natürlich implementiert werden :D
-	// for(Spielfigur f : bullies){
-	// if(token.equals(f)){
-	// return false;
-	// }
-	// }
-	// return true;
-
-	// private boolean pusten(String ID) {
-	// Spielfigur figur = brett
-	// }
-
 	/**
 	 * Am Ende der Runde ist der andere Spieler an der Reihe spieler an der stelle
 	 * 0 ist immer am zug, deswegen wechselt nach jeder runde die position im
@@ -172,10 +156,10 @@ public class Spiel implements iBediener {
 
 	@Override
 	public String gibMirCSV() {
-		
+
 		return this.brett.toString();
 	}
-	
+
 	// führe ich gerade ein "pusten" durch
 	// nachdem wir uns bewegt haben
 	// ist startfeld in der liste enthalten
@@ -187,28 +171,33 @@ public class Spiel implements iBediener {
 
 	@Override
 	public boolean zugDurchführen(String startID, String zielID) {
-		if (brett == null){
+		if (brett == null) {
 			throw new RuntimeException("There is no brett available!");
-		}if (startID.equals(zielID)) {
+		}
+		if (startID.equals(zielID)) {
 			throw new RuntimeException("Not a valid move");
-		} if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss) {
+		}
+		if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss && brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss) {
 			throw new RuntimeException("Not a valid move on a white field");
-		} if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
-				if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
-					if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
-						schlagen(zielID, startID);
+		}
+		if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+			if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+				if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
+					schlagen(zielID, startID);
+					System.out.println(brett.toString());	// soll mir mein brett ausgeben mit der aktuellen position
+				}
+			}
+		}
+		if (!(brett.gibMirDiePosition(startID).equals(brett.gibMirDiePosition(zielID)))) {
+			if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
+				if (prüfeDif(startID, zielID) == true) {
+					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+					brett.gibMirDiePosition(startID).setSpielfigur(null);
 					System.out.println(brett.toString());
 				}
 			}
-		} if (!(brett.gibMirDiePosition(startID).equals(brett.gibMirDiePosition(zielID)))) {
-				if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
-					if (prüfeDif(startID, zielID) == true) {
-						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-						brett.gibMirDiePosition(startID).setSpielfigur(null);
-						System.out.println(brett.toString());
-				}
-			}
-		} if (brett.gibMirDiePosition(startID).getSpielfigur().equals(brett.gibMirDiePosition(zielID).getSpielfigur())) {
+		}
+		if (brett.gibMirDiePosition(startID).getSpielfigur().equals(brett.gibMirDiePosition(zielID).getSpielfigur())) {
 			throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
 		} else {
 			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
