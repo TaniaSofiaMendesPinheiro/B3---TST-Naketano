@@ -181,7 +181,7 @@ public class Spiel implements iBediener {
 		else if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss && brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss) {
 			throw new RuntimeException("Not a valid move on a white field");
 		}
-		else if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+		else if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
 				if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
 					schlagen(zielID, startID);
 					zugEnde();
@@ -191,7 +191,7 @@ public class Spiel implements iBediener {
 		
 		else if (!(brett.gibMirDiePosition(startID).equals(brett.gibMirDiePosition(zielID)))) {
 			if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
-				if (prüfeDif(startID, zielID) == true) {
+				if (prüfeDif(startID, zielID) == true && amZug != null) {
 					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 					brett.gibMirDiePosition(startID).setSpielfigur(null);
 					zugEnde();
@@ -295,5 +295,16 @@ public class Spiel implements iBediener {
 		}
 		return false;
 	}
-
+	
+	public void updateFeld(){
+		for(int i = 0; i < 12; i++){
+			for(int j = 0; j < 12; j++){
+				if(this.brett.gibMirDiePosition(i, j).getSpielfigur() != null){
+					if(this.brett.gibMirDiePosition(i, j).getSpielfigur().getFarbEnum() == FarbEnum.weiss){
+						
+					}
+				}
+			}
+		}
+	}
 }
