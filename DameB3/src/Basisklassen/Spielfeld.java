@@ -17,7 +17,6 @@ public class Spielfeld implements Serializable{ // extends JButton
 	private Spielfigur spielfigur;
 	private FarbEnum farbe;
 	private String ID;
-//	private Spielbrett brett;
 
 
 	public Spielfeld() {

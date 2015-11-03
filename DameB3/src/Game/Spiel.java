@@ -203,11 +203,7 @@ public class Spiel implements iBediener {
 			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
 			System.out.println(brett.toString());
-			// } else {
-			// brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-			// brett.gibMirDiePosition(startID).setSpielfigur(null);
-			// updateFeld();
-		}
+				}
 		return true;
 	}
 

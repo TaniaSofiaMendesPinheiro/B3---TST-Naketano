@@ -73,11 +73,11 @@ public class SpielTest {
 					String start = reader.readLine();
 					System.out.println("Zielfeld eingeben: ");
 					String ende = reader.readLine();
-//					try{
+					try{
 						s1.zugDurchführen(start, ende);
-//					}catch (RuntimeException re){
-//					System.err.println("Default!");
-//					}		
+					}catch (RuntimeException re){
+					System.err.println("Default!");
+					}		
 	
 					break;
 
