@@ -41,6 +41,9 @@ public class SpielTest {
 					String KI = reader.readLine();
 					if (KI.equals("y")) {
 						System.out.println("Du bist nun eine KI");
+						System.out.println("Um einen neuen Spieler hinzuzufügen bitte 'add' eingeben. \n" + 
+								"Beachte, dass es 2 Spieler geben muss.");
+								System.out.println("Zum Spiel starten bitte 'start' eingeben.");
 						try {
 							s1.spielerHinzufügen(name, color, true);
 						}catch (Exception e){
