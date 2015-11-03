@@ -235,7 +235,7 @@ public class Spiel implements iBediener {
 		int[] liste1 = brett.getIndexById(startId);
 		int[] liste2 = brett.getIndexById(zielId);
 
-		if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == 1) {
+		if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1) {
 			return true;
 		}
 		return false;
