@@ -47,7 +47,7 @@ public class SpielTest {
 						try {
 							s1.spielerHinzufügen(name, color, true);
 						}catch (Exception e){
-							System.out.println("Es gibt schon zwei Spieler. Gebe 'start' zum Starten ein.");
+							System.err.println("Es gibt schon zwei Spieler. Gebe 'start' zum Starten ein.");
 						}
 					}
 					else if (KI.equals("n")) {
