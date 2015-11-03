@@ -50,26 +50,31 @@ public class SpielTest {
 					else if (KI.equals("n")) {
 						System.out.println("Du bist ein Mensch.");
 						s1.spielerHinzufügen(name, color, false);
+						System.out.println("Um einen neuen Spieler hinzuzufügen bitte 'add' eingeben. \n" + 
+						"Beachte, dass es 2 Spieler geben muss.");
+						System.out.println("Zum Spiel starten bitte 'start' eingeben.");
 					}
 
 					break;
 
 				case "start":
 					s1.neuesSpiel();
+					System.out.println(s1.gibMirCSV());
 //					System.out.println("Gebe nun 'start' in die Konsole ein um zu beginnen.\n" + "Willst du das Spiel beenden, so gebe bitte 'beenden' in die Konsole ein.");
 
 					break;
 					
 				case "zug":
 					
-					System.out.println(s1.gibMirCSV());
 					System.out.println("Startfeld eingeben: ");
 					String start = reader.readLine();
 					System.out.println("Zielfeld eingeben: ");
 					String ende = reader.readLine();
-					s1.zugDurchführen(start, ende);
-					
-					
+					try{
+						s1.zugDurchführen(start, ende);
+					}catch (RuntimeException re){
+					System.err.println("Default!");
+					}		
 	
 					break;
 

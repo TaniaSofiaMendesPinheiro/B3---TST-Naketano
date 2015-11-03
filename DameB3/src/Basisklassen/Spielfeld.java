@@ -3,7 +3,7 @@ package Basisklassen;
 import java.io.Serializable;
 
 
-public class Spielfeld implements Serializable{
+public class Spielfeld implements Serializable{ // extends JButton
 
 	// Implementieren Sie die Klasse Spielfeld.
 	// Jedes Spielfeld hat eine ID gemäß der Schachnotation.

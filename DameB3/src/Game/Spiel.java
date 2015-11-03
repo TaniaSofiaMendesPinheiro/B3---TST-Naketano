@@ -28,8 +28,9 @@ public class Spiel implements iBediener {
 	private Spieler[] spielerliste;
 	private Spieler amZug;
 	private boolean gamestarted;
-//	protected int spielzüge;
-//	private Spielfeld feld;
+
+	// protected int spielzüge;
+	// private Spielfeld feld;
 
 	public Spiel() {
 		this.brett = new Spielbrett();
@@ -37,25 +38,25 @@ public class Spiel implements iBediener {
 		gamestarted = false;
 	}
 
-//	public int getSpielzüge() {
-//		return this.spielzüge;
-//	}
-//
-//	public void setSpielzüge(int spielzüge) {
-//		if (spielzüge < 0) {
-//			throw new IllegalArgumentException("Something went wrong.");
-//		} else {
-//			this.spielzüge += spielzüge;
-//		}
-//	}
-//	
-//	public Spielfeld getFeld(){
-//		return feld;
-//	}
-//	
-//	public void setFeld(Spielfeld feld){
-//		this.feld = feld;
-//	}
+	// public int getSpielzüge() {
+	// return this.spielzüge;
+	// }
+	//
+	// public void setSpielzüge(int spielzüge) {
+	// if (spielzüge < 0) {
+	// throw new IllegalArgumentException("Something went wrong.");
+	// } else {
+	// this.spielzüge += spielzüge;
+	// }
+	// }
+	//
+	// public Spielfeld getFeld(){
+	// return feld;
+	// }
+	//
+	// public void setFeld(Spielfeld feld){
+	// this.feld = feld;
+	// }
 
 	public void spielen() {
 
@@ -171,105 +172,87 @@ public class Spiel implements iBediener {
 
 	@Override
 	public String gibMirCSV() {
-		String s2 = this.brett.toString();
-
-		return s2;
+		
+		return this.brett.toString();
 	}
+	
+	// führe ich gerade ein "pusten" durch
+	// nachdem wir uns bewegt haben
+	// ist startfeld in der liste enthalten
+	// wenn ja --> liste leer
+	// hat gepustet? -> ist liste leer?
+	// wenn ich nicht gepustet habt, ich muss an dem punkt die liste
+	// leeren...bevor ich tausche!!
+	// zufällig -> wert aus liste zufällig und aus liste raus
 
 	@Override
 	public boolean zugDurchführen(String startID, String zielID) {
-
-		// führe ich gerade ein "pusten" durch
-		// nachdem wir uns bewegt haben
-		// ist startfeld in der liste enthalten
-		// wenn ja --> liste leer
-		// hat gepustet? -> ist liste leer?
-		// wenn ich nicht gepustet habt, ich muss an dem punkt die liste
-		// leeren...bevor ich tausche!!
-		// zufällig -> wert aus liste zufällig und aus liste raus
-
-		if (brett == null)
+		if (brett == null){
 			throw new RuntimeException("There is no brett available!");
-		else if (startID.equals(zielID)) {
+		}if (startID.equals(zielID)) {
 			throw new RuntimeException("Not a valid move");
-		} else if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss) {
+		} if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss) {
 			throw new RuntimeException("Not a valid move on a white field");
-
-		} else if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
-
-		}
-		else if(prüfeDif(startID, zielID) == true){
-			
-		if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
-			if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
-				schlagen(zielID, startID);
-				updateFeld();
+		} if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+				if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+					if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
+						schlagen(zielID, startID);
+					System.out.println(brett.toString());
+				}
 			}
-		} else if (!(brett.gibMirDiePosition(startID).equals(brett.gibMirDiePosition(zielID)))) {
-			if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
-				brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-				brett.gibMirDiePosition(startID).setSpielfigur(null);
-				updateFeld();
+		} if (!(brett.gibMirDiePosition(startID).equals(brett.gibMirDiePosition(zielID)))) {
+				if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
+					if (prüfeDif(startID, zielID) == true) {
+						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+						brett.gibMirDiePosition(startID).setSpielfigur(null);
+						System.out.println(brett.toString());
+				}
 			}
-		} else if (brett.gibMirDiePosition(startID).getSpielfigur().equals(brett.gibMirDiePosition(zielID).getSpielfigur())) {
+		} if (brett.gibMirDiePosition(startID).getSpielfigur().equals(brett.gibMirDiePosition(zielID).getSpielfigur())) {
 			throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
 		} else {
 			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
-			updateFeld();
-
-//		} else {
-//			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-//			brett.gibMirDiePosition(startID).setSpielfigur(null);
-//			updateFeld();
-			}
+			System.out.println(brett.toString());
+			// } else {
+			// brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+			// brett.gibMirDiePosition(startID).setSpielfigur(null);
+			// updateFeld();
 		}
 		return true;
 	}
 
 	@Override
 	public void speichern(String pfad, String name, String typ) {
-		
 
 	}
 
 	@Override
 	public void laden(String pfad, String name, String typ) {
-		
 
 	}
 
 	private void schlagen(String startID, String zielID) {
 		if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
-			//brett.gibMirDiePosition(zielID).setSpielfigur(null);
+			// brett.gibMirDiePosition(zielID).setSpielfigur(null);
 			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
 
 		}
 	}
-	
+
 	/**
 	 * prüft diferent zwischen start und ziel id, diferenz muss genau 1 sein!
 	 */
-	
-	public boolean prüfeDif(String startId, String zielId){
-		int [] liste1 = brett.getIndexById(startId);
-		int [] liste2 = brett.getIndexById(zielId);
-		
-		if(liste2[0] - liste1[0] == 1  &&  liste2[1] - liste1[1] == 1){
+
+	public boolean prüfeDif(String startId, String zielId) {
+		int[] liste1 = brett.getIndexById(startId);
+		int[] liste2 = brett.getIndexById(zielId);
+
+		if (liste2[0] - liste1[0] == 1 && liste2[1] - liste1[1] == 1) {
 			return true;
 		}
 		return false;
-	}
-	
-	/**
-	 * soll mein brett nach der move methode aktualisieren und auf den neusten Stand bringen
-	 */
-	
-	protected void updateFeld(){
-		this.brett.gibMirDiePosition(null).setSpielfigur(null);
-	
-		
 	}
 
 }
