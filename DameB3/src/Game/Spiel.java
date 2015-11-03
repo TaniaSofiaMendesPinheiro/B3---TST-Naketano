@@ -227,14 +227,15 @@ public class Spiel implements iBediener {
 	}
 
 	/**
-	 * prüft diferent zwischen start und ziel id, diferenz muss genau 1 sein!
+	 *prüft diferent zwischen start und ziel id, diferenz muss genau 1 sein!
+	 *math.abs() gibt den betrag zurück, ohne vorzeichen
 	 */
 
 	public boolean prüfeDif(String startId, String zielId) {
 		int[] liste1 = brett.getIndexById(startId);
 		int[] liste2 = brett.getIndexById(zielId);
 
-		if (liste2[0] - liste1[0] == 1 && liste2[1] - liste1[1] == 1) {
+		if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == 1) {
 			return true;
 		}
 		return false;
