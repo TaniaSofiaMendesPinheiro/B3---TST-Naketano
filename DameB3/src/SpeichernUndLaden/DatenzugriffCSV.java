@@ -70,7 +70,6 @@ public class DatenzugriffCSV implements iDatenzugriff{
     			String ID = readedAttributes[2];
     			Spiel s1 = new Spiel();
     			Spielfigur figur1 = new Spielfigur();
-    			figur1.setSpielfeld(new String());;	// spielfigur auf feld - no need for figur1.setID() because id = spielfeld
     			figur1.getFarbEnum();
     			figuren.add(figur1);
     			
