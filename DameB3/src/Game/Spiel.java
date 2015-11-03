@@ -268,6 +268,7 @@ public class Spiel implements iBediener {
 	
 	protected void updateFeld(){
 		this.brett.gibMirDiePosition(null).setSpielfigur(null);
+	
 		
 	}
 

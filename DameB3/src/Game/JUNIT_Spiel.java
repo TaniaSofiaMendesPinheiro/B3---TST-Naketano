@@ -19,22 +19,22 @@ public class JUNIT_Spiel {
 		spiel = new Spiel();
 	}
 	
-	@Test (expected = RuntimeException.class)
-	public void testeSpielerhinzufügen(){
-		spiel.spielerHinzufügen(null, null);
-	}
-	
-	@Test (expected = RuntimeException.class)
-	public void testeZielID(){
-		spiel.zielID("a");
-		spiel.zielID("a1548");
-	}
-	
-	@Test 
-	public void testeZugdurchführen(){
-		spiel.startID("a1");
-		spiel.zielID("b3");
-		
-	}
+//	@Test (expected = RuntimeException.class)
+//	public void testeSpielerhinzufügen(){
+//		spiel.spielerHinzufügen(null, null);
+//	}
+//	
+//	@Test (expected = RuntimeException.class)
+//	public void testeZielID(){
+//		spiel.zielID("a");
+//		spiel.zielID("a1548");
+//	}
+//	
+//	@Test 
+//	public void testeZugdurchführen(){
+//		spiel.startID("a1");
+//		spiel.zielID("b3");
+//		
+//	}
 
 }

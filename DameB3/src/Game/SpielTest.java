@@ -69,6 +69,7 @@ public class SpielTest {
 					String ende = reader.readLine();
 					s1.zugDurchführen(start, ende);
 					
+					
 	
 					break;
 
