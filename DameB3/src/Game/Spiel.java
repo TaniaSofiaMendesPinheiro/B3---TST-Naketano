@@ -232,7 +232,7 @@ public class Spiel implements iBediener {
 	private void schlagen(String startID, String zielID) {
 	try{
 		if(brett.gibMirDiePosition(startID).getSpielfigur() == null ){
-			System.err.println("Auf deinem Startfeld ist keine Figur");
+			System.err.println("Auf deinem Startfeld ist keine Figur.");
 		}
 		//prüfung ob startfeld weiss eig unnötig, da zuvor auf figur null geprüft wird und weisse felder immer figur = null ist
 		else if(brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss){
@@ -247,10 +247,10 @@ public class Spiel implements iBediener {
 		else if(prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null){
 			int [] liste1 = brett.getIndexById(startID);
 			liste1[0] += 1;
-			liste1[1] += 1;
-			brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
-			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+			liste1[1] += 1;		
+			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());	
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
+			brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 		}
 	}catch(Exception e){
 			System.out.println("Schlagen hat nicht geklappt, bitte versuche es nochmal");
@@ -297,18 +297,18 @@ public class Spiel implements iBediener {
 	}
 	
 	//soll array durchlaufen und überall wo feld eine figur hat auf dem brett x oder o setzen..
-	public String updateFeld(){
+	public void updateFeld(){
 		for(int i = 0; i < 12; i++){
 			for(int j = 0; j < 12; j++){
 				if(this.brett.gibMirDiePosition(i, j).getSpielfigur() != null){
 					if(this.brett.gibMirDiePosition(i, j).getSpielfigur().getFarbEnum() == FarbEnum.weiss){
-						return "o";
+						 brett.toString();
 					}
 					else if(this.brett.gibMirDiePosition(i, j).getSpielfigur().getFarbEnum() == FarbEnum.schwarz){
-						return "x";
+							brett.toString();
 					}
 				}
 			}
-		}
+		} 
 	}
 }
