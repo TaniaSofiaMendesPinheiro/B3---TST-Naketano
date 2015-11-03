@@ -216,18 +216,44 @@ public class Spiel implements iBediener {
 	public void laden(String pfad, String name, String typ) {
 
 	}
+	/**
+	 * Überprüft ob Start-/Zielfeld weiss ist, ob Zug zulässig ist, ob Startfeld Figur hat
+	 * @param startID
+	 * @param zielID
+	 */
 
 	private void schlagen(String startID, String zielID) {
-		if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
-			// brett.gibMirDiePosition(zielID).setSpielfigur(null);
-			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-			brett.gibMirDiePosition(startID).setSpielfigur(null);
-
+		if(brett.gibMirDiePosition(startID).getSpielfigur() == null ){
+			System.err.println("Auf deinem Startfeld ist keine Figur");
 		}
+		else if(brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss){
+			System.err.println("Weisse Felder sind ungültig!");
+		}
+		else if(brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss){
+			System.err.println("Weisse Felder sind ungültig!");
+		}
+		else if(prüfeDifSchlagen(startID, zielID) == false){
+			System.err.println("Der Zug ist ungültig");
+		}
+		else if(prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null){
+			int [] liste1 = brett.getIndexById(startID);
+			liste1[0] += 1;
+			liste1[1] += 1;
+			brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
+			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+		}
+		
+		
+//		if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
+//			// brett.gibMirDiePosition(zielID).setSpielfigur(null);
+//			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+//			brett.gibMirDiePosition(startID).setSpielfigur(null);
+//
+//		}
 	}
 
 	/**
-	 *prüft diferent zwischen start und ziel id, diferenz muss genau 1 sein!
+	 *prüft diferenz zwischen start id und ziel id, diferenz muss genau 1 sein!
 	 *math.abs() gibt den betrag zurück, ohne vorzeichen
 	 */
 
@@ -236,6 +262,21 @@ public class Spiel implements iBediener {
 		int[] liste2 = brett.getIndexById(zielId);
 
 		if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1) {
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * gleiche methode wie prüfeDif nur mit der diferenz von 2, da die zu schlagende figur übersprungen wird.
+	 * @param startId
+	 * @param zielId
+	 * @return
+	 */
+	public boolean prüfeDifSchlagen(String startId, String zielId) {
+		int[] liste1 = brett.getIndexById(startId);
+		int[] liste2 = brett.getIndexById(zielId);
+
+		if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == 2) {
 			return true;
 		}
 		return false;
