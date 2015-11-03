@@ -14,7 +14,7 @@ public interface iBediener{
 
 	public void neuesSpiel();
 	
-	public boolean zugDurchführen(String startID, String zielID);
+	public void zugDurchführen(String startID, String zielID); // von boolean auf void geändert, zum testen tobi
 
 	public void spielBeenden();
 
