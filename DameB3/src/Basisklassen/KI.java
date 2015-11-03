@@ -1,7 +1,6 @@
 package Basisklassen;
 
 import java.io.Serializable;
-
 import Game.Spiel;
 import Game.iBediener;
 
