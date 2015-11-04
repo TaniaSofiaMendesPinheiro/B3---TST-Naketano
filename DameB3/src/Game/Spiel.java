@@ -23,7 +23,6 @@ public class Spiel implements iBediener {
 	private Spieler amZug;
 	private boolean gamestarted;
 
-	
 	public Spiel() {
 		this.brett = new Spielbrett();
 		spielerliste = new Spieler[2];
@@ -93,7 +92,6 @@ public class Spiel implements iBediener {
 		this.spielen();
 	}
 
-
 	@Override
 	public void spielerHinzufügen(String name, String farbe, boolean KI) {
 		if (spielerliste[0] == null) {
@@ -156,85 +154,55 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void zugDurchführen(String startID, String zielID) {
-
 		try {
-
 			if (brett == null) {
 				throw new RuntimeException("There is no brett available!");
 			}
-		} catch (RuntimeException rn) {
-			System.out.println("not a valid move ( brett == null");
-		}
-		try {
 			if (startID.equals(zielID)) {
-			} else if (startID.equals(zielID)) {
 				throw new RuntimeException("Not a valid move");
 			}
-		} catch (RuntimeException rm) {
-			System.out.println("not a valid move ( zielID = startID )");
-		}
-		try {
-			if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss && brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss) {
-			} else if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss && brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss) {
+			if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss || brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss) {
 				throw new RuntimeException("Not a valid move on a white field");
 			}
-		} catch (RuntimeException rd) {
-			System.out.println("not a valid move (zielID = schwarz)");
-		}
-		try {
-			if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
-//				if (!(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
-				} else if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+			if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
 					if (!(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
 						schlagen(zielID, startID);
 //						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 //						brett.gibMirDiePosition(startID).setSpielfigur(null);
 						zugEnde();
 						updateFeld();
-						System.out.println(brett.toString()); // soll mir mein brett
+//						System.out.println(brett.toString()); // soll mir mein brett
 																									// ausgeben mit der aktuellen
 																									// position
 					}
 				}
 //			}
-		} catch (RuntimeException rp) {
-			System.out.println("zielID != null");
-
-		}
-		try {
-			if (!(brett.gibMirDiePosition(startID).equals(brett.gibMirDiePosition(zielID)))) {
-			}
-
-			else if (!(brett.gibMirDiePosition(startID).equals(brett.gibMirDiePosition(zielID)))) {
-				if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
+		
+			if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
 					if (prüfeDif(startID, zielID) == true && amZug != null) {
 						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 						brett.gibMirDiePosition(startID).setSpielfigur(null);
 						zugEnde();
 						updateFeld();
-						System.out.println(brett.toString());
+//						System.out.println(brett.toString());
 					} else {
 						throw new RuntimeException("Ungültiger Zug.");
 					}
-				}
-
 			}
-		} catch (RuntimeException fl) {
-			System.out.println("zielID = null");
-			try {
-				if (brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum().equals(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum())) {
-				} else if (brett.gibMirDiePosition(startID).getSpielfigur().equals(brett.gibMirDiePosition(zielID).getSpielfigur())) {
+			if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && 
+						brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()==brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
+					
 					throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
 				}
-			} catch (RuntimeException fe) {
-				System.out.println("zielID und startID figur = gleich");
-			}
-		}
 		brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 		brett.gibMirDiePosition(startID).setSpielfigur(null);
 		zugEnde();
 		updateFeld();
-		System.out.println(brett.toString());
+//		System.out.println(brett.toString());
+	} catch (RuntimeException re){
+	System.err.println(re.getMessage());
+	re.printStackTrace();
+	}
 	}
 
 	@Override
@@ -290,10 +258,8 @@ public class Spiel implements iBediener {
 		int[] liste1 = brett.getIndexById(startId);
 		int[] liste2 = brett.getIndexById(zielId);
 
-		if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1) {
-			return true;
-		}
-		return false;
+		return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1);
+
 	}
 
 	/**
@@ -317,17 +283,21 @@ public class Spiel implements iBediener {
 	// soll array durchlaufen und überall wo feld eine figur hat auf dem brett x
 	// oder o setzen..
 	public void updateFeld() {
-		for (int i = 0; i < 12; i++) {
-			for (int j = 0; j < 12; j++) {
-				if (this.brett.gibMirDiePosition(i, j).getSpielfigur() != null) {
-					if (this.brett.gibMirDiePosition(i, j).getSpielfigur().getFarbEnum() == FarbEnum.weiss) {
-						brett.toString();
-					} else if (this.brett.gibMirDiePosition(i, j).getSpielfigur().getFarbEnum() == FarbEnum.schwarz) {
-						brett.toString();
-					}
-				}
-			}
-		}
+
+		gibMirCSV();
+		// for (int i = 0; i < 12; i++) {
+		// for (int j = 0; j < 12; j++) {
+		// if (this.brett.gibMirDiePosition(i, j).getSpielfigur() != null) {
+		// if (this.brett.gibMirDiePosition(i, j).getSpielfigur().getFarbEnum() ==
+		// FarbEnum.weiss) {
+		// brett.toString();
+		// } else if (this.brett.gibMirDiePosition(i,
+		// j).getSpielfigur().getFarbEnum() == FarbEnum.schwarz) {
+		// brett.toString();
+		// }
+		// }
+		// }
+		// }
 	}
 
 	//

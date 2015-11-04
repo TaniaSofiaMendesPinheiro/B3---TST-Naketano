@@ -26,9 +26,10 @@ public class Spielbrett implements Serializable { // extends JPanel
 	 int [] index = new int [2];
 	 for (int i = 0; i < brett.length; i++) {
 		 for (char j = 0; j < brett[i].length; j++) {
-			 if (id.equals(id)) {
+			 if (id.equals(brett[i][j].getID())) {
 				 index[0] = i;
 				 index[1] = j;
+				 break;
 			 }
 		 }
 	 }
