@@ -1,5 +1,6 @@
 package Game;
 
+import brett;
 import SpeichernUndLaden.DatenzugriffCSV;
 import SpeichernUndLaden.iDatenzugriff;
 import Basisklassen.Spielbrett;
@@ -227,17 +228,15 @@ public class Spiel implements iBediener {
 	private void schlagen(String startID, String zielID) {
 		try {
 			if (brett.gibMirDiePosition(startID).getSpielfigur() == null) {
-				System.err.println("Auf deinem Startfeld ist keine Figur.");
+				throw new RuntimeException("Auf deinem Startfeld ist keine Figur.");
 			}
-			// prüfung ob startfeld weiss eig unnötig, da zuvor auf figur null geprüft
-			// wird und weisse felder immer figur = null ist
-			else if (brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss) {
-				System.err.println("Weisse Felder sind ungültig!");
-			} else if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss) {
-				System.err.println("Weisse Felder sind ungültig!");
-			} else if (prüfeDifSchlagen(startID, zielID) == false) {
-				System.err.println("Der Zug ist ungültig");
-			} else if (prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
+			else if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss) {
+				throw new RuntimeException("Weisse Felder sind ungültig!");
+			} 
+			else if (prüfeDifSchlagen(startID, zielID) == false) {
+				throw new RuntimeException("Der Zug ist ungültig");
+			}
+			else if (prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
 				int[] liste1 = brett.getIndexById(startID);
 				liste1[0] += 1;
 				liste1[1] += 1;
@@ -246,7 +245,9 @@ public class Spiel implements iBediener {
 				brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 			}
 		} catch (Exception e) {
-			System.out.println("Schlagen hat nicht geklappt, bitte versuche es nochmal");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		
 		}
 	}
 
