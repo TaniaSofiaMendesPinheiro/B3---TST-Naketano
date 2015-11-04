@@ -11,8 +11,7 @@ public class TestklasseSpiel {
 		s2.spielerHinzufügen("Sina", "weiss", false);
 		s2.spielerHinzufügen("Kol", "schwarz", false);
 		s2.zugDurchführen("a5", "b6");
-		s2.updateFeld();
-		System.out.println(s2);
+		System.out.println(s2.gibMirCSV());
 	}
 
 }
