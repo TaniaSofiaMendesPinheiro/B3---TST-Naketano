@@ -1,5 +1,7 @@
 package Game;
 
+import java.io.IOException;
+
 import Basisklassen.Spielbrett;
 import Basisklassen.Spieler;
 import SpeichernUndLaden.DatenzugriffCSV;
@@ -195,7 +197,7 @@ public class Spiel implements iBediener {
 	}
 
 	@Override
-	public void speichern(String pfad, String name, String typ) {
+	public void speichern(String pfad, String name, String typ) throws IOException {
 		if ( typ.equals("csv")){
 			String csv = spielerliste[0].toCSV() + "\n";
 			csv += spielerliste[1].toCSV() + "\n";
@@ -207,7 +209,7 @@ public class Spiel implements iBediener {
 			}
 		}
 		iDatenzugriff x = new DatenzugriffCSV();
-		x.speichern(pfad+name+typ, csv);
+		x.speichern(pfad,name,typ);
 
 	}
 

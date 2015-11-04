@@ -24,6 +24,9 @@ public class DatenzugriffCSV implements iDatenzugriff {
 
 	private BufferedReader br;
 	private BufferedWriter bw;
+	private Spieler spielerliste[];
+	private Spielbrett brett;
+	private Spieler amZug;
 
 	// @Override
 	// public void open(Properties properties) throws IOException {
@@ -70,10 +73,14 @@ public class DatenzugriffCSV implements iDatenzugriff {
 	}
 
 	@Override
-	public void speichern(String pfad, String name, String typ) throws IOException {
-//
-//		iDatenzugriff x = new DatenzugriffCSV();
-//		x.speichern(pfad + name + typ);
+	public void speichern(String pfad, String name, String inhalt) throws IOException {
+	
+		BufferedWriter out = null;
+		try{
+			out = new BufferedWriter(new OutputStreamWriter(inhalt.writeInhalt(".savecsv")));
+			
+		}
+		
 	}
 
 }

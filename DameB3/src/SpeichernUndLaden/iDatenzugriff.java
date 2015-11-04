@@ -18,7 +18,7 @@ public interface iDatenzugriff {
 	 * @throws IOException is thrown if the object can't be written or the file isn't open.
 	 * @since 1.0.0
 	 */
-	public void speichern(String pfad, String name, String typ) throws IOException;
+	public void speichern(String pfad, String name, String inhalt) throws IOException;
 	
 	/**
 	 * Reads the objects in a file.
