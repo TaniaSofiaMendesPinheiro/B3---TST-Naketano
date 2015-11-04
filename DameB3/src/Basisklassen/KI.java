@@ -60,6 +60,7 @@ public abstract class KI implements Serializable{
 				String start = liste[0];
 				String ende = liste[1];
 				spiel.zugDurchführen(start, ende);
+				spiel.zugEnde();
 			}
 		}
 	}
