@@ -42,13 +42,13 @@ public class DatenzugriffCSV implements iDatenzugriff{
 //
 //	}
 
-	@Override
-	public void speichern(Object object) throws IOException {
-		if (object instanceof String){
-		String daten = (String)object;
-		bw.write(daten);
-		}
-	}
+//	@Override
+//	public void speichern(Object object) throws IOException {
+//		if (object instanceof String){
+//		String daten = (String)object;
+//		bw.write(daten);
+//		}
+//	}
 
 	@Override
 	public Object laden() throws IOException {
@@ -78,6 +78,12 @@ public class DatenzugriffCSV implements iDatenzugriff{
 		}			
 		return figuren;
 	}
+
+@Override
+public void speichern(String pfad, String name, String typ) throws IOException {
+	// TODO Auto-generated method stub
+	
+}
 
 		
 	}

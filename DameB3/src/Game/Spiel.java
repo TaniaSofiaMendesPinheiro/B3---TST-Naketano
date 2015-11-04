@@ -1,5 +1,7 @@
 package Game;
 
+import SpeichernUndLaden.DatenzugriffCSV;
+import SpeichernUndLaden.iDatenzugriff;
 import Basisklassen.Spielbrett;
 import Basisklassen.FarbEnum;
 import Basisklassen.Spieler;
@@ -194,6 +196,18 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void speichern(String pfad, String name, String typ) {
+		if ( typ.equals("csv")){
+			String csv = spielerliste[0].toCSV() + "\n";
+			csv += spielerliste[1].toCSV() + "\n";
+			csv += amZug.getFarbEnum() + "\n";
+			for( int i = 0; i < 12; i++){
+				for( int j = 0; j < 12; j++){
+					csv += brett.gibMirDiePosition(i, j);
+				}
+			}
+		}
+		iDatenzugriff x = new DatenzugriffCSV();
+		x.speichern(pfad+name+typ, csv);
 
 	}
 

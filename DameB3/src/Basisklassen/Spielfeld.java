@@ -138,7 +138,7 @@ public class Spielfeld implements Serializable{ // extends JButton
 			x = "e";	// e = empty	
 		}	
 	
-		return ID+";"+farbe+";"+ x;
+		return ID+";"+farbe+";"+x;
 }
 	
 
