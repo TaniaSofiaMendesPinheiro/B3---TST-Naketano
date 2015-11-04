@@ -173,13 +173,8 @@ public class Spiel implements iBediener {
 				}
 			}
 			if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
-				if (prüfeDif(startID, zielID) == false){ // && amZug != null) {
+				if (prüfeDif(startID, zielID) == false){//&& amZug != null) {
 					throw new RuntimeException("Ungültiger Zug.");
-
-//					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-//					brett.gibMirDiePosition(startID).setSpielfigur(null);
-//					zugEnde();
-//					updateFeld();
 				
 				} 
 			}
