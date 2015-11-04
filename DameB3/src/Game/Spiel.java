@@ -171,14 +171,15 @@ public class Spiel implements iBediener {
 					updateFeld();
 				}
 			}
-			if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
-				if (prüfeDif(startID, zielID) == true){ // && amZug != null) {
-					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-					brett.gibMirDiePosition(startID).setSpielfigur(null);
-					zugEnde();
-					updateFeld();
-				} else {
+			if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+				if (prüfeDif(startID, zielID) == false){ // && amZug != null) {
 					throw new RuntimeException("Ungültiger Zug.");
+
+//					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+//					brett.gibMirDiePosition(startID).setSpielfigur(null);
+//					zugEnde();
+//					updateFeld();
+				} else {
 				}
 			}
 			if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
