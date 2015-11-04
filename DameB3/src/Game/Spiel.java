@@ -244,7 +244,7 @@ public class Spiel implements iBediener {
 				brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 			}
 		} 
-		catch (Exception e) {
+			catch (Exception e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();
 		
