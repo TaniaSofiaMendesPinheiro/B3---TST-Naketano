@@ -105,5 +105,9 @@ public class Spieler implements Serializable{
 		}
 	}
 	
+	@Override
+	public String toString(){
+		return this.getName();
+	}
 
 }

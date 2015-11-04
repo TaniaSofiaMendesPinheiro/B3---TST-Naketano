@@ -1,11 +1,7 @@
 package Game;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.BufferedReader;import java.io.IOException;
 import java.io.InputStreamReader;
-
-import Basisklassen.Spielbrett;
-
 
 
 public class SpielTest {

@@ -24,26 +24,26 @@ public class DatenzugriffCSV implements iDatenzugriff{
 	private BufferedReader br;
 	private BufferedWriter bw;
 
-	@Override
-	public void open(Properties properties) throws IOException {
-		
-		String fileName = properties.getProperty("FileName");
-		
-		if ( fileName == null){
-			throw new IOException("fileName not defined");
-		}
-		if("s".equals(properties.getProperty("Mode"))) {
-			bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName)));
-		} else if("l".equals(properties.getProperty("Mode"))) {
-			br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
-		} else {
-			throw new IOException("Mode not defined!");
-		}	
+//	@Override
+//	public void open(Properties properties) throws IOException {
+//		
+//		String fileName = properties.getProperty("FileName");
+//		
+//		if ( fileName == null){
+//			throw new IOException("fileName not defined");
+//		}
+//		if("s".equals(properties.getProperty("Mode"))) {
+//			bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName)));
+//		} else if("l".equals(properties.getProperty("Mode"))) {
+//			br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
+//		} else {
+//			throw new IOException("Mode not defined!");
+//		}	
+//
+//	}
 
-	}
-
 	@Override
-	public void write(Object object) throws IOException {
+	public void speichern(Object object) throws IOException {
 		if (object instanceof String){
 		String daten = (String)object;
 		bw.write(daten);
@@ -51,7 +51,7 @@ public class DatenzugriffCSV implements iDatenzugriff{
 	}
 
 	@Override
-	public Object read() throws IOException {
+	public Object laden() throws IOException {
 		String linie;
 		ArrayList<String> linien = new ArrayList<String>();
 		ArrayList<Spielfigur> figuren = new ArrayList<>();
@@ -79,18 +79,6 @@ public class DatenzugriffCSV implements iDatenzugriff{
 		return figuren;
 	}
 
-	@Override
-	public void close(Object object) throws IOException {
-		if(bw != null) {
-			bw.close();
-			bw = null;
-		}
-		
-		if(br != null) {
-			br.close();
-			br = null;
-		}
-	}
 		
 	}
 
