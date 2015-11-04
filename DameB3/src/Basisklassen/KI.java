@@ -1,6 +1,8 @@
 package Basisklassen;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
 import Game.Spiel;
 import Game.iBediener;
 //import Basisklassen.Spielbrett;
@@ -8,7 +10,10 @@ import Game.iBediener;
 public abstract class KI implements Serializable{
 	
 	private iBediener x;
-//	private Spielbrett brett;
+	private Spielbrett brett;
+	private String [] zug = new String [2];
+	private ArrayList<String[]> möglicheZüge;
+	private Spieler spieler;
 	
 	/**
 	 * 
@@ -20,6 +25,21 @@ public abstract class KI implements Serializable{
 	
 	public KI (Spiel spiel){
 		x = spiel;
+	}
+	
+	public void zügeSammeln(){
+		for(int i = 0; i < 12; i++){
+			for(int j = 0; j < 12; j++){
+				if(brett.gibMirDiePosition(i, j).getSpielfigur() == null){
+					throw new RuntimeException("Es sind keine Züge möglich!");
+				}
+				else if(brett.gibMirDiePosition(i, j).getSpielfigur().getFarbEnum() == spieler.getFarbEnum()){
+					
+					
+					
+					}
+				}
+		}
 	}
 //	
 //	private Spieler spieler;
