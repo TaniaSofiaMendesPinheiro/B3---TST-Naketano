@@ -119,6 +119,16 @@ public class Spielfeld implements Serializable{ // extends JButton
 //		this.stein = stein;
 //	}
 	
+	public String toCSV(){
+		String x;
+		if (spielfigur != null){
+			x = "x";
+		}else{
+			x= "e";	// e = empty
+		}
+		return ID+";"+farbe+";"+x;
+	}
+	
 
 	@Override
 	public String toString() {

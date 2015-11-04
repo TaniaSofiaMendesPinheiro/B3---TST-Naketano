@@ -105,6 +105,16 @@ public class Spieler implements Serializable{
 		}
 	}
 	
+	public String toCSV(){
+		int x;
+		if (ki != null ){
+			x = 1;
+		} else {
+			x = 0;
+		}
+		return name+";"+farbe+";"+x;
+	}
+	
 	@Override
 	public String toString(){
 		return this.getName();
