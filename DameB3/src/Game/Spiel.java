@@ -1,12 +1,11 @@
 package Game;
 
-import brett;
-import SpeichernUndLaden.DatenzugriffCSV;
-import SpeichernUndLaden.iDatenzugriff;
 import Basisklassen.Spielbrett;
-import Basisklassen.FarbEnum;
 import Basisklassen.Spieler;
+import SpeichernUndLaden.DatenzugriffCSV;
+import Basisklassen.FarbEnum;
 import Basisklassen.Spielfeld;
+import SpeichernUndLaden.iDatenzugriff;
 
 //Implementieren Sie die Klasse Spiel testgetrieben unter Verwendung von JUnit mit nicht
 //trivialen JUnit - Tests. Jedes Spiel kennt ein Spielbrett, 2 Spieler und den Spieler,
