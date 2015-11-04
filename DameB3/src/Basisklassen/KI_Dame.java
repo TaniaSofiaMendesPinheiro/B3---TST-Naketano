@@ -8,6 +8,7 @@ public class KI_Dame extends KI implements Serializable{
 	
 	public KI_Dame(Spiel spiel) {
 		super(spiel);
+		zügeSammeln();
 	
 	}
 	/**
@@ -15,6 +16,8 @@ public class KI_Dame extends KI implements Serializable{
 	 */
 	private static final long serialVersionUID = -6123686338447429273L;
 	private boolean istKI = false;
+	
+	
 //
 //	public KI_Dame(Spieler spieler, String name, FarbEnum farbe) {
 //		super(spieler, name, farbe);
