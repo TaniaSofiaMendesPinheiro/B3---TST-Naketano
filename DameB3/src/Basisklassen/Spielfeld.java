@@ -120,19 +120,19 @@ public class Spielfeld implements Serializable{ // extends JButton
 //	}
 	
 	public String toCSV(){
-		String x;
+		String x = " ";
 		if (spielfigur != null){
 			if( farbe == FarbEnum.weiss){
 			x = "w";	// weiße figur hat ein w
 		}else{
-			x = "Dw";	// schwarze figur hat ein s
+			x = "DameW";	// schwarze figur hat ein s
 		}
 		}
-	if (spielfigur != null){
+		if (spielfigur != null){
 			if (farbe == FarbEnum.schwarz){
 				x = "s";
 			}else{
-				x = "Ds";
+				x = "DameS";
 			}
 		}if (spielfigur == null){
 			x = "e";	// e = empty	
