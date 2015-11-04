@@ -58,31 +58,52 @@ public class DatenzugriffCSV implements iDatenzugriff {
 
 	@Override
 	public Object laden(BufferedReader reader) throws IOException {
-		try {
-			String line = reader.readLine();
-			String[] fields = line.split(";");
-			spielerliste = fields[0];
-			spielfeld = fields[1];
-		} catch (NullPointerException e) {
-			throw new IOException("Unerwartetes Dateiende");
-		} catch (NumberFormatException e) {
-			throw new IOException("Falsches Elementformat");
-		} catch (IndexOutOfBoundsException e) {
-			throw new IOException("Zu wenig Dateielemente");
-		}
+			String linie;
+			ArrayList<String> linien = new ArrayList<String>();
+			ArrayList<Spielbrett> brett = new ArrayList<>();
+			while ((linie = br.readLine()) != null){
+				linien.add(linie);
+				String[] readedAttributes = new String[3];
+				for ( int i = 0; i < readedAttributes.length; i++){
+					readedAttributes = linien.get(0).split(";");
+				}
+				if(readedAttributes[0] == null){
+					return brett;
+				}else{
+					String id = readedAttributes[0];
+					String startID = readedAttributes[1];
+					String zielID = readedAttributes[2];
+//					String spielfeld = readedAttributes[3];
+					Spiel s1 = new Spiel();
+					Spielbrett brettle = new Spielbrett();
+					brettle.getIndexById(id);
+					brettle.gibMirDiePosition(zielID);
+					brettle.gibMirDiePosition(startID);
+					brettle.gibMirDiePosition(zielID).getSpielfigur();
+					for ( int i = 0; i < 12; i++){
+						for ( int j = 0; j < 12; j++){
+							brettle.gibMirDiePosition(i, j).getSpielfigur();
+						}
+					}
+					brett.add(brettle);
+				}
+				linien.remove(linie);
+			} 
+			return brett;
 	}
 
 	@Override
 	public void speichern(String pfad, String name, String inhalt) throws IOException {
 	
 		BufferedWriter out = null;
-		try{
-			out = new BufferedWriter(new OutputStreamWriter(inhalt.writeInhalt(".savecsv")));
-			
-		}
+//		try{
+//			out = new BufferedWriter(new OutputStreamWriter(inhalt.writeInhalt(".savecsv")));
+//			
+//		} catch (Exception e){
+//			System.out.println("");
+//		}
 		
 	}
-
 }
 
 // String linie;
