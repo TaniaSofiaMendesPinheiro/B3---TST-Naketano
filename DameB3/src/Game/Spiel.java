@@ -170,42 +170,65 @@ public class Spiel implements iBediener {
 	// zufällig -> wert aus liste zufällig und aus liste raus
 
 	@Override
-	public boolean zugDurchführen(String startID, String zielID) {
+	public void zugDurchführen(String startID, String zielID) {
+		try{
 		if (brett == null) {
 			throw new RuntimeException("There is no brett available!");
 		}
-		if (startID.equals(zielID)) {
+		}catch (RuntimeException rn){
+			System.out.println("not a valid move ( brett == null");
+		}try{
+			if (startID.equals(zielID)) {
 			throw new RuntimeException("Not a valid move");
 		}
+		}catch (RuntimeException rm){
+			System.out.println("not a valid move ( zielID = startID )");
+		}try{
 		if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss && brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss) {
 			throw new RuntimeException("Not a valid move on a white field");
 		}
+		}catch (RuntimeException rd){
+			System.out.println("not a valid move (zielID = schwarz)");
+		}try{
 		if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
-			if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
-				if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
+			if (!(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
 					schlagen(zielID, startID);
+					zugEnde();
 					System.out.println(brett.toString());	// soll mir mein brett ausgeben mit der aktuellen position
 				}
-			}
 		}
+		} catch (RuntimeException rp){
+			System.out.println("zielID != null");
+			
+		}try{
 		if (!(brett.gibMirDiePosition(startID).equals(brett.gibMirDiePosition(zielID)))) {
 			if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
 				if (prüfeDif(startID, zielID) == true) {
 					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 					brett.gibMirDiePosition(startID).setSpielfigur(null);
+					zugEnde();
 					System.out.println(brett.toString());
 				}
-			}
 		}
-		if (brett.gibMirDiePosition(startID).getSpielfigur().equals(brett.gibMirDiePosition(zielID).getSpielfigur())) {
+		}
+			}catch (RuntimeException fl){
+				System.out.println("zielID = null");
+		try{
+		if (brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum().equals(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum())) {
 			throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
-		} else {
+		} 
+		}catch (RuntimeException fe){
+			System.out.println("zielID und startID figur = gleich");
+		}
+		}
 			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
+			zugEnde();
 			System.out.println(brett.toString());
-				}
-		return true;
-	}
+		}
+		
+
+	
 
 	@Override
 	public void speichern(String pfad, String name, String typ) {
