@@ -14,6 +14,7 @@ public abstract class KI implements Serializable{
 	private String [] zug = new String [2];
 	private ArrayList<String[]> möglicheZüge;
 	private Spieler spieler;
+	private Spiel spiel;
 	
 	/**
 	 * 
@@ -34,11 +35,23 @@ public abstract class KI implements Serializable{
 					throw new RuntimeException("Es sind keine Züge möglich!");
 				}
 				else if(brett.gibMirDiePosition(i, j).getSpielfigur().getFarbEnum() == spieler.getFarbEnum()){
-					
-					
-					
+					if(brett.gibMirDiePosition(i, j).getSpielfigur() != null &&
+						brett.gibMirDiePosition(i + 1, j +1).getSpielfigur() == null){
+						
+							String start = brett.gibMirDiePosition(i, j).getID();
+							String ende = brett.gibMirDiePosition(i+1, j+1).getID();
+							zug[0] = start;
+							zug[1] = ende;
+					}
+					else if(brett.gibMirDiePosition(i, j).getSpielfigur() != null && 
+									brett.gibMirDiePosition(i + 1, j -1).getSpielfigur() == null){
+							String start = brett.gibMirDiePosition(i, j).getID();
+							String ende = brett.gibMirDiePosition(i+1, j-1).getID();
+							zug[0] = start;
+							zug[1] = ende;
 					}
 				}
+			}
 		}
 	}
 //	
