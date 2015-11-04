@@ -68,6 +68,7 @@ public class Spiel implements iBediener {
 		spielerliste[1] = wechseln;
 		amZug = spielerliste[0];
 		System.out.println(amZug + " ist jetzt am Zug.");
+		System.out.println(gibMirCSV());
 
 		// kann pusten?
 		// speichert feld + figur in liste, die schlagen können zu beginn des zuges
