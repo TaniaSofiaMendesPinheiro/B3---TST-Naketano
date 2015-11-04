@@ -1,5 +1,7 @@
 package Game;
 
+import java.io.IOException;
+
 
 //Über das Interface erfolgt auch die Ausgabe der aktuellen Spielbrett - Belegung
 //in CSV - Notation.
@@ -22,7 +24,7 @@ public interface iBediener{
 
 	public String gibMirCSV();
 	
-	public void speichern(String pfad, String name, String typ);
+	public void speichern(String pfad, String name, String typ) throws IOException;
 	
 	public void laden(String pfad, String name, String typ);
 	
