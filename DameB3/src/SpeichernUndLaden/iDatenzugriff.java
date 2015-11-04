@@ -1,5 +1,6 @@
 package SpeichernUndLaden;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
@@ -24,7 +25,7 @@ public interface iDatenzugriff {
 	 * @return the loaded objects.
 	 * @throws IOException is thrown if the objects can't be read or the file isn't open.
 	 */
-	public Object laden() throws IOException;
+	public Object laden(BufferedReader reader) throws IOException;
 	
 	
 }
