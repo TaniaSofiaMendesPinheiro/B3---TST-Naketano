@@ -18,7 +18,7 @@ public class DatenzugriffSerialisiert implements iDatenzugriff {
 	@Override
 	public void speichern(Object object) throws IOException {
 		if (oos == null) {
-			throw new IOException("Stream to write not is not open!");
+			throw new IOException("Stream to write on is not open!");
 		} else {
 			oos.writeObject(object);
 		}

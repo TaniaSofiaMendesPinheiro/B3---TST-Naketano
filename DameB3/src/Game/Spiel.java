@@ -93,14 +93,6 @@ public class Spiel implements iBediener {
 		this.spielen();
 	}
 
-	// if (istKI = true) {
-	// spielerHinzufügen("Tania", "weiss");
-	// System.out.println("Du spielst gegen eine KI!");
-	// } else {
-	// spielerHinzufügen("harald", "weiss");
-	// spielerHinzufügen("dome", "schwarz");
-	//
-	// }
 
 	@Override
 	public void spielerHinzufügen(String name, String farbe, boolean KI) {

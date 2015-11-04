@@ -3,10 +3,12 @@ package Basisklassen;
 import java.io.Serializable;
 import Game.Spiel;
 import Game.iBediener;
+//import Basisklassen.Spielbrett;
 
 public abstract class KI implements Serializable{
 	
 	private iBediener x;
+//	private Spielbrett brett;
 	
 	/**
 	 * 
@@ -42,8 +44,9 @@ public abstract class KI implements Serializable{
 	 * This method want a Spielfigur to get a Dame as fast as possbile.
 	 */
 	public void werdeDame(){
-			
-		
+//		if (brett.gibMirDiePosition(startID) < brett || brett.gibMirDiePosition(ID))
+//			
+//		
 	}
 	
 	/**
