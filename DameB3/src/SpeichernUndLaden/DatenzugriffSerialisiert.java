@@ -15,15 +15,15 @@ public class DatenzugriffSerialisiert implements iDatenzugriff {
 
 	}
 
-	@Override
-	public void speichern(Object object) throws IOException {
-		if (oos == null) {
-			throw new IOException("Stream to write on is not open!");
-		} else {
-			oos.writeObject(object);
-		}
-
-	}
+//	@Override
+//	public void speichern(Object object) throws IOException {
+//		if (oos == null) {
+//			throw new IOException("Stream to write on is not open!");
+//		} else {
+//			oos.writeObject(object);
+//		}
+//
+//	}
 
 	@Override
 	public Object laden() throws IOException {
@@ -37,5 +37,10 @@ public class DatenzugriffSerialisiert implements iDatenzugriff {
 		} catch (ClassNotFoundException error) {
 			throw new IOException("Could not deserialize!");
 		}
+	}
+
+	@Override
+	public void speichern(String pfad, String name, String typ) throws IOException {
+		
 	}
 }

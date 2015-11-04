@@ -60,9 +60,9 @@ public class Spielfigur implements Serializable{
 	public String toString(){
 		if(istDame){
 			if ( farbe == FarbEnum.weiss){
-				return "W";
+				return "DameW";
 			}else{
-				return "S";
+				return "DameS";
 			}
 		}
 		if ( farbe == FarbEnum.weiss){

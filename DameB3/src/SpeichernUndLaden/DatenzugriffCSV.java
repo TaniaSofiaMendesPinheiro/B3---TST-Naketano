@@ -81,7 +81,6 @@ public class DatenzugriffCSV implements iDatenzugriff{
 
 @Override
 public void speichern(String pfad, String name, String typ) throws IOException {
-	// TODO Auto-generated method stub
 	
 }
 
