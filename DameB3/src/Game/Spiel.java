@@ -183,10 +183,12 @@ public class Spiel implements iBediener {
 		}
 		try {
 			if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
-				if (!(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
+//				if (!(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
 				} else if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
-					if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
+					if (!(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
 						schlagen(zielID, startID);
+//						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+//						brett.gibMirDiePosition(startID).setSpielfigur(null);
 						zugEnde();
 						updateFeld();
 						System.out.println(brett.toString()); // soll mir mein brett
@@ -194,7 +196,7 @@ public class Spiel implements iBediener {
 																									// position
 					}
 				}
-			}
+//			}
 		} catch (RuntimeException rp) {
 			System.out.println("zielID != null");
 

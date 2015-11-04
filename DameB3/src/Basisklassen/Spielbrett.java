@@ -105,7 +105,7 @@ public class Spielbrett implements Serializable { // extends JPanel
 
 			}
 			schachbrett += " \n ";
-
+			
 		}
 
 		return schachbrett;
