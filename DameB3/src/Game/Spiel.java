@@ -76,6 +76,7 @@ public class Spiel implements iBediener {
 		spielerliste[0] = spielerliste[1];
 		spielerliste[1] = wechseln;
 		amZug = spielerliste[0];
+		System.out.println(amZug + " ist jetzt am Zug.");
 
 		// kann pusten?
 		// speichert feld + figur in liste, die schlagen können zu beginn des zuges
@@ -171,7 +172,9 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void zugDurchführen(String startID, String zielID) {
+
 		try{
+
 		if (brett == null) {
 			throw new RuntimeException("There is no brett available!");
 		}
@@ -179,12 +182,14 @@ public class Spiel implements iBediener {
 			System.out.println("not a valid move ( brett == null");
 		}try{
 			if (startID.equals(zielID)) {
+			}else if (startID.equals(zielID)) {
 			throw new RuntimeException("Not a valid move");
 		}
 		}catch (RuntimeException rm){
 			System.out.println("not a valid move ( zielID = startID )");
 		}try{
 		if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss && brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss) {
+		}else if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss && brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss) {
 			throw new RuntimeException("Not a valid move on a white field");
 		}
 		}catch (RuntimeException rd){
@@ -192,29 +197,39 @@ public class Spiel implements iBediener {
 		}try{
 		if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
 			if (!(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
+			}else if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+				if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
 					schlagen(zielID, startID);
 					zugEnde();
 					System.out.println(brett.toString());	// soll mir mein brett ausgeben mit der aktuellen position
 				}
+			}
 		}
 		} catch (RuntimeException rp){
 			System.out.println("zielID != null");
 			
 		}try{
 		if (!(brett.gibMirDiePosition(startID).equals(brett.gibMirDiePosition(zielID)))) {
+			}
+		
+		else if (!(brett.gibMirDiePosition(startID).equals(brett.gibMirDiePosition(zielID)))) {
 			if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
-				if (prüfeDif(startID, zielID) == true) {
+				if (prüfeDif(startID, zielID) == true && amZug != null) {
 					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 					brett.gibMirDiePosition(startID).setSpielfigur(null);
 					zugEnde();
 					System.out.println(brett.toString());
+				}else{
+					throw new RuntimeException("Ungültiger Zug.");
 				}
-		}
+				}
+
 		}
 			}catch (RuntimeException fl){
 				System.out.println("zielID = null");
 		try{
 		if (brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum().equals(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum())) {
+		}else if (brett.gibMirDiePosition(startID).getSpielfigur().equals(brett.gibMirDiePosition(zielID).getSpielfigur())) {
 			throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
 		} 
 		}catch (RuntimeException fe){
@@ -225,10 +240,11 @@ public class Spiel implements iBediener {
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
 			zugEnde();
 			System.out.println(brett.toString());
-		}
-		
 
-	
+			
+		//return true;
+	}
+
 
 	@Override
 	public void speichern(String pfad, String name, String typ) {
@@ -239,28 +255,92 @@ public class Spiel implements iBediener {
 	public void laden(String pfad, String name, String typ) {
 
 	}
+	/**
+	 * Überprüft ob Start-/Zielfeld weiss ist, ob Zug zulässig ist, ob Startfeld Figur hat
+	 * @param startID
+	 * @param zielID
+	 */
 
 	private void schlagen(String startID, String zielID) {
-		if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
-			// brett.gibMirDiePosition(zielID).setSpielfigur(null);
-			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-			brett.gibMirDiePosition(startID).setSpielfigur(null);
-
+	try{
+		if(brett.gibMirDiePosition(startID).getSpielfigur() == null ){
+			System.err.println("Auf deinem Startfeld ist keine Figur.");
 		}
+		//prüfung ob startfeld weiss eig unnötig, da zuvor auf figur null geprüft wird und weisse felder immer figur = null ist
+		else if(brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss){
+			System.err.println("Weisse Felder sind ungültig!");
+		}
+		else if(brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss){
+			System.err.println("Weisse Felder sind ungültig!");
+		}
+		else if(prüfeDifSchlagen(startID, zielID) == false){
+			System.err.println("Der Zug ist ungültig");
+		}
+		else if(prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null){
+			int [] liste1 = brett.getIndexById(startID);
+			liste1[0] += 1;
+			liste1[1] += 1;		
+			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());	
+			brett.gibMirDiePosition(startID).setSpielfigur(null);
+			brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
+		}
+	}catch(Exception e){
+			System.out.println("Schlagen hat nicht geklappt, bitte versuche es nochmal");
+		}
+	
+		
+		
+//		if (!(brett.gibMirDiePosition(zielID).getSpielfigur().equals(brett.gibMirDiePosition(startID).getSpielfigur()))) {
+//			// brett.gibMirDiePosition(zielID).setSpielfigur(null);
+//			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+//			brett.gibMirDiePosition(startID).setSpielfigur(null);
+//
+//		}
 	}
 
 	/**
-	 * prüft diferent zwischen start und ziel id, diferenz muss genau 1 sein!
+	 *prüft diferenz zwischen start id und ziel id, diferenz muss genau 1 sein!
+	 *math.abs() gibt den betrag zurück, ohne vorzeichen
 	 */
 
 	public boolean prüfeDif(String startId, String zielId) {
 		int[] liste1 = brett.getIndexById(startId);
 		int[] liste2 = brett.getIndexById(zielId);
 
-		if (liste2[0] - liste1[0] == 1 && liste2[1] - liste1[1] == 1) {
+		if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1) {
 			return true;
 		}
 		return false;
 	}
+	/**
+	 * gleiche methode wie prüfeDif nur mit der diferenz von 2, da die zu schlagende figur übersprungen wird.
+	 * @param startId
+	 * @param zielId
+	 * @return
+	 */
+	public boolean prüfeDifSchlagen(String startId, String zielId) {
+		int[] liste1 = brett.getIndexById(startId);
+		int[] liste2 = brett.getIndexById(zielId);
 
+		if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == 2) {
+			return true;
+		}
+		return false;
+	}
+	
+	//soll array durchlaufen und überall wo feld eine figur hat auf dem brett x oder o setzen..
+	public void updateFeld(){
+		for(int i = 0; i < 12; i++){
+			for(int j = 0; j < 12; j++){
+				if(this.brett.gibMirDiePosition(i, j).getSpielfigur() != null){
+					if(this.brett.gibMirDiePosition(i, j).getSpielfigur().getFarbEnum() == FarbEnum.weiss){
+						 brett.toString();
+					}
+					else if(this.brett.gibMirDiePosition(i, j).getSpielfigur().getFarbEnum() == FarbEnum.schwarz){
+							brett.toString();
+					}
+				}
+			}
+		} 
+	}
 }
