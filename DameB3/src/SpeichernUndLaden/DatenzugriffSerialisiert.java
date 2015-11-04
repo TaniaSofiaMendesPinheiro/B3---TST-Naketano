@@ -1,5 +1,6 @@
 package SpeichernUndLaden;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -26,7 +27,7 @@ public class DatenzugriffSerialisiert implements iDatenzugriff {
 //	}
 
 	@Override
-	public Object laden() throws IOException {
+	public Object laden(BufferedReader reader) throws IOException {
 		if (ois == null) {
 			throw new IOException("Stream to read is not open!");
 		}
