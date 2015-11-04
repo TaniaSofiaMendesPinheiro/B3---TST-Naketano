@@ -236,15 +236,16 @@ public class Spiel implements iBediener {
 				throw new RuntimeException("Der Zug ist ungültig");
 			}
 			else if (prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
-				int[] liste1 = brett.getIndexById(startID);
-				liste1[0] += 1;
-				liste1[1] += 1;
+//				int[] liste1 = brett.getIndexById(startID);
+//				liste1[0] = liste1[0]+ 1;
+//				liste1[1] = liste1[1]+1;
 				brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 				brett.gibMirDiePosition(startID).setSpielfigur(null);
-				brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
-			}
-		} 
-			catch (Exception e) {
+//				brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
+				}
+			
+		
+		}	catch (Exception e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();
 		
