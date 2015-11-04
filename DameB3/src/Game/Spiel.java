@@ -179,8 +179,8 @@ public class Spiel implements iBediener {
 //					brett.gibMirDiePosition(startID).setSpielfigur(null);
 //					zugEnde();
 //					updateFeld();
-				} else {
-				}
+				
+				} 
 			}
 			if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
 

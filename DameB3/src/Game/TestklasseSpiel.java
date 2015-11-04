@@ -12,6 +12,7 @@ public class TestklasseSpiel {
 		s2.spielerHinzufügen("Kol", "schwarz", false);
 		s2.zugDurchführen("a5", "b6");
 		System.out.println(s2.gibMirCSV());
+		
 	}
 
 }
