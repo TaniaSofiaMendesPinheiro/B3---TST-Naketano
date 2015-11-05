@@ -35,6 +35,21 @@ public class Spielbrett implements Serializable { // extends JPanel
 	 }
 	 return index;
 	 }
+	 
+	 public int [] startPlus(String start){
+		 int [] index = new int [2];
+		 for (int i = 0; i < brett.length; i++) {
+			 for (char j = 0; j < brett[i].length; j++) {
+				 if (start.equals(brett[i][j].getID())) {
+					 index[0] = i+1;
+					 index[1] = j+1;
+					 break;
+				 }
+			 }
+		 }
+		 return index;
+		 
+	 }
 
 	/**
 	 * generates my brett
