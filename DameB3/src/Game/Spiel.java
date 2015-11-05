@@ -34,26 +34,6 @@ public class Spiel implements iBediener {
 		gamestarted = false;
 	}
 
-	// public int getSpielzüge() {
-	// return this.spielzüge;
-	// }
-	//
-	// public void setSpielzüge(int spielzüge) {
-	// if (spielzüge < 0) {
-	// throw new IllegalArgumentException("Something went wrong.");
-	// } else {
-	// this.spielzüge += spielzüge;
-	// }
-	// }
-	//
-	// public Spielfeld getFeld(){
-	// return feld;
-	// }
-	//
-	// public void setFeld(Spielfeld feld){
-	// this.feld = feld;
-	// }
-
 	public void spielen() {
 
 	}
