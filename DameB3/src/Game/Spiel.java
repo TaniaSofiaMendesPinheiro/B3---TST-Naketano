@@ -72,8 +72,8 @@ public class Spiel implements iBediener {
 		spielerliste[0] = spielerliste[1];
 		spielerliste[1] = wechseln;
 		amZug = spielerliste[0];
-		System.out.println(amZug + " ist jetzt am Zug.");
 		System.out.println(gibMirCSV());
+		System.out.println(amZug + " ist jetzt am Zug.");
 
 		// kann pusten?
 		// speichert feld + figur in liste, die schlagen können zu beginn des zuges
@@ -176,12 +176,14 @@ public class Spiel implements iBediener {
 			if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss || brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss) {
 				throw new RuntimeException("Not a valid move on a white field");
 			}
-			if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+			if (amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getFarbe())){
+			 if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
 				if (!(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
 					schlagen(zielID, startID);
 					zugEnde();
 					updateFeld();
 				}
+			}
 			}
 			if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
 				if (prüfeDif(startID, zielID) == false && prüfeDifSchlagen(startID, zielID)) {
@@ -196,15 +198,17 @@ public class Spiel implements iBediener {
 						updateFeld();
 					}
 				}
-			}
-			if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
-
+			} if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
 				throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
+				
+			}	if (amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getFarbe())){
+				throw new RuntimeException("You have to go with a figure of your colour");
 			}
-			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-			brett.gibMirDiePosition(startID).setSpielfigur(null);
-			zugEnde();
-			updateFeld();
+				brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+				brett.gibMirDiePosition(startID).setSpielfigur(null);
+				zugEnde();
+				updateFeld();
+			
 		} catch (RuntimeException re) {
 			System.err.println(re.getMessage());
 			re.printStackTrace();
@@ -263,7 +267,7 @@ public class Spiel implements iBediener {
 
 				//
 				else if (prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
-//					if (prüfeDif(startID, zielID) == true){
+					// if (prüfeDif(startID, zielID) == true){
 					// int[] liste1 = brett.getIndexById(startID);
 					// liste1[0] = liste1[0]+ 1;
 					// liste1[1] = liste1[1]+1;
@@ -272,8 +276,8 @@ public class Spiel implements iBediener {
 					brett.gibMirDiePosition(brett.startPlus(startID)[0], brett.startPlus(startID)[1]).setSpielfigur(null);
 					// brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 				}
-		}		
-//			}
+			}
+			// }
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();
