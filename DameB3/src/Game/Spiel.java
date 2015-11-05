@@ -251,40 +251,6 @@ public class Spiel implements iBediener {
 	 */
 
 	private void schlagen(String startID, String zielID) {
-				try {
-					if (brett.gibMirDiePosition(startID).getSpielfigur() == null) {
-						throw new RuntimeException("Auf deinem Startfeld ist keine Figur.");
-					}
-					else if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss) {
-						throw new RuntimeException("Weisse Felder sind ungültig!");
-					} 
-					else if (prüfeDifSchlagen(startID, zielID) == false) {
-						throw new RuntimeException("Der Zug ist ungültig");
-					}
-//					else if(prüfeDif(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() != null){
-//							brett.gibMirDiePosition(zielID).setSpielfigur(null);
-//						
-//						
-//							if (prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
-//
-//						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-//						brett.gibMirDiePosition(startID).setSpielfigur(null);
-//					
-					else if (prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
-//					int[] liste1 = brett.getIndexById(startID);
-//					liste1[0] = liste1[0]+ 1;
-//					liste1[1] = liste1[1]+1;
-					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-					brett.gibMirDiePosition(startID).setSpielfigur(null);
-//					brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
-					}
-						
-				
-				}	catch (Exception e) {
-					System.err.println(e.getMessage());
-					e.printStackTrace();
-				
-
 		try {
 			if (brett.gibMirDiePosition(startID).getSpielfigur() == null) {
 				throw new RuntimeException("Auf deinem Startfeld ist keine Figur.");
@@ -293,7 +259,7 @@ public class Spiel implements iBediener {
 			} else if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
 				if (prüfeDifSchlagen(startID, zielID) == false) {
 					throw new RuntimeException("Der Zug ist ungültig");
-			}
+				}
 
 				//
 				else if (prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
@@ -302,15 +268,17 @@ public class Spiel implements iBediener {
 					// liste1[1] = liste1[1]+1;
 					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 					brett.gibMirDiePosition(startID).setSpielfigur(null);
+					brett.gibMirDiePosition(zielID).setSpielfigur(null);
 					// brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 				}
 			}
-		} catch (Exception re) {
-			System.err.println(re.getMessage());
-			re.printStackTrace();
-		}
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+
 		}
 	}
+
 	// else if(prüfeDif(startID, zielID) == true &&
 	// brett.gibMirDiePosition(zielID).getSpielfigur() != null){
 	// brett.gibMirDiePosition(zielID).setSpielfigur(null);
@@ -321,7 +289,6 @@ public class Spiel implements iBediener {
 	//
 	// brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 	// brett.gibMirDiePosition(startID).setSpielfigur(null);
-
 
 	/**
 	 * prüft diferenz zwischen start id und ziel id, diferenz muss genau 1 sein!
