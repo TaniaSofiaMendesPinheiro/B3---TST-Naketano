@@ -178,9 +178,22 @@ public class Spiel implements iBediener {
 				}
 			}
 			if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
-				if (prüfeDif(startID, zielID) == false) {// && amZug != null) {
+				if (prüfeDif(startID, zielID) == false && prüfeDifSchlagen(startID, zielID)) {// &&
+																																											// amZug
+																																											// !=
+																																											// null)
+																																											// {
 					throw new RuntimeException("Ungültiger Zug.");
 
+				}
+			}
+			if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+				if (!(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum().equals(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()))) {
+					if (prüfeDifSchlagen(startID, zielID) == true) {
+						schlagen(startID, zielID);
+						zugEnde();
+						updateFeld();
+					}
 				}
 			}
 			if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
@@ -242,29 +255,30 @@ public class Spiel implements iBediener {
 				throw new RuntimeException("Auf deinem Startfeld ist keine Figur.");
 			} else if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss) {
 				throw new RuntimeException("Weisse Felder sind ungültig!");
-			} else if (prüfeDifSchlagen(startID, zielID) == false) {
-				throw new RuntimeException("Der Zug ist ungültig");
+			} else if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+				if (prüfeDifSchlagen(startID, zielID) == false) {
+					throw new RuntimeException("Der Zug ist ungültig");
+				}
+				// else if(prüfeDif(startID, zielID) == true &&
+				// brett.gibMirDiePosition(zielID).getSpielfigur() != null){
+				// brett.gibMirDiePosition(zielID).setSpielfigur(null);
+				//
+				//
+				// if (prüfeDifSchlagen(startID, zielID) == true &&
+				// brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
+				//
+				// brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+				// brett.gibMirDiePosition(startID).setSpielfigur(null);
+				//
+				else if (prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
+					// int[] liste1 = brett.getIndexById(startID);
+					// liste1[0] = liste1[0]+ 1;
+					// liste1[1] = liste1[1]+1;
+					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+					brett.gibMirDiePosition(startID).setSpielfigur(null);
+					// brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
+				}
 			}
-			// else if(prüfeDif(startID, zielID) == true &&
-			// brett.gibMirDiePosition(zielID).getSpielfigur() != null){
-			// brett.gibMirDiePosition(zielID).setSpielfigur(null);
-			//
-			//
-			// if (prüfeDifSchlagen(startID, zielID) == true &&
-			// brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
-			//
-			// brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-			// brett.gibMirDiePosition(startID).setSpielfigur(null);
-			//
-			else if (prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
-				// int[] liste1 = brett.getIndexById(startID);
-				// liste1[0] = liste1[0]+ 1;
-				// liste1[1] = liste1[1]+1;
-				brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-				brett.gibMirDiePosition(startID).setSpielfigur(null);
-				// brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
-			}
-
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();
