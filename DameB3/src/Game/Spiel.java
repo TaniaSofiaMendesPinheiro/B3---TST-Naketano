@@ -270,10 +270,10 @@ public class Spiel implements iBediener {
 			} else if (brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() != brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
 				brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 				brett.gibMirDiePosition(startID).setSpielfigur(null);
-				zielID = startID;
+//				zielID = startID;
 				int[] liste1 = brett.getIndexById(startID);
-				liste1[0] += 2;
-				liste1[1] += 2;
+				liste1[0] += 1;
+				liste1[1] += 1;
 				brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 				brett.gibMirDiePosition(startID).setSpielfigur(null);
 				brett.gibMirDiePosition(zielID).setSpielfigur(null);
@@ -325,6 +325,11 @@ public class Spiel implements iBediener {
 
 		gibMirCSV();
 
+	}
+	
+	public boolean darüberGehüpft(){
+		boolean gehüpft = false;
+		return true;
 	}
 
 }
