@@ -26,7 +26,7 @@ public interface iBediener{
 	
 	public void speichern(String pfad, String name, String typ) throws IOException;
 	
-	public void laden(String pfad, String name, String typ);
+	public void laden(String pfad, String name, String typ) throws IOException;
 	
 	
 }

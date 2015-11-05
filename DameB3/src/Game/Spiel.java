@@ -201,7 +201,7 @@ public class Spiel implements iBediener {
 			} if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
 				throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
 				
-			}	if (amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getFarbe())){
+			}	if (!(amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))){
 				throw new RuntimeException("You have to go with a figure of your colour");
 			}
 				brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
@@ -242,8 +242,14 @@ public class Spiel implements iBediener {
 	}
 
 	@Override
-	public void laden(String pfad, String name, String typ) {
-
+	public void laden(String pfad, String name, String typ) throws IOException {
+		if ( typ.equals("ser")){
+		iDatenzugriff iD = new DatenzugriffSER();
+		iD.laden();
+		}else{
+			iDatenzugriff iDz = new DatenzugriffCSV();
+			iDz.laden();
+		}
 	}
 
 	/**
@@ -264,16 +270,19 @@ public class Spiel implements iBediener {
 				if (prüfeDifSchlagen(startID, zielID) == false) {
 					throw new RuntimeException("Der Zug ist ungültig");
 				}
-
-				//
 				else if (prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
+					if(prüfeDif(startID, zielID) == true){
+						brett.gibMirDiePosition(startID+1).setSpielfigur(null);
+						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+						brett.gibMirDiePosition(startID).setSpielfigur(null);
+					}
 					// if (prüfeDif(startID, zielID) == true){
 					// int[] liste1 = brett.getIndexById(startID);
 					// liste1[0] = liste1[0]+ 1;
 					// liste1[1] = liste1[1]+1;
-					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-					brett.gibMirDiePosition(startID).setSpielfigur(null);
-					brett.gibMirDiePosition(brett.startPlus(startID)[0], brett.startPlus(startID)[1]).setSpielfigur(null);
+//					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+//					brett.gibMirDiePosition(startID).setSpielfigur(null);
+//					brett.gibMirDiePosition(brett.startPlus(startID)[0], brett.startPlus(startID)[1]).setSpielfigur(null);
 					// brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 				}
 			}
