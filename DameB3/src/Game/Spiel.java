@@ -263,6 +263,7 @@ public class Spiel implements iBediener {
 
 				//
 				else if (prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
+//					if (prüfeDif(startID, zielID) == true){
 					// int[] liste1 = brett.getIndexById(startID);
 					// liste1[0] = liste1[0]+ 1;
 					// liste1[1] = liste1[1]+1;
@@ -271,7 +272,8 @@ public class Spiel implements iBediener {
 					brett.gibMirDiePosition(zielID).setSpielfigur(null);
 					// brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 				}
-			}
+		}		
+//			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();
