@@ -251,7 +251,7 @@ public class Spiel implements iBediener {
 
 		} catch (RuntimeException re) {
 			System.err.println(re.getMessage());
-			re.printStackTrace();
+//			re.printStackTrace();
 		}
 	}
 
