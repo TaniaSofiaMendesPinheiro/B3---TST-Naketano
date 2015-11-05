@@ -86,16 +86,22 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void neuesSpiel() {
-		if (spielerliste[0].getFarbEnum() == FarbEnum.weiss) {
-			amZug = spielerliste[0];
-		} else {
-			Spieler wechseln = spielerliste[0];
-			spielerliste[0] = spielerliste[1];
-			spielerliste[1] = wechseln;
-			amZug = spielerliste[0];
+		try {
+			if (spielerliste[0] != null && spielerliste[1] == null) {
+				throw new RuntimeException("Das ist kein gültiges Spiel. Für dieses Spiel braucht man 2 Spieler!");
+			} else if (spielerliste[0].getFarbEnum() == FarbEnum.weiss) {
+				amZug = spielerliste[0];
+			} else {
+				Spieler wechseln = spielerliste[0];
+				spielerliste[0] = spielerliste[1];
+				spielerliste[1] = wechseln;
+				amZug = spielerliste[0];
+			}
+			gamestarted = true; // boolean flag
+			this.spielen();
+		} catch (RuntimeException er) {
+			System.err.println("Das ist kein gültiges Spiel. Für dieses Spiel braucht man 2 Spieler!");
 		}
-		gamestarted = true; // boolean flag
-		this.spielen();
 	}
 
 	@Override
@@ -178,13 +184,8 @@ public class Spiel implements iBediener {
 				}
 			}
 			if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
-				if (prüfeDif(startID, zielID) == false && prüfeDifSchlagen(startID, zielID)) {// &&
-																																											// amZug
-																																											// !=
-																																											// null)
-																																											// {
+				if (prüfeDif(startID, zielID) == false && prüfeDifSchlagen(startID, zielID)) {
 					throw new RuntimeException("Ungültiger Zug.");
-
 				}
 			}
 			if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
@@ -259,16 +260,7 @@ public class Spiel implements iBediener {
 				if (prüfeDifSchlagen(startID, zielID) == false) {
 					throw new RuntimeException("Der Zug ist ungültig");
 				}
-				// else if(prüfeDif(startID, zielID) == true &&
-				// brett.gibMirDiePosition(zielID).getSpielfigur() != null){
-				// brett.gibMirDiePosition(zielID).setSpielfigur(null);
-				//
-				//
-				// if (prüfeDifSchlagen(startID, zielID) == true &&
-				// brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
-				//
-				// brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-				// brett.gibMirDiePosition(startID).setSpielfigur(null);
+
 				//
 				else if (prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
 					// int[] liste1 = brett.getIndexById(startID);
@@ -285,6 +277,17 @@ public class Spiel implements iBediener {
 
 		}
 	}
+
+	// else if(prüfeDif(startID, zielID) == true &&
+	// brett.gibMirDiePosition(zielID).getSpielfigur() != null){
+	// brett.gibMirDiePosition(zielID).setSpielfigur(null);
+	//
+	//
+	// if (prüfeDifSchlagen(startID, zielID) == true &&
+	// brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
+	//
+	// brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+	// brett.gibMirDiePosition(startID).setSpielfigur(null);
 
 	/**
 	 * prüft diferenz zwischen start id und ziel id, diferenz muss genau 1 sein!
