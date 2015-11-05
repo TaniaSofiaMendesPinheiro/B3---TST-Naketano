@@ -59,7 +59,6 @@ public class SpielTest {
 				case "start":
 					s1.neuesSpiel();
 					System.out.println(s1.gibMirCSV());
-//					System.out.println("Gebe nun 'start' in die Konsole ein um zu beginnen.\n" + "Willst du das Spiel beenden, so gebe bitte 'beenden' in die Konsole ein.");
 
 					break;
 					
@@ -67,10 +66,8 @@ public class SpielTest {
 					
 					System.out.println("Startfeld eingeben: ");
 					String start = reader.readLine();
-					System.out.println(start);
 					System.out.println("Zielfeld eingeben: ");
 					String ende = reader.readLine();
-					System.out.println(ende);
 					s1.zugDurchführen(start, ende);		
 	
 					break;
