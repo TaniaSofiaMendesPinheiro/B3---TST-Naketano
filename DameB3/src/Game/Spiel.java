@@ -4,10 +4,10 @@ import java.io.IOException;
 
 import Basisklassen.Spielbrett;
 import Basisklassen.Spieler;
+import Basisklassen.Spielfigur;
 import SpeichernUndLaden.DatenzugriffCSV;
 import SpeichernUndLaden.DatenzugriffSER;
 import Basisklassen.FarbEnum;
-import Basisklassen.Spielfeld;
 import SpeichernUndLaden.iDatenzugriff;
 
 //Implementieren Sie die Klasse Spiel testgetrieben unter Verwendung von JUnit mit nicht
@@ -27,6 +27,7 @@ public class Spiel implements iBediener {
 	private Spieler[] spielerliste;
 	private Spieler amZug;
 	private boolean gamestarted;
+	private Spielfigur figur;
 
 	public Spiel() {
 		this.brett = new Spielbrett();
@@ -177,7 +178,18 @@ public class Spiel implements iBediener {
 						updateFeld();
 					}
 				}
+				if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
+					if( brett.gibMirDiePosition(zielID) = "l"){
+					for (int x = 0; x < 1; x++) {
+						for (int y = 0; y < 12; y++) {
+							if (brett[x][y].getFarbe() == FarbEnum.schwarz) {
+								if (brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum().equals(amZug.getFarbEnum())) {
+									brett.gibMirDiePosition(zielID).setSpielfigur(figur.istDame());
+						}
+				}
+
 			}
+
 			if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
 				throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
 
@@ -241,7 +253,7 @@ public class Spiel implements iBediener {
 	 * @param zielID
 	 */
 
-	private void schlagen(String startID, String zielID) {
+	private boolean schlagen(String startID, String zielID) {
 		try {
 			if (brett.gibMirDiePosition(startID).getSpielfigur() == null) {
 				throw new RuntimeException("Auf deinem Startfeld ist keine Figur.");
@@ -265,6 +277,7 @@ public class Spiel implements iBediener {
 			e.printStackTrace();
 
 		}
+		return true;
 	}
 
 	/**

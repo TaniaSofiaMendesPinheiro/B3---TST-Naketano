@@ -56,6 +56,14 @@ public class Spielfigur implements Serializable{
 		weiss = false;
 	}
 	
+	public void setIstDame(boolean istDame){
+		this.istDame = true;
+	}
+	
+	public boolean istDame(){
+		return istDame;
+	}
+	
 	@Override
 	public String toString(){
 		if(istDame){
