@@ -45,8 +45,8 @@ public class Spieler implements Serializable{
 	public Spieler(String name, FarbEnum farbe, boolean istKI, Spiel spiel) {
 		this.name = name;
 		this.farbe = farbe;
-		if (istKI){
-			this.ki = new KI_Dame(spiel);
+		if (istKI == true){
+			this.ki = new KI_Dame(name, farbe);
 		}
 		
 		}

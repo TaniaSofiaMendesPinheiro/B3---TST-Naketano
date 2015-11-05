@@ -16,6 +16,8 @@ public abstract class KI implements Serializable{
 	private ArrayList<String[]> zugliste1;
 	private Spieler spieler;
 	private Spiel spiel;
+	private String name;
+	private FarbEnum farbe;
 	
 	/**
 	 * 
@@ -25,8 +27,9 @@ public abstract class KI implements Serializable{
 	 * @author B3-TST-Naketano
 	 */
 	
-	public KI (Spiel spiel){
-		x = spiel;
+	public KI (String name, FarbEnum farbe){
+		this.name = name;
+		this.farbe = farbe;
 		zügeSammeln();
 	}
 	

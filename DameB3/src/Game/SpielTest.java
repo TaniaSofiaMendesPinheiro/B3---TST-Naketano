@@ -92,9 +92,6 @@ public class SpielTest {
 		} // catch (RuntimeException re) {
 			// System.err.print("Bitte wähle eine andere Farbe!");
 		// }
-	
-		
-			
 
 	}
 

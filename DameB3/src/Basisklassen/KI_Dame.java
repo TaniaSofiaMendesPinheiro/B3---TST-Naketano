@@ -6,10 +6,9 @@ import Game.Spiel;
 
 public class KI_Dame extends KI implements Serializable{
 	
-	public KI_Dame(Spiel spiel) {
-		super(spiel);
+	public KI_Dame(String name, FarbEnum farbe) {
+		super(name, farbe);
 		zügeSammeln();
-	
 	}
 	/**
 	 * 
