@@ -5,7 +5,7 @@ import java.io.IOException;
 import Basisklassen.Spielbrett;
 import Basisklassen.Spieler;
 import SpeichernUndLaden.DatenzugriffCSV;
-import SpeichernUndLaden.DatenzugriffSerialisiert;
+import SpeichernUndLaden.DatenzugriffSER;
 import Basisklassen.FarbEnum;
 import Basisklassen.Spielfeld;
 import SpeichernUndLaden.iDatenzugriff;
@@ -218,7 +218,7 @@ public class Spiel implements iBediener {
 			// for ( int i = 0; i < 12; i++){
 			// for ( int j = 0; j < 12; j++){
 			// ser += brett.gibMirDiePosition(i, j);
-			iDatenzugriff y = new DatenzugriffSerialisiert();
+			iDatenzugriff y = new DatenzugriffSER();
 			y.speichern(pfad, name, typ);
 		}
 	}

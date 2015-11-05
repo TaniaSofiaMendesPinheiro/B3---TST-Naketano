@@ -30,7 +30,7 @@ public class DatenzugriffCSV implements iDatenzugriff {
 
 	
 	@Override
-	public Object laden(BufferedReader reader) throws IOException {
+	public Object laden() throws IOException {
 		String linie;
 		ArrayList<String> linien = new ArrayList<String>();
 		ArrayList<Spielbrett> brett = new ArrayList<>();

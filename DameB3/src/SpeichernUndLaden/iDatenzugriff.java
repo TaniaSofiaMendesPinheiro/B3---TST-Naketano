@@ -25,7 +25,7 @@ public interface iDatenzugriff {
 	 * @return the loaded objects.
 	 * @throws IOException is thrown if the objects can't be read or the file isn't open.
 	 */
-	public Object laden(BufferedReader reader) throws IOException;
+	public Object laden() throws IOException;
 	
 	
 }
