@@ -5,6 +5,7 @@ import java.io.IOException;
 import Basisklassen.Spielbrett;
 import Basisklassen.Spieler;
 import SpeichernUndLaden.DatenzugriffCSV;
+import SpeichernUndLaden.DatenzugriffSER;
 import Basisklassen.FarbEnum;
 import Basisklassen.Spielfeld;
 import SpeichernUndLaden.iDatenzugriff;
@@ -85,16 +86,22 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void neuesSpiel() {
-		if (spielerliste[0].getFarbEnum() == FarbEnum.weiss) {
-			amZug = spielerliste[0];
-		} else {
-			Spieler wechseln = spielerliste[0];
-			spielerliste[0] = spielerliste[1];
-			spielerliste[1] = wechseln;
-			amZug = spielerliste[0];
+		try {
+			if (spielerliste[0] != null && spielerliste[1] == null) {
+				throw new RuntimeException("Das ist kein gültiges Spiel. Für dieses Spiel braucht man 2 Spieler!");
+			} else if (spielerliste[0].getFarbEnum() == FarbEnum.weiss) {
+				amZug = spielerliste[0];
+			} else {
+				Spieler wechseln = spielerliste[0];
+				spielerliste[0] = spielerliste[1];
+				spielerliste[1] = wechseln;
+				amZug = spielerliste[0];
+			}
+			gamestarted = true; // boolean flag
+			this.spielen();
+		} catch (RuntimeException er) {
+			System.err.println("Das ist kein gültiges Spiel. Für dieses Spiel braucht man 2 Spieler!");
 		}
-		gamestarted = true; // boolean flag
-		this.spielen();
 	}
 
 	@Override
@@ -177,10 +184,18 @@ public class Spiel implements iBediener {
 				}
 			}
 			if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
-				if (prüfeDif(startID, zielID) == false){//&& amZug != null) {
+				if (prüfeDif(startID, zielID) == false && prüfeDifSchlagen(startID, zielID)) {
 					throw new RuntimeException("Ungültiger Zug.");
-				
-				} 
+				}
+			}
+			if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+				if (!(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum().equals(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()))) {
+					if (prüfeDifSchlagen(startID, zielID) == true) {
+						schlagen(startID, zielID);
+						zugEnde();
+						updateFeld();
+					}
+				}
 			}
 			if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
 
@@ -198,19 +213,28 @@ public class Spiel implements iBediener {
 
 	@Override
 	public void speichern(String pfad, String name, String typ) throws IOException {
-		if ( typ.equals("csv")){
+		if (typ.equals("csv")) {
 			String csv = spielerliste[0].toCSV() + "\n";
 			csv += spielerliste[1].toCSV() + "\n";
 			csv += amZug.getFarbEnum() + "\n";
-			for( int i = 0; i < 12; i++){
-				for( int j = 0; j < 12; j++){
+			for (int i = 0; i < 12; i++) {
+				for (int j = 0; j < 12; j++) {
 					csv += brett.gibMirDiePosition(i, j);
+					iDatenzugriff x = new DatenzugriffCSV();
+					x.speichern(pfad, name, typ);
 				}
 			}
+		} else {
+			// if( typ.equals("ser")){
+			// String ser = spielerliste[0].toSER() + "\n";
+			// ser += spielerliste[1].toSER() + "\n";
+			// ser+= amZug.getFarbEnum() + "\n";
+			// for ( int i = 0; i < 12; i++){
+			// for ( int j = 0; j < 12; j++){
+			// ser += brett.gibMirDiePosition(i, j);
+			iDatenzugriff y = new DatenzugriffSER();
+			y.speichern(pfad, name, typ);
 		}
-		iDatenzugriff x = new DatenzugriffCSV();
-		x.speichern(pfad,name,typ);
-
 	}
 
 	@Override
@@ -260,8 +284,43 @@ public class Spiel implements iBediener {
 					System.err.println(e.getMessage());
 					e.printStackTrace();
 				
+
+		try {
+			if (brett.gibMirDiePosition(startID).getSpielfigur() == null) {
+				throw new RuntimeException("Auf deinem Startfeld ist keine Figur.");
+			} else if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss) {
+				throw new RuntimeException("Weisse Felder sind ungültig!");
+			} else if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+				if (prüfeDifSchlagen(startID, zielID) == false) {
+					throw new RuntimeException("Der Zug ist ungültig");
+			}
+
+				//
+				else if (prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
+					// int[] liste1 = brett.getIndexById(startID);
+					// liste1[0] = liste1[0]+ 1;
+					// liste1[1] = liste1[1]+1;
+					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+					brett.gibMirDiePosition(startID).setSpielfigur(null);
+					// brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 				}
 			}
+		} catch (Exception re) {
+			System.err.println(re.getMessage());
+			re.printStackTrace();
+		}
+		}
+	}
+	// else if(prüfeDif(startID, zielID) == true &&
+	// brett.gibMirDiePosition(zielID).getSpielfigur() != null){
+	// brett.gibMirDiePosition(zielID).setSpielfigur(null);
+	//
+	//
+	// if (prüfeDifSchlagen(startID, zielID) == true &&
+	// brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
+	//
+	// brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+	// brett.gibMirDiePosition(startID).setSpielfigur(null);
 
 
 	/**
@@ -295,32 +354,13 @@ public class Spiel implements iBediener {
 		return false;
 	}
 
-	// soll array durchlaufen und überall wo feld eine figur hat auf dem brett x
-	// oder o setzen..
+	/**
+	 * updates our field --> and shows the current brett
+	 */
 	public void updateFeld() {
 
 		gibMirCSV();
-		// for (int i = 0; i < 12; i++) {
-		// for (int j = 0; j < 12; j++) {
-		// if (this.brett.gibMirDiePosition(i, j).getSpielfigur() != null) {
-		// if (this.brett.gibMirDiePosition(i, j).getSpielfigur().getFarbEnum() ==
-		// FarbEnum.weiss) {
-		// brett.toString();
-		// } else if (this.brett.gibMirDiePosition(i,
-		// j).getSpielfigur().getFarbEnum() == FarbEnum.schwarz) {
-		// brett.toString();
-		// }
-		// }
-		// }
-		// }
+
 	}
 
-	//
-	// protected void updateBrett(){
-	// feld.setSpielfigur(null);
-	// feld = brett.gibMirDiePosition(posY, posX);
-	// feld.setSpielfigur(this);
-	//
-	//
-	// }
 }

@@ -115,6 +115,16 @@ public class Spieler implements Serializable{
 		return name+";"+farbe+";"+x;
 	}
 	
+//	public String toSER(){
+//		int x;
+//		if (ki != null ){
+//			x = 1;
+//		} else {
+//			x = 0;
+//		}
+//		return name+";"+farbe+";"+x;
+//	}
+	
 	@Override
 	public String toString(){
 		return this.getName();
