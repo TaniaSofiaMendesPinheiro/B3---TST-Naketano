@@ -225,6 +225,11 @@ public class Spiel implements iBediener {
 			}
 			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
+			int [] liste = brett.getIndexById(zielID);
+			if(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.weiss && liste[1] == 12 |
+				 brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz && liste[1] == 1){
+				brett.gibMirDiePosition(zielID).getSpielfigur().setIstDame(true);
+			}
 			updateFeld();
 			zugEnde();
 		} catch (RuntimeException re) {
@@ -439,13 +444,13 @@ public class Spiel implements iBediener {
 		return false;
 	}
 	
-	public void werdeDame(String ID, Spielfigur stein){
-		int [] liste = brett.getIndexById(ID);
-		if(brett.gibMirDiePosition(ID).getSpielfigur().getFarbEnum() == FarbEnum.weiss && liste[1] == 12 |
-			 brett.gibMirDiePosition(ID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz && liste[1] == 1){
-				brett.gibMirDiePosition(ID).getSpielfigur().setIstDame(true);
-		}
-	}
+//	public void werdeDame(String ID, Spielfigur stein){
+//		int [] liste = brett.getIndexById(ID);
+//		if(brett.gibMirDiePosition(ID).getSpielfigur().getFarbEnum() == FarbEnum.weiss && liste[1] == 12 |
+//			 brett.gibMirDiePosition(ID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz && liste[1] == 1){
+//				brett.gibMirDiePosition(ID).getSpielfigur().setIstDame(true);
+//		}
+//	}
 	
 
 	/**
