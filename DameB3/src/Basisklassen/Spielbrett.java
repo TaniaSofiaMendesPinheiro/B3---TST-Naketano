@@ -90,6 +90,7 @@ public class Spielbrett implements Serializable { // extends JPanel
 				if (brett[x][y].getFarbe() == FarbEnum.schwarz) {
 					Spielfigur figurweiss = new Spielfigur();
 					figurweiss.farbe = FarbEnum.weiss;
+					figurweiss.istDame = false;
 					brett[x][y].setSpielfigur(figurweiss);
 				}
 			}
@@ -100,6 +101,7 @@ public class Spielbrett implements Serializable { // extends JPanel
 				if (brett[x][y].getFarbe() == FarbEnum.schwarz) {
 					Spielfigur figurschwarz = new Spielfigur();
 					figurschwarz.farbe = FarbEnum.schwarz;
+					figurschwarz.istDame = false;
 					brett[x][y].setSpielfigur(figurschwarz);
 				}
 			}

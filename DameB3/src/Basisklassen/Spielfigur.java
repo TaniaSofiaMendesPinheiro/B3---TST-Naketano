@@ -15,7 +15,7 @@ public class Spielfigur implements Serializable{
 	private static final long serialVersionUID = -1153301073951482590L;
 	FarbEnum farbe;
 	private String ID;
-	private boolean istDame = false;
+	boolean istDame = false;
 	private boolean weiss = true;
 	// that you can distinguish between the figures from players
 	
@@ -30,8 +30,9 @@ public class Spielfigur implements Serializable{
 	 */
 	
 	
-	public Spielfigur(FarbEnum farbe) {
+	public Spielfigur(FarbEnum farbe, boolean istDame) {
 		this.farbe = farbe;
+		this.istDame = istDame;
 	}
 
 	public FarbEnum getFarbEnum() {
