@@ -81,6 +81,7 @@ public class Spiel implements iBediener {
 			}
 			gamestarted = true; // boolean flag
 			this.spielen();
+			System.out.println(amZug + " beginnt."); 
 		} catch (RuntimeException er) {
 			System.err.println("Das ist kein gültiges Spiel. Für dieses Spiel braucht man 2 Spieler!");
 		}
@@ -204,8 +205,9 @@ public class Spiel implements iBediener {
 			if (amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum())) {
 				if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() == null && prüfeDifSchlagen(startID, zielID) == true) {
 					schlagen(startID, zielID);
-					zugEnde();
 					updateFeld();
+					zugEnde();
+					
 				}
 			}
 			if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
@@ -226,8 +228,8 @@ public class Spiel implements iBediener {
 			}
 			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
-			zugEnde();
 			updateFeld();
+			zugEnde();
 
 		} catch (RuntimeException re) {
 			System.err.println(re.getMessage());
@@ -289,18 +291,17 @@ public class Spiel implements iBediener {
 					liste1[1] += 1; // x-achse
 
 					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+					brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 					brett.gibMirDiePosition(startID).setSpielfigur(null);
 					brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
-					// brett.gibMirDiePosition(liste1[0],
-					// liste1[1]).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 				}
 			} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) { // nach links unten
 				if (prüfeDifSchlagen(startID, zielID)) {
 					int[] liste1 = brett.getIndexById(startID);
 					liste1[0] -= 1; // y-achse
 					liste1[1] -= 1; // x-achse
-
 					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+					brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 					brett.gibMirDiePosition(startID).setSpielfigur(null);
 					brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 				}
@@ -309,8 +310,8 @@ public class Spiel implements iBediener {
 					int[] liste1 = brett.getIndexById(startID);
 					liste1[0] += 1; // y-achse
 					liste1[1] -= 1; // x-achse
-
 					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+					brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 					brett.gibMirDiePosition(startID).setSpielfigur(null);
 					brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 				}
@@ -319,8 +320,8 @@ public class Spiel implements iBediener {
 					int[] liste1 = brett.getIndexById(startID);
 					liste1[0] -= 1; // y-achse
 					liste1[1] += 1; // x-achse
-
 					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+					brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 					brett.gibMirDiePosition(startID).setSpielfigur(null);
 					brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 				}

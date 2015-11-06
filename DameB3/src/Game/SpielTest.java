@@ -57,8 +57,9 @@ public class SpielTest {
 					break;
 
 				case "start":
-					s1.neuesSpiel();
+//					s1.neuesSpiel();
 					System.out.println(s1.gibMirCSV());
+					s1.neuesSpiel();
 
 					break;
 					
