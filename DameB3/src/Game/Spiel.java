@@ -365,6 +365,15 @@ public class Spiel implements iBediener {
 		}
 		return false;
 	}
+	
+	public void werdeDame(String ID, Spielfigur stein){
+		int [] liste = brett.getIndexById(ID);
+		if(brett.gibMirDiePosition(ID).getSpielfigur().getFarbEnum() == FarbEnum.weiss && liste[1] == 12 |
+			 brett.gibMirDiePosition(ID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz && liste[1] == 1){
+				brett.gibMirDiePosition(ID).getSpielfigur().setIstDame(true);
+		}
+	}
+	
 
 	/**
 	 * updates our field --> and shows the current brett
