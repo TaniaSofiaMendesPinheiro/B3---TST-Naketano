@@ -67,12 +67,17 @@ public class DatenzugriffCSV implements iDatenzugriff {
     			return spielers;
 //    			return brettle;
     		} else {
-    			String Name = readedAttributes[0];
-    			String Farbe = readedAttributes[1];
-    			String ID = readedAttributes[2];
+    			String name = readedAttributes[0];
+    			String farbe = readedAttributes[1];
+    			String iD = readedAttributes[2];
     			boolean istDame = Boolean.parseBoolean(readedAttributes[3]);
     			String KI = readedAttributes[4];
     			boolean weiss = Boolean.parseBoolean(readedAttributes[5]);
+    			Spielbrett brett = new Spielbrett();
+    			Spieler spieler = new Spieler();
+    			spieler.setFarbEnum(new FarbEnum()8);
+    			
+    			brettle.add(spielers);
     		}
 			linien.remove(linie);
     		}
