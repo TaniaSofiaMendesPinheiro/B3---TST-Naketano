@@ -164,7 +164,7 @@ public class Spiel implements iBediener {
 					}
 					break;
 				default:
-					System.out.println("Wähle schwarz oder weiss");
+					System.err.println("Wähle schwarz oder weiss");
 				}
 
 			} else {
