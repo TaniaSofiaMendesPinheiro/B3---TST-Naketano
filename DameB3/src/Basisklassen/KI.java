@@ -30,6 +30,7 @@ public abstract class KI implements Serializable{
 	public KI (String name, FarbEnum farbe){
 		this.name = name;
 		this.farbe = farbe;
+		schlagenSammeln();
 		zügeSammeln();
 	}
 	
@@ -64,6 +65,43 @@ public abstract class KI implements Serializable{
 				String ende = liste[1];
 				spiel.zugDurchführen(start, ende);
 				spiel.zugEnde();
+			}
+		}
+	}
+	
+	
+	public void schlagenSammeln(){
+		for(int i = 0; i < 12; i++){
+			for(int j = 0; j < 12; j++){
+				if(brett.gibMirDiePosition(i, j).getSpielfigur() == null){
+					throw new RuntimeException("Es sind keine Züge möglich!");
+				}
+				else if(brett.gibMirDiePosition(i, j).getSpielfigur().getFarbEnum() == spieler.getFarbEnum()){
+					if(brett.gibMirDiePosition(i + 1, j +1).getSpielfigur() !=null &&
+						 brett.gibMirDiePosition(i+1, j+1).getSpielfigur().getFarbEnum() != spieler.getFarbEnum()){
+						
+							String start = brett.gibMirDiePosition(i, j).getID();
+							String ende = brett.gibMirDiePosition(i+2, j+2).getID();
+							zug[0] = start;
+							zug[1] = ende;
+							zugliste1.add(zug);
+					}
+					else if(brett.gibMirDiePosition(i, j).getSpielfigur() != null && 
+							brett.gibMirDiePosition(i+1, j-1).getSpielfigur().getFarbEnum() != spieler.getFarbEnum()){
+							String start = brett.gibMirDiePosition(i, j).getID();
+							String ende = brett.gibMirDiePosition(i+2, j-2).getID();
+							zug[0] = start;
+							zug[1] = ende;
+							zugliste1.add(zug);
+					}
+				} 
+				Collections.shuffle(zugliste1);
+				String [] liste = zugliste1.get(0);
+				String start = liste[0];
+				String ende = liste[1];
+				spiel.zugDurchführen(start, ende);
+				spiel.zugEnde();
+				
 			}
 		}
 	}
