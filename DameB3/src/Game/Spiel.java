@@ -218,9 +218,13 @@ public class Spiel implements iBediener {
 				if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
 					throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
 				}
-				if (!(amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
-					throw new RuntimeException("You have to go with a figure of your colour - lalilu");
+				if(prüfeDif(startID, zielID) == false){
+					throw new RuntimeException("DU kannst nur ein Feld laufen");
 				}
+				if (!(amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
+					throw new RuntimeException("You have to go with a figure of your colour");
+				}
+				if(prüfeDif(startID,zielID) == true){
 				brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 				brett.gibMirDiePosition(startID).setSpielfigur(null);
 				int [] liste = brett.getIndexById(zielID);
@@ -231,7 +235,7 @@ public class Spiel implements iBediener {
 				}
 				updateFeld();
 				zugEnde();
-				
+				}
 			}
 			/**
 			 * zugdurchführen für dame
@@ -456,9 +460,14 @@ public class Spiel implements iBediener {
 		int[] liste1 = brett.getIndexById(startId);
 		int[] liste2 = brett.getIndexById(zielId);
 
-		return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1);
-
+		if(brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.weiss){
+			return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1);
+		}else{
+			return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == -1);	
+			}	
+	
 	}
+	
 
 	/**
 	 * gleiche methode wie prüfeDif nur mit der diferenz von 2, da die zu
