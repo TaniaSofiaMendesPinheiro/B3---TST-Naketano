@@ -227,6 +227,7 @@ public class Spiel implements iBediener {
 				if(brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.weiss && liste[1] == 12 |
 					 brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz && liste[1] == 1){
 					brett.gibMirDiePosition(zielID).getSpielfigur().setIstDame(true);
+				
 				}
 				updateFeld();
 				zugEnde();
