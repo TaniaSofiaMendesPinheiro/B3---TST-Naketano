@@ -133,7 +133,7 @@ public class Spiel implements iBediener {
 					System.out.println("Hallo " + spielerliste[0].getName() + ", du bist weiss");
 					break;
 				case "schwarz":
-					spielerliste[0] = new Spieler(name, FarbEnum.schwarz, false, this);
+					spielerliste[0] = new Spieler(name, FarbEnum.schwarz, true, this);
 					System.out.println("Hallo " + spielerliste[0].getName() + ", du bist schwarz");
 					break;
 				default:
@@ -152,7 +152,7 @@ public class Spiel implements iBediener {
 					break;
 				case "schwarz":
 					if (spielerliste[0].getFarbEnum() == FarbEnum.weiss) {
-						spielerliste[1] = new Spieler(name, FarbEnum.schwarz, true, this);
+						spielerliste[1] = new Spieler(name, FarbEnum.schwarz, false, this);
 						System.out.println("Hallo " + spielerliste[1].getName() + ", du bist schwarz");
 					} else {
 						System.err.println("Es gibt schon einen schwarzen Spieler.");
