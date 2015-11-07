@@ -43,7 +43,7 @@ public class DatenzugriffCSV implements iDatenzugriff {
 	@Override
 	public void write(Object object) throws IOException {
 		String daten = (String)object;
-		if(daten.equals("#")) {
+		if(daten.equals("#")) {		// wenn er nichts findet, dann schreibt er eine leere zeile
 			bw.write("\n");
 		} else {
 			bw.write(daten + ";");
@@ -58,11 +58,10 @@ public class DatenzugriffCSV implements iDatenzugriff {
 		ArrayList<Spielbrett> brettle = new ArrayList<>();
 		while((linie = br.readLine()) != null) {
 			linien.add(linie);
-			String[] readedAttributes = new String[7];			
+			String[] readedAttributes = new String[6];			
 			for(int i = 0; i < readedAttributes.length; i++) {
     			readedAttributes = linien.get(0).split(";");
-    		}
-			
+			}
 			if(readedAttributes[0] == null) {
     			return spielers;
 //    			return brettle;
@@ -78,8 +77,7 @@ public class DatenzugriffCSV implements iDatenzugriff {
     			spieler.setFarbEnum(new FarbEnum());
     			spieler.setName(name);
     			brett.setzDieFigurenAufsFeld();
- 
-    			
+   			
     			brettle.add(spielers);
     		}
 			linien.remove(linie);
