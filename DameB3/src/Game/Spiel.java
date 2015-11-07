@@ -262,8 +262,9 @@ public class Spiel implements iBediener {
 			if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
 				throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
 			}
-			if (!(amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
+			if (!(amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum())) && brett.gibMirDiePosition(zielID)!= null) {
 				throw new RuntimeException("You have to go with a figure of your colour");
+				
 			}
 			if(prüfeDif(startID, zielID) == true){
 				brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
