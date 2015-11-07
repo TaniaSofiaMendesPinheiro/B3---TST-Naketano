@@ -1,7 +1,6 @@
 package SpeichernUndLaden;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.BufferedReader;import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,12 +9,6 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import Basisklassen.Spielbrett;
-import Basisklassen.FarbEnum;
-import Basisklassen.Spieler;
-import Basisklassen.Spielfeld;
-import Basisklassen.Spielfigur;
-import Game.Spiel;
 
 //Implementieren Sie das Interface iDatenzugriff in der Klasse DatenzugriffCSV,
 //bei dem ein Spiel mit seinem gesamten Zustand als CSV - Datei gespeichert und geladen werden kann
@@ -24,56 +17,78 @@ public class DatenzugriffCSV implements iDatenzugriff {
 
 	private BufferedReader br;
 	private BufferedWriter bw;
-	private Spieler spielerliste[];
-	private Spielbrett brett;
-	private Spieler amZug;
-
-	
 	@Override
-	public Object laden() throws IOException {
-		String linie;
-		ArrayList<String> linien = new ArrayList<String>();
-		ArrayList<Spielbrett> brett = new ArrayList<>();
-		while ((linie = br.readLine()) != null) {
-			linien.add(linie);
-			String[] readedAttributes = new String[3];
-			for (int i = 0; i < readedAttributes.length; i++) {
-				readedAttributes = linien.get(0).split(";");
-			}
-			if (readedAttributes[0] == null) {
-				return brett;
-			} else {
-				String id = readedAttributes[0];
-				String startID = readedAttributes[1];
-				String zielID = readedAttributes[2];
-				// String spielfeld = readedAttributes[3];
-				Spiel s1 = new Spiel();
-				Spielbrett brettle = new Spielbrett();
-				brettle.getIndexById(id);
-				brettle.gibMirDiePosition(zielID);
-				brettle.gibMirDiePosition(startID);
-				brettle.gibMirDiePosition(zielID).getSpielfigur();
-				for (int i = 0; i < 12; i++) {
-					for (int j = 0; j < 12; j++) {
-						brettle.gibMirDiePosition(i, j).getSpielfigur();
-					}
-				}
-				brett.add(brettle);
-			}
-			linien.remove(linie);
+	public void open(Properties properties) throws IOException {
+		String fileName = properties.getProperty("Filename");
+		
+		if(fileName == null) {
+			throw new IOException("Filename not defined!");
 		}
-		return brett;
+		
+		if("s".equals(properties.getProperty("Mode"))) {
+			bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fileName)));
+		} else if("l".equals(properties.getProperty("Mode"))) {
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(fileName)));
+		} else {
+			throw new IOException("Mode not defined!");
+		}		
 	}
 
 	@Override
-	public void speichern(String pfad, String name, String inhalt) throws IOException {
-		String daten = pfad + name + inhalt;
-		if (daten.equals("")) {
+	public void write(Object object) throws IOException {
+		String daten = (String)object;
+		if(daten.equals("#")) {
 			bw.write("\n");
 		} else {
-			bw.write(daten + ";");
-		}
+			bw.write(daten + ",");
+		}		
+	}
 
+	@Override
+	public Object read() throws IOException {
+		String linie;
+		ArrayList<String> linien = new ArrayList<String>();
+		ArrayList<Student> students = new ArrayList<>();
+		while((linie = br.readLine()) != null) {
+			linien.add(linie);
+			String[] readedAttributes = new String[7];			
+			for(int i = 0; i < readedAttributes.length; i++) {
+    			readedAttributes = linien.get(0).split(",");
+    		}
+			
+			if(readedAttributes[0] == null) {
+    			return students;
+    		} else {
+    			String studentNumber = readedAttributes[0];
+    			String preName = readedAttributes[1];
+    			String surName = readedAttributes[2];
+    			String street = readedAttributes[3];
+    			int houseNumber = Integer.parseInt(readedAttributes[4]);
+    			String place = readedAttributes[5];
+    			String postalCode = readedAttributes[6];
+    			StudentAdministration sA = new StudentAdministration();
+    			Student student = new Student();
+    			student.setStudentNumber(studentNumber);
+    			student.setName(new Name(preName,surName));
+    			student.setAddress(new Address(street, houseNumber, place, postalCode));
+    			students.add(student);
+    		}
+			linien.remove(linie);
+		}			
+		return students;
+	}
+
+	@Override
+	public void close(Object object) throws IOException {
+		if(bw != null) {
+			bw.close();
+			bw = null;
+		}
+		
+		if(br != null) {
+			br.close();
+			br = null;
+		}
 	}
 }
 
