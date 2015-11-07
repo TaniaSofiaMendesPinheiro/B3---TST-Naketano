@@ -33,6 +33,7 @@ public class SpielTest {
 					System.out.println("Welche Farbe möchtest du sein\n" + "\t Tippe 'weiss' für weiß und\n" + "\t Tippe 'schwarz' für schwarz");
 					String color = reader.readLine();
 
+					try {
 					System.out.println("Entscheide nun, ob du eine KI sein willst (y) oder nicht (n).");
 					String KI = reader.readLine();
 					if (KI.equals("y")) {
@@ -40,18 +41,19 @@ public class SpielTest {
 						System.out.println("Um einen neuen Spieler hinzuzufügen bitte 'add' eingeben. \n" + 
 								"Beachte, dass es 2 Spieler geben muss.");
 								System.out.println("Zum Spiel starten bitte 'start' eingeben.");
-						try {
+						
 							s1.spielerHinzufügen(name, color, true);
-						}catch (Exception e){
-							System.err.println("Es gibt schon zwei Spieler. Gebe 'start' zum Starten ein.");
 						}
-					}
+					
 					else if (KI.equals("n")) {
 						System.out.println("Du bist ein Mensch.");
 						s1.spielerHinzufügen(name, color, false);
 						System.out.println("Um einen neuen Spieler hinzuzufügen bitte 'add' eingeben. \n" + 
 						"Beachte, dass es 2 Spieler geben muss.");
 						System.out.println("Zum Spiel starten bitte 'start' eingeben.");
+					}}
+					catch (Exception e){
+						System.err.println("Es gibt schon zwei Spieler. Gebe 'start' zum Starten ein.");
 					}
 
 					break;
