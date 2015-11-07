@@ -313,7 +313,7 @@ public class Spiel implements iBediener {
 	 */
 	
 
-	private boolean schlagen(String startID, String zielID) {
+	private void schlagen(String startID, String zielID) {
 		try {
 			/**
 			 * schlagen methode für Steine/normale Figur
@@ -436,7 +436,6 @@ public class Spiel implements iBediener {
 			e.printStackTrace();
 
 		}
-		return true;
 	}
 
 	/**
