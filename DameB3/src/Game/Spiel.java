@@ -276,8 +276,7 @@ public class Spiel implements iBediener {
 			brett.gibMirDiePosition(startID).setSpielfigur(null);
 			updateFeld();
 			zugEnde();
-			
-		}
+			}
 		}
 		catch (RuntimeException re) {
 			System.err.println(re.getMessage());
