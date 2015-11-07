@@ -219,8 +219,7 @@ public class Spiel implements iBediener {
 					throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
 				}
 				if (!(amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
-					throw new RuntimeException("You have to go with a figure of your colour");
-				
+					throw new RuntimeException("You have to go with a figure of your colour - lalilu");
 				}
 				brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 				brett.gibMirDiePosition(startID).setSpielfigur(null);
@@ -262,9 +261,8 @@ public class Spiel implements iBediener {
 			if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
 				throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
 			}
-			if (!(amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum())) && brett.gibMirDiePosition(zielID)!= null) {
+			if (!(amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
 				throw new RuntimeException("You have to go with a figure of your colour");
-				
 			}
 			if(prüfeDif(startID, zielID) == true){
 				brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());

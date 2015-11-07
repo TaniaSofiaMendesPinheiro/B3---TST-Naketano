@@ -75,7 +75,10 @@ public class DatenzugriffCSV implements iDatenzugriff {
     			boolean weiss = Boolean.parseBoolean(readedAttributes[5]);
     			Spielbrett brett = new Spielbrett();
     			Spieler spieler = new Spieler();
-    			spieler.setFarbEnum(new FarbEnum()8);
+    			spieler.setFarbEnum(new FarbEnum());
+    			spieler.setName(name);
+    			brett.setzDieFigurenAufsFeld();
+ 
     			
     			brettle.add(spielers);
     		}
