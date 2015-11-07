@@ -215,11 +215,6 @@ public class Spiel implements iBediener {
 						throw new RuntimeException("This is not a valid move!");
 					}
 				}
-				
-				//was macht die abfrage?
-				if (brett.gibMirDiePosition(zielID).getSpielfigur() == null){
-					brett.getIndexById(zielID);
-				}
 				if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
 					throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
 				}
@@ -261,10 +256,6 @@ public class Spiel implements iBediener {
 				if (prüfeDifDame(startID, zielID) == false) {
 					throw new RuntimeException("This is not a valid move!");
 				}
-			}
-			//was macht die abfrage?
-			if (brett.gibMirDiePosition(zielID).getSpielfigur() == null){
-				brett.getIndexById(zielID);
 			}
 			if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
 				throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
