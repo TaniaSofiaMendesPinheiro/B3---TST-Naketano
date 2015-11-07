@@ -13,7 +13,7 @@ import java.util.Properties;
 public class DatenzugriffSER implements iDatenzugriff {
 	private ObjectInputStream ois;
 	private ObjectOutputStream oos;
-
+		
 	@Override
 	public void open(Properties properties) throws IOException {
 		String dateiName = properties.getProperty("Filename");
@@ -21,9 +21,9 @@ public class DatenzugriffSER implements iDatenzugriff {
 		if (dateiName == null) {
 			throw new IOException("Filename not defined!");
 		} else {
-			if ("s".equals(properties.getProperty("Mode"))) {
+			if ("s".equals(properties.getProperty("Mode"))) {	// s = save
 				oos = new ObjectOutputStream(new FileOutputStream(dateiName));
-			} else if ("l".equals(properties.getProperty("Mode"))) {
+			} else if ("l".equals(properties.getProperty("Mode"))) {		// l = load
 				ois = new ObjectInputStream(new FileInputStream(dateiName));
 			} else {
 				throw new IOException("Mode not defined");
