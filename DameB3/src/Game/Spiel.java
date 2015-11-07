@@ -1,15 +1,10 @@
 package Game;
 
 import java.io.IOException;
-
-import Basisklassen.KI_Dame;
 import Basisklassen.Spielbrett;
 import Basisklassen.Spieler;
 import Basisklassen.Spielfigur;
-import SpeichernUndLaden.DatenzugriffCSV;
-import SpeichernUndLaden.DatenzugriffSER;
 import Basisklassen.FarbEnum;
-import SpeichernUndLaden.iDatenzugriff;
 
 //Implementieren Sie die Klasse Spiel testgetrieben unter Verwendung von JUnit mit nicht
 //trivialen JUnit - Tests. Jedes Spiel kennt ein Spielbrett, 2 Spieler und den Spieler,
@@ -461,9 +456,12 @@ public class Spiel implements iBediener {
 		int[] liste2 = brett.getIndexById(zielId);
 
 		if(brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.weiss){
-			return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1);
-		}else{
-			return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == -1);	
+			return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1 || 
+					Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1);
+		}
+		else{
+			return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1 && liste2[1] - liste1[1] == -1 ||
+					Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1 && liste2[1] - liste1[1] == -1);	
 			}	
 	
 	}
@@ -481,9 +479,22 @@ public class Spiel implements iBediener {
 		int[] liste1 = brett.getIndexById(startId);
 		int[] liste2 = brett.getIndexById(zielId);
 
-		if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == 2) {
+		if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.weiss){
+		if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == 2 ||
+				Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == 2 || 
+				Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == -2 ||
+				Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == -2) {
 			return true;
 		}
+		}
+		else if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.schwarz){
+				if(Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == 2 ||
+						Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == -2 ||
+						Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == -2 ||
+						Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == 2){
+			return true;
+		}
+			}
 		return false;
 	}
 	
