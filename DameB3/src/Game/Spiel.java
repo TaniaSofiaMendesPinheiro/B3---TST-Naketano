@@ -263,10 +263,13 @@ public class Spiel implements iBediener {
 			if (!(amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
 				throw new RuntimeException("You have to go with a figure of your colour");
 			}
-			brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-			brett.gibMirDiePosition(startID).setSpielfigur(null);
-			updateFeld();
-			zugEnde();
+			if(prüfeDif(startID, zielID) == true){
+				brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+				brett.gibMirDiePosition(startID).setSpielfigur(null);
+				updateFeld();
+				zugEnde();
+			}
+			
 			}
 		}
 		catch (RuntimeException re) {
