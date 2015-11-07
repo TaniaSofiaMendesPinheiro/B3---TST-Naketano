@@ -219,7 +219,8 @@ public class Spiel implements iBediener {
 					throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
 				}
 				if (!(amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
-					throw new RuntimeException("You have to go with a figure of your colour - lalilu");
+					throw new RuntimeException("You have to go with a figure of your colour");
+				
 				}
 				brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 				brett.gibMirDiePosition(startID).setSpielfigur(null);
