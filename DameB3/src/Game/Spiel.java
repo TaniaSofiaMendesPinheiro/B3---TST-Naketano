@@ -230,6 +230,7 @@ public class Spiel implements iBediener {
 				}
 				updateFeld();
 				zugEnde();
+				
 			}
 			/**
 			 * zugdurchführen für dame
