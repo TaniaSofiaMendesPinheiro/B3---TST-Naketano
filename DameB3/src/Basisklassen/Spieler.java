@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import Game.Spiel;
 
+
 public class Spieler implements Serializable{
 		
 		/**
