@@ -105,17 +105,7 @@ public class Spieler implements Serializable{
 		}
 	}
 	
-	public String toCSV(){
-		int x;
-		if (ki != null ){
-			x = 1;
-		} else {
-			x = 0;
-		}
-		return name+";"+farbe+";"+x;
-	}
-	
-//	public String toSER(){
+//	public String toCSV(){
 //		int x;
 //		if (ki != null ){
 //			x = 1;
@@ -125,9 +115,22 @@ public class Spieler implements Serializable{
 //		return name+";"+farbe+";"+x;
 //	}
 	
+
 	@Override
 	public String toString(){
 		return this.getName();
 	}
+	
+//	@Override
+//	public String toString() {
+//		String outputSring = "";
+//		if((getName() == null) && (getFarbEnum() == null) && (ki == null)) {
+//			outputSring += "There is no name and no color.";
+//		} else {
+//			outputSring += "Name: " + getName() + "\n" +
+//						   "Farbe: " + getFarbEnum() + "\n" + "KI: " + this.ki;
+//		}
+//		return outputSring;
+//	}
 
 }
