@@ -125,6 +125,8 @@ public class Spiel implements iBediener {
 
 				throw new RuntimeException("Da ging was schief.");
 			}
+			
+			// funktioniert, wenn schwarz und weiss keine KI 
 		} else if (KI == true) {
 			if (spielerliste[0] == null) {
 				switch (farbe) {
@@ -133,7 +135,7 @@ public class Spiel implements iBediener {
 					System.out.println("Hallo " + spielerliste[0].getName() + ", du bist weiss");
 					break;
 				case "schwarz":
-					spielerliste[0] = new Spieler(name, FarbEnum.schwarz, true, this);
+					spielerliste[0] = new Spieler(name, FarbEnum.schwarz, false, this);
 					System.out.println("Hallo " + spielerliste[0].getName() + ", du bist schwarz");
 					break;
 				default:
@@ -152,20 +154,58 @@ public class Spiel implements iBediener {
 					break;
 				case "schwarz":
 					if (spielerliste[0].getFarbEnum() == FarbEnum.weiss) {
-						spielerliste[1] = new Spieler(name, FarbEnum.schwarz, true, this);
+						spielerliste[1] = new Spieler(name, FarbEnum.schwarz, false, this);
 						System.out.println("Hallo " + spielerliste[1].getName() + ", du bist schwarz");
 					} else {
 						System.err.println("Es gibt schon einen schwarzen Spieler.");
 					}
 					break;
+				}
+			}
+			else{
+				if (spielerliste[0] == null) {
+					switch (farbe) {
+					case "weiss":
+						spielerliste[0] = new Spieler(name, FarbEnum.weiss, true, this);
+						System.out.println("Hallo " + spielerliste[0].getName() + ", du bist weiss");
+						break;
+					case "schwarz":
+						spielerliste[0] = new Spieler(name, FarbEnum.schwarz, true, this);
+						System.out.println("Hallo " + spielerliste[0].getName() + ", du bist schwarz");
+						break;
+					default:
+						System.out.println("Wähle schwarz oder weiss");
+					}
+				} else if (spielerliste[1] == null) {
+					switch (farbe) {
+					case "weiss":
+						if (spielerliste[0].getFarbEnum() == FarbEnum.schwarz) {
+							spielerliste[1] = new Spieler(name, FarbEnum.weiss, true, this);
+							System.out.println("Hallo " + spielerliste[1].getName() + ", du bist weiss");
+
+						} else {
+							System.err.println("Es gibt schon einen weißen Spieler.");
+						}
+						break;
+					case "schwarz":
+						if (spielerliste[0].getFarbEnum() == FarbEnum.weiss) {
+							spielerliste[1] = new Spieler(name, FarbEnum.schwarz, false, this);
+							System.out.println("Hallo " + spielerliste[1].getName() + ", du bist schwarz");
+						} else {
+							System.err.println("Es gibt schon einen schwarzen Spieler.");
+						}
+						break;
+					}
+				}
+				else{
 					if (spielerliste[0] == null) {
 						switch (farbe) {
 						case "weiss":
-							spielerliste[0] = new Spieler(name, FarbEnum.weiss, true, this);
+							spielerliste[0] = new Spieler(name, FarbEnum.weiss, false, this);
 							System.out.println("Hallo " + spielerliste[0].getName() + ", du bist weiss");
 							break;
 						case "schwarz":
-							spielerliste[0] = new Spieler(name, FarbEnum.schwarz, false, this);
+							spielerliste[0] = new Spieler(name, FarbEnum.schwarz, true, this);
 							System.out.println("Hallo " + spielerliste[0].getName() + ", du bist schwarz");
 							break;
 						default:
@@ -175,7 +215,7 @@ public class Spiel implements iBediener {
 						switch (farbe) {
 						case "weiss":
 							if (spielerliste[0].getFarbEnum() == FarbEnum.schwarz) {
-								spielerliste[1] = new Spieler(name, FarbEnum.weiss, true, this);
+								spielerliste[1] = new Spieler(name, FarbEnum.weiss, false, this);
 								System.out.println("Hallo " + spielerliste[1].getName() + ", du bist weiss");
 
 							} else {
@@ -190,15 +230,84 @@ public class Spiel implements iBediener {
 								System.err.println("Es gibt schon einen schwarzen Spieler.");
 							}
 							break;
-				default:
-					System.err.println("Wähle schwarz oder weiss");
-				}
+						}
+					}
+					else{
+						if (spielerliste[0] == null) {
+							switch (farbe) {
+							case "weiss":
+								spielerliste[0] = new Spieler(name, FarbEnum.weiss, false, this);
+								System.out.println("Hallo " + spielerliste[0].getName() + ", du bist weiss");
+								break;
+							case "schwarz":
+								spielerliste[0] = new Spieler(name, FarbEnum.schwarz, true, this);
+								System.out.println("Hallo " + spielerliste[0].getName() + ", du bist schwarz");
+								break;
+							default:
+								System.out.println("Wähle schwarz oder weiss");
+							}
+						} else if (spielerliste[1] == null) {
+							switch (farbe) {
+							case "weiss":
+								if (spielerliste[0].getFarbEnum() == FarbEnum.schwarz) {
+									spielerliste[1] = new Spieler(name, FarbEnum.weiss, true, this);
+									System.out.println("Hallo " + spielerliste[1].getName() + ", du bist weiss");
 
-			} else {
+								} else {
+									System.err.println("Es gibt schon einen weißen Spieler.");
+								}
+								break;
+							case "schwarz":
+								if (spielerliste[0].getFarbEnum() == FarbEnum.weiss) {
+									spielerliste[1] = new Spieler(name, FarbEnum.schwarz, true, this);
+									System.out.println("Hallo " + spielerliste[1].getName() + ", du bist schwarz");
+								} else {
+									System.err.println("Es gibt schon einen schwarzen Spieler.");
+								}
+								break;
+							}
+						}
+						else{
+							if (spielerliste[0] == null) {
+								switch (farbe) {
+								case "weiss":
+									spielerliste[0] = new Spieler(name, FarbEnum.weiss, true, this);
+									System.out.println("Hallo " + spielerliste[0].getName() + ", du bist weiss");
+									break;
+								case "schwarz":
+									spielerliste[0] = new Spieler(name, FarbEnum.schwarz, false, this);
+									System.out.println("Hallo " + spielerliste[0].getName() + ", du bist schwarz");
+									break;
+								default:
+									System.out.println("Wähle schwarz oder weiss");
+								}
+							} else if (spielerliste[1] == null) {
+								switch (farbe) {
+								case "weiss":
+									if (spielerliste[0].getFarbEnum() == FarbEnum.schwarz) {
+										spielerliste[1] = new Spieler(name, FarbEnum.weiss, false, this);
+										System.out.println("Hallo " + spielerliste[1].getName() + ", du bist weiss");
 
-				throw new RuntimeException("Da ging was schief.");
-			}
+									} else {
+										System.err.println("Es gibt schon einen weißen Spieler.");
+									}
+									break;
+								case "schwarz":
+									if (spielerliste[0].getFarbEnum() == FarbEnum.weiss) {
+										spielerliste[1] = new Spieler(name, FarbEnum.schwarz, true, this);
+										System.out.println("Hallo " + spielerliste[1].getName() + ", du bist schwarz");
+									} else {
+										System.err.println("Es gibt schon einen schwarzen Spieler.");
+									}
+									break;
+								}
+							}
 				}
+					}
+				}
+		}
+		}
+	
 	}
 
 	@Override
