@@ -46,8 +46,6 @@ public abstract class KI implements Serializable{
 	public void spielen(){
 		this.schlagenSammeln();
 		this.zügeSammeln();
-		spiel.zugEnde();
-		spiel.updateFeld();
 	}
 	
 	public void zügeSammeln(){
@@ -81,6 +79,7 @@ public abstract class KI implements Serializable{
 				String ende = liste[1];
 				spiel.zugDurchführen(start, ende);
 				spiel.zugEnde();
+				spiel.updateFeld();
 			}
 		}
 	}
@@ -117,6 +116,7 @@ public abstract class KI implements Serializable{
 				String ende = liste[1];
 				spiel.zugDurchführen(start, ende);
 				spiel.zugEnde();
+				spiel.updateFeld();
 				
 			}
 		}
