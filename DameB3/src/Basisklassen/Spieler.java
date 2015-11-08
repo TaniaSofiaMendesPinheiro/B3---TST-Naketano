@@ -47,7 +47,7 @@ public class Spieler implements Serializable{
 		this.name = name;
 		this.farbe = farbe;
 		if (istKI == true){
-			this.ki = new KI_Dame(name, farbe);
+			ki.add(ki);
 		}
 	}
 

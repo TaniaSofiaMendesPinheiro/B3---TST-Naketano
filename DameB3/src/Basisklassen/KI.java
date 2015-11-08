@@ -27,11 +27,27 @@ public abstract class KI implements Serializable{
 	 * @author B3-TST-Naketano
 	 */
 	
-	public KI (String name, FarbEnum farbe){
-		this.name = name;
-		this.farbe = farbe;
-		schlagenSammeln();
-		zügeSammeln();
+	public KI (Spieler spieler, String name, FarbEnum farbe){
+		if(spieler == null){
+			throw new RuntimeException("KI can`t exist without a Spieler");
+		}
+		else{
+			this.spieler = spieler;
+			this.name = name;
+			this.farbe = farbe;
+			this.spielen();
+		}	
+	}
+	
+	public KI add(KI ki){
+		return ki;
+	}
+	
+	public void spielen(){
+		this.schlagenSammeln();
+		this.zügeSammeln();
+		spiel.zugEnde();
+		spiel.updateFeld();
 	}
 	
 	public void zügeSammeln(){

@@ -1,5 +1,7 @@
 package Game;
 
+import java.io.Serializable;
+
 import SpeichernUndLaden.iCSV;
 import SpeichernUndLaden.iSerialize;
 import Basisklassen.Spielbrett;
@@ -18,8 +20,9 @@ import Basisklassen.FarbEnum;
  *
  */
 
-public class Spiel implements iBediener, iCSV, iSerialize {
+public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 
+	private static final long serialVersionUID = -2772918960157309026L;
 	private Spielbrett brett;
 	private Spieler[] spielerliste;
 	private Spieler amZug;

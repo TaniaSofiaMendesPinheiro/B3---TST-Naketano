@@ -1,7 +1,6 @@
 package SpeichernUndLaden;
 
-import java.io.BufferedReader;import java.io.BufferedWriter;
-import java.io.FileInputStream;
+import java.io.BufferedReader;import java.io.BufferedWriter;import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,6 +10,7 @@ import java.util.Properties;
 
 import Basisklassen.Spielbrett;
 import Basisklassen.Spieler;
+import Basisklassen.Spielfeld;
 import Basisklassen.Spielfigur;
 import Game.Spiel;
 
@@ -54,8 +54,7 @@ public class DatenzugriffCSV implements iDatenzugriff {
 	public Object read() throws IOException {
 		String linie;
 		ArrayList<String> linien = new ArrayList<String>();
-		ArrayList<Spieler> spielers = new ArrayList<>();
-		ArrayList<Spielbrett> brettle = new ArrayList<>();
+		ArrayList<Spiel> dameSpiel = new ArrayList <Spiel>();
 		while((linie = br.readLine()) != null) {
 			linien.add(linie);
 			String[] readedAttributes = new String[6];			
@@ -63,7 +62,7 @@ public class DatenzugriffCSV implements iDatenzugriff {
     			readedAttributes = linien.get(0).split(";");
 			}
 			if(readedAttributes[0] == null) {
-    			return spielers;
+    			return dameSpiel;
 //    			return brettle;
     		} else {
     			String name = readedAttributes[0];
@@ -72,24 +71,51 @@ public class DatenzugriffCSV implements iDatenzugriff {
     			boolean istDame = Boolean.parseBoolean(readedAttributes[3]);
     			String KI = readedAttributes[4];
     			boolean weiss = Boolean.parseBoolean(readedAttributes[5]);
-    			Spielbrett brett = new Spielbrett();
+    			Spiel spiel = new Spiel();
     			Spieler spieler = new Spieler();
-//    			spieler.setFarbEnum(new FarbEnum());
+    			Spielbrett brett = new Spielbrett();
+    			Spielfigur figur = new Spielfigur();
+    			Spielfeld feld = new Spielfeld();
+//    			spieler.setFarbEnum((FarbEnum)farbe);
     			spieler.setName(name);
-    			brett.setzDieFigurenAufsFeld();
-   			
-    			brettle.add(spielers);
+    			brett.gibMirDiePosition(iD);
+    			figur.setIstDame(istDame);
+    			brett.getIndexById(iD);
+    			spieler.toCSV();
+    			feld.toCSV();
+    			figur.toCSV();
+  			
+    			dameSpiel.add(spiel);
     		}
 			linien.remove(linie);
-    		}
-			return spielers;
-			return brettle;
+		}
+		return dameSpiel;
+	}
+
+//	@Override
+//	public Object read() throws IOException {
+//		String linie;
+//		ArrayList<String> linien = new ArrayList<String>();
+//		ArrayList<Student> students = new ArrayList<>();
+//		while((linie = br.readLine()) != null) {
+//			linien.add(linie);
+//			String[] readedAttributes = new String[7];			
+//			for(int i = 0; i < readedAttributes.length; i++) {
+//    			readedAttributes = linien.get(0).split(",");
+//    		}
+//			
+//			if(readedAttributes[0] == null) {
+//    			return students;
+//    		} else {
+//    			String studentNumber = readedAttributes[0];
+//    			String preName = readedAttributes[1];
+//    			String surName = readedAttributes[2];
 //    			String street = readedAttributes[3];
 //    			int houseNumber = Integer.parseInt(readedAttributes[4]);
 //    			String place = readedAttributes[5];
 //    			String postalCode = readedAttributes[6];
-//    			Spiel spiel = new Spiel();
-//    			Spieler spieler = new Spieler();
+//    			StudentAdministration sA = new StudentAdministration();
+//    			Student student = new Student();
 //    			student.setStudentNumber(studentNumber);
 //    			student.setName(new Name(preName,surName));
 //    			student.setAddress(new Address(street, houseNumber, place, postalCode));
@@ -98,8 +124,8 @@ public class DatenzugriffCSV implements iDatenzugriff {
 //			linien.remove(linie);
 //		}			
 //		return students;
-	}
-
+//	}
+	
 	@Override
 	public void close(Object object) throws IOException {
 		if(bw != null) {
