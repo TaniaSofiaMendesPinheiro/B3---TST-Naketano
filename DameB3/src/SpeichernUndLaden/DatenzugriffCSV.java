@@ -1,7 +1,6 @@
 package SpeichernUndLaden;
 
-import java.io.BufferedReader;import java.io.BufferedWriter;
-import java.io.FileInputStream;
+import java.io.BufferedReader;import java.io.BufferedWriter;import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,7 +8,6 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import Basisklassen.FarbEnum;
 import Basisklassen.Spielbrett;
 import Basisklassen.Spieler;
 import Basisklassen.Spielfeld;
@@ -57,8 +55,6 @@ public class DatenzugriffCSV implements iDatenzugriff {
 		String linie;
 		ArrayList<String> linien = new ArrayList<String>();
 		ArrayList<Spiel> dameSpiel = new ArrayList <Spiel>();
-//		ArrayList<Spieler> spielers = new ArrayList<>();
-//		ArrayList<Spielbrett> brettle = new ArrayList<>();
 		while((linie = br.readLine()) != null) {
 			linien.add(linie);
 			String[] readedAttributes = new String[6];			
@@ -92,23 +88,44 @@ public class DatenzugriffCSV implements iDatenzugriff {
     			dameSpiel.add(spiel);
     		}
 			linien.remove(linie);
-    		}
-//			return spielers;
-//			return brettle;
+		}
+		return dameSpiel;
+	}
+
+//	@Override
+//	public Object read() throws IOException {
+//		String linie;
+//		ArrayList<String> linien = new ArrayList<String>();
+//		ArrayList<Student> students = new ArrayList<>();
+//		while((linie = br.readLine()) != null) {
+//			linien.add(linie);
+//			String[] readedAttributes = new String[7];			
+//			for(int i = 0; i < readedAttributes.length; i++) {
+//    			readedAttributes = linien.get(0).split(",");
+//    		}
+//			
+//			if(readedAttributes[0] == null) {
+//    			return students;
+//    		} else {
+//    			String studentNumber = readedAttributes[0];
+//    			String preName = readedAttributes[1];
+//    			String surName = readedAttributes[2];
 //    			String street = readedAttributes[3];
 //    			int houseNumber = Integer.parseInt(readedAttributes[4]);
 //    			String place = readedAttributes[5];
 //    			String postalCode = readedAttributes[6];
-//    			Spiel spiel = new Spiel();
-//    			Spieler spieler = new Spieler();
+//    			StudentAdministration sA = new StudentAdministration();
+//    			Student student = new Student();
 //    			student.setStudentNumber(studentNumber);
 //    			student.setName(new Name(preName,surName));
 //    			student.setAddress(new Address(street, houseNumber, place, postalCode));
 //    			students.add(student);
-
-		return dameSpiel;
-	}
-
+//    		}
+//			linien.remove(linie);
+//		}			
+//		return students;
+//	}
+	
 	@Override
 	public void close(Object object) throws IOException {
 		if(bw != null) {
