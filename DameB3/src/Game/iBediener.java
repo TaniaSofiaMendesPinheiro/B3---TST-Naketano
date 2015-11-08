@@ -24,9 +24,9 @@ public interface iBediener{
 
 	public String gibMirCSV();
 	
-	public void speichern(String pfad, String name, String typ) throws IOException;
-	
-	public void laden(String pfad, String name, String typ) throws IOException;
+//	public void speichern(String pfad, String name, String typ) throws IOException;
+//	
+//	public void laden(String pfad, String name, String typ) throws IOException;
 	
 	
 }

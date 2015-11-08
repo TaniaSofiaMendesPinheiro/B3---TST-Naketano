@@ -1,6 +1,7 @@
 package Game;
 
-import java.io.IOException;
+import SpeichernUndLaden.iCSV;
+import SpeichernUndLaden.iSerialize;
 import Basisklassen.Spielbrett;
 import Basisklassen.Spieler;
 import Basisklassen.Spielfigur;
@@ -17,7 +18,7 @@ import Basisklassen.FarbEnum;
  *
  */
 
-public class Spiel implements iBediener {
+public class Spiel implements iBediener, iCSV, iSerialize {
 
 	private Spielbrett brett;
 	private Spieler[] spielerliste;
@@ -415,35 +416,35 @@ public class Spiel implements iBediener {
 		}
 	}
 
-	@Override
-	public void speichern(String pfad, String name, String typ) throws IOException {
-		// if (typ.equals("csv")) {
-		// String csv = spielerliste[0].toCSV() + "\n";
-		// csv += spielerliste[1].toCSV() + "\n";
-		// csv += amZug.getFarbEnum() + "\n";
-		// for (int i = 0; i < 12; i++) {
-		// for (int j = 0; j < 12; j++) {
-		// csv += brett.gibMirDiePosition(i, j);
-		// iDatenzugriff x = new DatenzugriffCSV();
-		// x.speichern(pfad, name, typ);
-		// }
-		// }
-		// } else {
-		// iDatenzugriff y = new DatenzugriffSER();
-		// y.speichern(pfad, name, typ);
-		// }
-	}
-
-	@Override
-	public void laden(String pfad, String name, String typ) throws IOException {
-		// if (typ.equals("ser")) {
-		// iDatenzugriff iD = new DatenzugriffSER();
-		// iD.laden();
-		// } else {
-		// iDatenzugriff iDz = new DatenzugriffCSV();
-		// iDz.laden();
-		// }
-	}
+//	@Override
+//	public void speichern(String pfad, String name, String typ) throws IOException {
+//		// if (typ.equals("csv")) {
+//		// String csv = spielerliste[0].toCSV() + "\n";
+//		// csv += spielerliste[1].toCSV() + "\n";
+//		// csv += amZug.getFarbEnum() + "\n";
+//		// for (int i = 0; i < 12; i++) {
+//		// for (int j = 0; j < 12; j++) {
+//		// csv += brett.gibMirDiePosition(i, j);
+//		// iDatenzugriff x = new DatenzugriffCSV();
+//		// x.speichern(pfad, name, typ);
+//		// }
+//		// }
+//		// } else {
+//		// iDatenzugriff y = new DatenzugriffSER();
+//		// y.speichern(pfad, name, typ);
+//		// }
+//	}
+//
+//	@Override
+//	public void laden(String pfad, String name, String typ) throws IOException {
+//		// if (typ.equals("ser")) {
+//		// iDatenzugriff iD = new DatenzugriffSER();
+//		// iD.laden();
+//		// } else {
+//		// iDatenzugriff iDz = new DatenzugriffCSV();
+//		// iDz.laden();
+//		// }
+//	}
 
 	/**
 	 * Überprüft ob Start-/Zielfeld weiss ist, ob Zug zulässig ist, ob Startfeld
@@ -675,6 +676,26 @@ public class Spiel implements iBediener {
 
 		gibMirCSV();
 
+	}
+
+	@Override
+	public void saveSerialize(String fileName) {
+		
+	}
+
+	@Override
+	public Object loadSerialize(String fileName) {
+		return null;
+	}
+
+	@Override
+	public void saveCSV(String fileName) {
+		
+	}
+
+	@Override
+	public Object loadCSV(String fileName) {
+		return null;
 	}
 
 }
