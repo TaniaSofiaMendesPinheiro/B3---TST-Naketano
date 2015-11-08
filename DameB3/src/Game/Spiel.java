@@ -414,37 +414,37 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 		}
 	}
 
-	// @Override
-	// public void speichern(String pfad, String name, String typ) throws
-	// IOException {
-	// // if (typ.equals("csv")) {
-	// // String csv = spielerliste[0].toCSV() + "\n";
-	// // csv += spielerliste[1].toCSV() + "\n";
-	// // csv += amZug.getFarbEnum() + "\n";
-	// // for (int i = 0; i < 12; i++) {
-	// // for (int j = 0; j < 12; j++) {
-	// // csv += brett.gibMirDiePosition(i, j);
-	// // iDatenzugriff x = new DatenzugriffCSV();
-	// // x.speichern(pfad, name, typ);
-	// // }
-	// // }
-	// // } else {
-	// // iDatenzugriff y = new DatenzugriffSER();
-	// // y.speichern(pfad, name, typ);
-	// // }
-	// }
-	//
-	// @Override
-	// public void laden(String pfad, String name, String typ) throws IOException
-	// {
-	// // if (typ.equals("ser")) {
-	// // iDatenzugriff iD = new DatenzugriffSER();
-	// // iD.laden();
-	// // } else {
-	// // iDatenzugriff iDz = new DatenzugriffCSV();
-	// // iDz.laden();
-	// // }
-	// }
+//	 @Override
+//	 public void speichern(String pfad, String name, String typ) throws
+//	 IOException {
+//	  if (typ.equals("csv")) {
+//	  String csv = spielerliste[0].toCSV() + "\n";
+//	  csv += spielerliste[1].toCSV() + "\n";
+//	  csv += amZug.getFarbEnum() + "\n";
+//	  for (int i = 0; i < 12; i++) {
+//	  for (int j = 0; j < 12; j++) {
+//	  csv += brett.gibMirDiePosition(i, j);
+//	  iDatenzugriff x = new DatenzugriffCSV();
+//	  x.speichern(pfad, name, typ);
+//	  }
+//	  }
+//	  } else {
+//	  iDatenzugriff y = new DatenzugriffSER();
+//	  y.speichern(pfad, name, typ);
+//	  }
+//	 }
+//	
+//	 @Override
+//	 public void laden(String pfad, String name, String typ) throws IOException
+//	 {
+//	  if (typ.equals("ser")) {
+//	  iDatenzugriff iD = new DatenzugriffSER();
+//	  iD.laden();
+//	  } else {
+//	  iDatenzugriff iDz = new DatenzugriffCSV();
+//	  iDz.laden();
+//	  }
+//	 }
 
 	/**
 	 * Überprüft ob Start-/Zielfeld weiss ist, ob Zug zulässig ist, ob Startfeld
