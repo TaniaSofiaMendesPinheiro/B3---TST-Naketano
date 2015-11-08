@@ -338,10 +338,11 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 					throw new RuntimeException("Not a valid move on a white field");
 				}
 				if (amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum())) {
-					if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() == null && prüfeDifSchlagen(startID, zielID) == true) {
+					if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() == null && prüfeDifSchlagen(startID, zielID)) {
 						schlagen(startID, zielID);
-						updateFeld();
 						zugEnde();
+						updateFeld();
+						
 					}
 				}
 				if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
@@ -366,8 +367,9 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 						brett.gibMirDiePosition(zielID).getSpielfigur().setIstDame(true);
 
 					}
-					updateFeld();
 					zugEnde();
+					updateFeld();
+					
 				}
 			}
 			/**
@@ -466,131 +468,104 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 					throw new RuntimeException("Weisse Felder sind ungültig!");
 				} else if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
 					throw new RuntimeException("Der Zug ist ungültig");
-				} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) { // nach
-																																							// rechts
-																																							// oben
-					if (prüfeDifSchlagen(startID, zielID) == true && amZug != null) {
+				} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
+					if (prüfeDifSchlagen(startID, zielID) && amZug != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum().equals(amZug.getFarbEnum())) {
 						int[] liste1 = brett.getIndexById(startID);
 						liste1[0] += 1; // y-achse
 						liste1[1] += 1; // x-achse
 						if (brett.gibMirDiePosition(liste1[0], liste1[1]).getSpielfigur() != null) {
+							brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+							brett.gibMirDiePosition(startID).setSpielfigur(null);
 							brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 						}
-						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-						brett.gibMirDiePosition(startID).setSpielfigur(null);
 						System.out.println("Sie haben soeben erfolgreich geschlagen!");
-					}
-				} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) { // nach
-																																							// links
-																																							// unten
-					if (prüfeDifSchlagen(startID, zielID) == true && amZug != null) {
+					} else if (prüfeDifSchlagen(startID, zielID) && amZug != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum().equals(amZug.getFarbEnum())) {
 						int[] liste1 = brett.getIndexById(startID);
 						liste1[0] -= 1; // y-achse
 						liste1[1] -= 1; // x-achse
 						if (brett.gibMirDiePosition(liste1[0], liste1[1]).getSpielfigur() != null) {
+							brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+							brett.gibMirDiePosition(startID).setSpielfigur(null);
 							brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 						}
-						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-						brett.gibMirDiePosition(startID).setSpielfigur(null);
 						System.out.println("Sie haben soeben erfolgreich geschlagen!");
-					}
-				} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) { // nach
-																																							// links
-																																							// oben
-					if (prüfeDifSchlagen(startID, zielID) == true && amZug != null) {
+					} else if (prüfeDifSchlagen(startID, zielID) && amZug != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum().equals(amZug.getFarbEnum())) {
 						int[] liste1 = brett.getIndexById(startID);
 						liste1[0] += 1; // y-achse
 						liste1[1] -= 1; // x-achse
 						if (brett.gibMirDiePosition(liste1[0], liste1[1]).getSpielfigur() != null) {
+							brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+							brett.gibMirDiePosition(startID).setSpielfigur(null);
 							brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 						}
-						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-						brett.gibMirDiePosition(startID).setSpielfigur(null);
 						System.out.println("Sie haben soeben erfolgreich geschlagen!");
-					}
-				} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) { // nach
-																																							// rechts
-																																							// unten
-					if (prüfeDifSchlagen(startID, zielID) == true && amZug != null) {
+					} else if (prüfeDifSchlagen(startID, zielID) && amZug != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum().equals(amZug.getFarbEnum())) {
 						int[] liste1 = brett.getIndexById(startID);
 						liste1[0] -= 1; // y-achse
 						liste1[1] += 1; // x-achse
 						if (brett.gibMirDiePosition(liste1[0], liste1[1]).getSpielfigur() != null) {
+							brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+							brett.gibMirDiePosition(startID).setSpielfigur(null);
 							brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 						}
-						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-						brett.gibMirDiePosition(startID).setSpielfigur(null);
 						System.out.println("Sie haben soeben erfolgreich geschlagen!");
+					} else {
+						throw new RuntimeException("Da lief was schief!");
 					}
-				} else {
-					throw new RuntimeException("Da lief was schief!");
+					/**
+					 * das gleiche nochmal für die dame
+					 */
+				} else if (brett.gibMirDiePosition(startID).getSpielfigur().istDame() == true) {
+					if (brett.gibMirDiePosition(startID).getSpielfigur() == null) {
+						throw new RuntimeException("Auf deinem Startfeld ist keine Figur.");
+					} else if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss) {
+						throw new RuntimeException("Weisse Felder sind ungültig!");
+					} else if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
+						throw new RuntimeException("Der Zug ist ungültig");
+					} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null && amZug.getFarbEnum() == FarbEnum.weiss || amZug.getFarbEnum() == FarbEnum.schwarz) {
+						if (prüfeDifDame(startID, zielID)) {
+							int[] liste1 = brett.getIndexById(startID);
+							liste1[0] += 1; // y-achse
+							liste1[1] += 1; // x-achse
+							brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+							brett.gibMirDiePosition(startID).setSpielfigur(null);
+							brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
+							System.out.println("Sie haben soeben erfolgreich geschlagen!");
+						}
+					} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null && amZug.getFarbEnum() == FarbEnum.weiss || amZug.getFarbEnum() == FarbEnum.schwarz) {
+						if (prüfeDifDame(startID, zielID)) {
+							int[] liste1 = brett.getIndexById(startID);
+							liste1[0] -= 1; // y-achse
+							liste1[1] -= 1; // x-achse
+							brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+							brett.gibMirDiePosition(startID).setSpielfigur(null);
+							brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
+							System.out.println("Sie haben soeben erfolgreich geschlagen!");
+						}
+					} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null && amZug.getFarbEnum() == FarbEnum.weiss || amZug.getFarbEnum() == FarbEnum.schwarz) {
+						if (prüfeDifDame(startID, zielID)) {
+							int[] liste1 = brett.getIndexById(startID);
+							liste1[0] += 1; // y-achse
+							liste1[1] -= 1; // x-achse
+							brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+							brett.gibMirDiePosition(startID).setSpielfigur(null);
+							brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
+							System.out.println("Sie haben soeben erfolgreich geschlagen!");
+						}
+					} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null && amZug.getFarbEnum() == FarbEnum.weiss || amZug.getFarbEnum() == FarbEnum.schwarz) {
+						if (prüfeDifDame(startID, zielID)) {
+							int[] liste1 = brett.getIndexById(startID);
+							liste1[0] -= 1; // y-achse
+							liste1[1] += 1; // x-achse
+							brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+							brett.gibMirDiePosition(startID).setSpielfigur(null);
+							brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
+							System.out.println("Sie haben soeben erfolgreich geschlagen!");
+						}
+					} else {
+						throw new RuntimeException("Da lief was schief!");
+					}
 				}
-				/**
-				 * das gleiche nochmal für die dame
-				 */
-			} else if (brett.gibMirDiePosition(startID).getSpielfigur().istDame() == true) {
-				if (brett.gibMirDiePosition(startID).getSpielfigur() == null) {
-					throw new RuntimeException("Auf deinem Startfeld ist keine Figur.");
-				} else if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss) {
-					throw new RuntimeException("Weisse Felder sind ungültig!");
-				} else if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
-					throw new RuntimeException("Der Zug ist ungültig");
-				} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null && amZug.getFarbEnum() == FarbEnum.weiss || amZug.getFarbEnum() == FarbEnum.schwarz) { // nach
-																																																																																	// rechts
-																																																																																	// oben
-					if (prüfeDifDame(startID, zielID)) {
-						int[] liste1 = brett.getIndexById(startID);
-						liste1[0] += 1; // y-achse
-						liste1[1] += 1; // x-achse
-						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-						brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-						brett.gibMirDiePosition(startID).setSpielfigur(null);
-						brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
-						System.out.println("Sie haben soeben erfolgreich geschlagen!");
-					}
-				} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null && amZug.getFarbEnum() == FarbEnum.weiss || amZug.getFarbEnum() == FarbEnum.schwarz) { // nach
-																																																																																	// links
-																																																																																	// unten
-					if (prüfeDifDame(startID, zielID)) {
-						int[] liste1 = brett.getIndexById(startID);
-						liste1[0] -= 1; // y-achse
-						liste1[1] -= 1; // x-achse
-						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-						brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-						brett.gibMirDiePosition(startID).setSpielfigur(null);
-						brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
-						System.out.println("Sie haben soeben erfolgreich geschlagen!");
-					}
-				} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null && amZug.getFarbEnum() == FarbEnum.weiss || amZug.getFarbEnum() == FarbEnum.schwarz) { // nach
-																																																																																	// links
-																																																																																	// oben
-					if (prüfeDifDame(startID, zielID)) {
-						int[] liste1 = brett.getIndexById(startID);
-						liste1[0] += 1; // y-achse
-						liste1[1] -= 1; // x-achse
-						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-						brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-						brett.gibMirDiePosition(startID).setSpielfigur(null);
-						brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
-						System.out.println("Sie haben soeben erfolgreich geschlagen!");
-					}
-				} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null && amZug.getFarbEnum() == FarbEnum.weiss || amZug.getFarbEnum() == FarbEnum.schwarz) { // nach
-																																																																																	// rechts
-																																																																																	// unten
-					if (prüfeDifDame(startID, zielID)) {
-						int[] liste1 = brett.getIndexById(startID);
-						liste1[0] -= 1; // y-achse
-						liste1[1] += 1; // x-achse
-						brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-						brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-						brett.gibMirDiePosition(startID).setSpielfigur(null);
-						brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
-						System.out.println("Sie haben soeben erfolgreich geschlagen!");
-					}
-				} else {
-					throw new RuntimeException("Da lief was schief!");
-				}
-
 			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
@@ -608,14 +583,12 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 		int[] liste1 = brett.getIndexById(startId);
 		int[] liste2 = brett.getIndexById(zielId);
 
-		// if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() ==
-		// FarbEnum.weiss) {
-		if (amZug.getFarbEnum() == FarbEnum.weiss) {
+		if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.weiss) {
 			return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == -1);
-		} else {
+		} else if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.schwarz) {
 			return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1 && liste2[1] - liste1[1] == -1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1 && liste2[1] - liste1[1] == 1);
 		}
-
+		return false;
 	}
 
 	/**
@@ -630,38 +603,26 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 		int[] liste1 = brett.getIndexById(startId);
 		int[] liste2 = brett.getIndexById(zielId);
 
-		// if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() ==
-		// FarbEnum.weiss){
-		if (amZug.getFarbEnum() == FarbEnum.weiss) {
-			if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == 2 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == 2 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == -2 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2
-					&& liste2[1] - liste1[1] == -2) {
+		if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.weiss && amZug.getFarbEnum() == FarbEnum.weiss) {
+			if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == 2) {
 				return true;
-				// } else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 &&
-				// liste2[1] - liste1[1] == 2){
-				// return true;
-				// } else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 &&
-				// liste2[1] - liste1[1] == -2){
-				// return true;
-				// } else if(Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 &&
-				// liste2[1] - liste1[1] == -2) {
-				// return true;
+			} else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == 2) {
+				return true;
+			} else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == -2) {
+				return true;
+			} else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == -2) {
+				return true;
 			}
-		}
-		// else if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum()
-		// == FarbEnum.schwarz){
-		else if (amZug.getFarbEnum() == FarbEnum.schwarz) {
-			if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == 2 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == -2 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == -2
-					|| Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == 2) {
+			return false;
+		} else if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.schwarz && amZug.getFarbEnum() == FarbEnum.schwarz) {
+			if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == 2) {
 				return true;
-				// } else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 &&
-				// liste2[1] - liste1[1] == -2){
-				// return true;
-				// } else if ( Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 &&
-				// liste2[1] - liste1[1] == -2){
-				// return true;
-				// } else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 &&
-				// liste2[1] - liste1[1] == 2) {
-				// return true;
+			} else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == -2) {
+				return true;
+			} else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == -2) {
+				return true;
+			} else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == 2) {
+				return true;
 			}
 		}
 		return false;
