@@ -65,6 +65,24 @@ public class Spielfigur implements Serializable{
 		return istDame;
 	}
 	
+	public String toCSV(){
+		String x = " ";
+		if(istDame){
+			if ( farbe == FarbEnum.weiss){
+				x = "DameW";
+			}else{
+				x = "DameS";
+			}
+		} else {
+		if ( farbe == FarbEnum.weiss){
+			x = "w";
+		}
+			 x  = "s";
+		}
+		return ID+";"+farbe+";"+x;
+}
+
+	
 	@Override
 	public String toString(){
 		if(istDame){
