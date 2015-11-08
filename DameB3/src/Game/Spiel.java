@@ -356,7 +356,7 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 				if (brett.gibMirDiePosition(startID).getSpielfigur() != null && brett.gibMirDiePosition(zielID).getSpielfigur() != null && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum()) {
 					throw new RuntimeException("You cannot go on a field which is already taken with one of your own figure.");
 				}
-				if (prüfeDif(startID, zielID) == false) {
+				if (prüfeDif(startID, zielID) == false && brett.gibMirDiePosition(zielID).getSpielfigur() == null && prüfeDifSchlagen(startID, zielID) == false) {
 					throw new RuntimeException("DU kannst nur ein Feld laufen");
 				}
 				if (!(amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
