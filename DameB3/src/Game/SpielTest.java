@@ -20,7 +20,7 @@ public class SpielTest {
 
 			do {
 				
-				ses = reader.readLine().toLowerCase();
+				ses = reader.readLine(); //.toLowerCase();
 				switch (ses) {
 
 				// adds new Player if input is valid, else continues the loop
