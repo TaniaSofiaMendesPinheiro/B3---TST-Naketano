@@ -358,7 +358,8 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 					throw new RuntimeException("You have to go with a figure of your colour");
 				}
 				int [] liste = brett.getIndexById(startID);
-				if(brett.gibMirDiePosition(liste[0]+1, liste[1]+1).getSpielfigur() == null){
+				if(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == FarbEnum.weiss){
+				if(brett.gibMirDiePosition(liste[0]+1, liste[1]+1).getSpielfigur() == null || brett.gibMirDiePosition(liste[0]+1, liste[1]-1).getSpielfigur() == null ) {
 				if (prüfeDif(startID, zielID) == true) {
 					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 					brett.gibMirDiePosition(startID).setSpielfigur(null);
@@ -372,7 +373,25 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 
 				}else{throw new RuntimeException("Hallloo");
 				}
-				
+				}
+				}
+				int [] liste1 = brett.getIndexById(startID);
+				if(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz){
+				if(brett.gibMirDiePosition(liste1[0]-1, liste1[1]+1).getSpielfigur() == null || brett.gibMirDiePosition(liste1[0]-1, liste1[1]-1).getSpielfigur() == null ) {
+				if (prüfeDif(startID, zielID) == true) {
+					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+					brett.gibMirDiePosition(startID).setSpielfigur(null);
+					int[] liste5 = brett.getIndexById(startID);
+					if (brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.weiss && liste5[1] == 12 | brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz && liste5[1] == 1) {
+						brett.gibMirDiePosition(zielID).getSpielfigur().setIstDame(true);
+
+					}
+					zugEnde();
+					updateFeld();
+
+				}else{throw new RuntimeException("Hallloo");
+				}
+				}
 				if(brett.gibMirDiePosition(liste[0]+1, liste[1]+1).getSpielfigur() != null){
 				if (amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum())) {
 					if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() == null && prüfeDifSchlagen(startID, zielID)) {
