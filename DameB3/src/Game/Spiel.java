@@ -1,13 +1,9 @@
 package Game;
 
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.IOException;import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import backend.Student;
-import backend.StudentAdministration;
-import classes.CSV;
 import SpeichernUndLaden.DatenzugriffCSV;
 import SpeichernUndLaden.DatenzugriffSER;
 import SpeichernUndLaden.iCSV;
