@@ -342,14 +342,7 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 				if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss || brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss) {
 					throw new RuntimeException("Not a valid move on a white field");
 				}
-				if (amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum())) {
-					if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() == null && prüfeDifSchlagen(startID, zielID)) {
-						schlagen(startID, zielID);
-						zugEnde();
-						updateFeld();
-
-					}
-				}
+			
 				if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
 					if (prüfeDif(startID, zielID) == false && prüfeDifSchlagen(startID, zielID) == false) {
 						throw new RuntimeException("This is not a valid move!");
@@ -364,17 +357,29 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 				if (!(amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
 					throw new RuntimeException("You have to go with a figure of your colour");
 				}
+				int [] liste = brett.getIndexById(startID);
+				if(brett.gibMirDiePosition(liste[0]+1, liste[1]+1).getSpielfigur() == null){
 				if (prüfeDif(startID, zielID) == true) {
 					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 					brett.gibMirDiePosition(startID).setSpielfigur(null);
-					int[] liste = brett.getIndexById(zielID);
-					if (brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.weiss && liste[1] == 12 | brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz && liste[1] == 1) {
+					int[] liste5 = brett.getIndexById(startID);
+					if (brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.weiss && liste5[1] == 12 | brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz && liste5[1] == 1) {
 						brett.gibMirDiePosition(zielID).getSpielfigur().setIstDame(true);
 
 					}
 					zugEnde();
 					updateFeld();
 
+				}}
+				
+				if(brett.gibMirDiePosition(liste[0]+1, liste[1]+1).getSpielfigur() != null){
+				if (amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum())) {
+					if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() == null && prüfeDifSchlagen(startID, zielID)) {
+						schlagen(startID, zielID);
+						zugEnde();
+						updateFeld();
+
+					}}
 				}
 			}
 			/**
