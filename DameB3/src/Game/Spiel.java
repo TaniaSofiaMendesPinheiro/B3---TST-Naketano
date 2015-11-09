@@ -657,8 +657,10 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 
 		// if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() ==
 		// FarbEnum.weiss) {
-		return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == -1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1 && liste2[1] - liste1[1] == -1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1
-				&& liste2[1] - liste1[1] == 1);
+//		return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == -1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1 && liste2[1] - liste1[1] == -1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1
+//				&& liste2[1] - liste1[1] == 1);
+		
+		return (liste2[0] - liste1[0] == 1 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == 1 || liste2[0] - liste1[0] == 1 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == -1 || liste2[0] - liste1[0] == -1 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == -1 || liste2[0] - liste1[0] == -1 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == 1);
 		// } else if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum()
 		// == FarbEnum.schwarz) {
 		// return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1 && liste2[1] -
