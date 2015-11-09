@@ -342,7 +342,7 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 				if (brett.gibMirDiePosition(zielID).getFarbe() == FarbEnum.weiss || brett.gibMirDiePosition(startID).getFarbe() == FarbEnum.weiss) {
 					throw new RuntimeException("Not a valid move on a white field");
 				}
-			
+
 				if (brett.gibMirDiePosition(zielID).getSpielfigur() != null) {
 					if (prüfeDif(startID, zielID) == false && prüfeDifSchlagen(startID, zielID) == false) {
 						throw new RuntimeException("This is not a valid move!");
@@ -357,49 +357,87 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 				if (!(amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum()))) {
 					throw new RuntimeException("You have to go with a figure of your colour");
 				}
-				int [] liste = brett.getIndexById(startID);
-				if(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == FarbEnum.weiss){
-				if(brett.gibMirDiePosition(liste[0]+1, liste[1]+1).getSpielfigur() == null || brett.gibMirDiePosition(liste[0]+1, liste[1]-1).getSpielfigur() == null ) {
-				if (prüfeDif(startID, zielID) == true) {
-					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-					brett.gibMirDiePosition(startID).setSpielfigur(null);
-					int[] liste5 = brett.getIndexById(startID);
-					if (brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.weiss && liste5[1] == 12 | brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz && liste5[1] == 1) {
-						brett.gibMirDiePosition(zielID).getSpielfigur().setIstDame(true);
+				if (brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == FarbEnum.weiss) {
+					int[] liste = brett.getIndexById(startID);
+					if (brett.gibMirDiePosition(liste[0] + 1, liste[1] + 1).getSpielfigur() == null || brett.gibMirDiePosition(liste[0] + 1, liste[1] - 1).getSpielfigur() == null) {
+						if (prüfeDif(startID, zielID) == true && prüfeDifSchlagen(startID, zielID) == false) {
+							brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+							brett.gibMirDiePosition(startID).setSpielfigur(null);
+							int[] liste5 = brett.getIndexById(startID);
+							if (brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.weiss && liste5[1] == 12) {
+								brett.gibMirDiePosition(zielID).getSpielfigur().setIstDame(true);
+							}
+							zugEnde();
+							updateFeld();
 
+						} else {
+							throw new RuntimeException("Hallloo");
+						}
 					}
-					zugEnde();
-					updateFeld();
+				}
+				if (brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz) {
+					int[] liste1 = brett.getIndexById(startID);
+					if (brett.gibMirDiePosition(liste1[0] - 1, liste1[1] + 1).getSpielfigur() == null || brett.gibMirDiePosition(liste1[0] - 1, liste1[1] - 1).getSpielfigur() == null) {
+						if (prüfeDif(startID, zielID) == true && prüfeDifSchlagen(startID, zielID) == false) {
+							brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
+							brett.gibMirDiePosition(startID).setSpielfigur(null);
+							int[] liste5 = brett.getIndexById(startID);
+							if (brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz && liste5[1] == 1) {
+								brett.gibMirDiePosition(zielID).getSpielfigur().setIstDame(true);
+							}
+							zugEnde();
+							updateFeld();
 
-				}else{throw new RuntimeException("Hallloo");
-				}
-				}
-				}
-				int [] liste1 = brett.getIndexById(startID);
-				if(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz){
-				if(brett.gibMirDiePosition(liste1[0]-1, liste1[1]+1).getSpielfigur() == null || brett.gibMirDiePosition(liste1[0]-1, liste1[1]-1).getSpielfigur() == null ) {
-				if (prüfeDif(startID, zielID) == true) {
-					brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
-					brett.gibMirDiePosition(startID).setSpielfigur(null);
-					int[] liste5 = brett.getIndexById(startID);
-					if (brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.weiss && liste5[1] == 12 | brett.gibMirDiePosition(zielID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz && liste5[1] == 1) {
-						brett.gibMirDiePosition(zielID).getSpielfigur().setIstDame(true);
-
+						} else {
+							throw new RuntimeException("Hallloo");
+						}
 					}
-					zugEnde();
-					updateFeld();
-
-				}else{throw new RuntimeException("Hallloo");
 				}
-				}
-				if(brett.gibMirDiePosition(liste[0]+1, liste[1]+1).getSpielfigur() != null){
-				if (amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum())) {
-					if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() == null && prüfeDifSchlagen(startID, zielID)) {
-						schlagen(startID, zielID);
-						zugEnde();
-						updateFeld();
+				if (brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == FarbEnum.weiss || brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum() == FarbEnum.schwarz) {
+					int[] liste = brett.getIndexById(startID);
+					if (brett.gibMirDiePosition(liste[0] + 1, liste[1] + 1).getSpielfigur() != null) {
+						if (amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum())) {
+							if (brett.gibMirDiePosition(zielID).getSpielfigur() == null && prüfeDifSchlagen(startID, zielID)) {
+								schlagen(startID, zielID);
+								zugEnde();
+								updateFeld();
 
-					}}
+							}
+						}
+					}
+					int[] liste1 = brett.getIndexById(startID);
+					if (brett.gibMirDiePosition(liste1[0] - 1, liste1[1] + 1).getSpielfigur() != null) {
+						if (amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum())) {
+							if (brett.gibMirDiePosition(zielID).getSpielfigur() == null && prüfeDifSchlagen(startID, zielID)) {
+								schlagen(startID, zielID);
+								zugEnde();
+								updateFeld();
+
+							}
+						}
+					}
+					int[] liste2 = brett.getIndexById(startID);
+					if (brett.gibMirDiePosition(liste2[0] + 1, liste2[1] - 1).getSpielfigur() != null) {
+						if (amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum())) {
+							if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() == null && prüfeDifSchlagen(startID, zielID)) {
+								schlagen(startID, zielID);
+								zugEnde();
+								updateFeld();
+
+							}
+						}
+					}
+					int[] liste3 = brett.getIndexById(startID);
+					if (brett.gibMirDiePosition(liste3[0] - 1, liste3[1] - 1).getSpielfigur() != null) {
+						if (amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum())) {
+							if (amZug != null && brett.gibMirDiePosition(zielID).getSpielfigur() == null && prüfeDifSchlagen(startID, zielID)) {
+								schlagen(startID, zielID);
+								zugEnde();
+								updateFeld();
+
+							}
+						}
+					}
 				}
 			}
 			/**
@@ -439,9 +477,8 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 					updateFeld();
 					zugEnde();
 				}
-
-			}}}
-		 catch (RuntimeException re) {
+			}
+		} catch (RuntimeException re) {
 			System.err.println(re.getMessage());
 		}
 	}
@@ -491,7 +528,7 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 			/**
 			 * schlagen methode für Steine/normale Figur
 			 */
-		
+
 			if (brett.gibMirDiePosition(startID).getSpielfigur().istDame() == false) {
 				if (brett.gibMirDiePosition(startID).getSpielfigur() == null) {
 					throw new RuntimeException("Auf deinem Startfeld ist keine Figur.");
@@ -501,8 +538,7 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 					throw new RuntimeException("Der Zug ist ungültig");
 				} else if (amZug.getFarbEnum() == FarbEnum.weiss) {
 					if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
-					
-						
+
 						if (prüfeDifSchlagen(startID, zielID) == true && brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum().equals(amZug.getFarbEnum())) {
 							int[] liste1 = brett.getIndexById(startID);
 							liste1[0] += 1; // y-achse
@@ -511,7 +547,7 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 								brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 								brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
 								brett.gibMirDiePosition(startID).setSpielfigur(null);
-								
+
 							}
 							System.out.println("Sie haben soeben erfolgreich geschlagen!");
 						} else if (brett.gibMirDiePosition(zielID).getSpielfigur() == null) {
@@ -523,7 +559,7 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 									brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 									brett.gibMirDiePosition(liste2[0], liste2[1]).setSpielfigur(null);
 									brett.gibMirDiePosition(startID).setSpielfigur(null);
-									
+
 								}
 								System.out.println("Sie haben soeben erfolgreich geschlagen!");
 							}
@@ -536,7 +572,7 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 									brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 									brett.gibMirDiePosition(liste3[0], liste3[1]).setSpielfigur(null);
 									brett.gibMirDiePosition(startID).setSpielfigur(null);
-									
+
 								}
 								System.out.println("Sie haben soeben erfolgreich geschlagen!");
 							}
@@ -549,7 +585,7 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 									brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 									brett.gibMirDiePosition(liste4[0], liste4[1]).setSpielfigur(null);
 									brett.gibMirDiePosition(startID).setSpielfigur(null);
-									
+
 								}
 								System.out.println("Sie haben soeben erfolgreich geschlagen!");
 							} else {
@@ -583,7 +619,7 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 								brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 								brett.gibMirDiePosition(liste2[0], liste2[1]).setSpielfigur(null);
 								brett.gibMirDiePosition(startID).setSpielfigur(null);
-								
+
 							}
 							System.out.println("Sie haben soeben erfolgreich geschlagen!");
 						}
@@ -598,7 +634,7 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 								brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 								brett.gibMirDiePosition(liste3[0], liste3[1]).setSpielfigur(null);
 								brett.gibMirDiePosition(startID).setSpielfigur(null);
-								
+
 							}
 							System.out.println("Sie haben soeben erfolgreich geschlagen!");
 						}
@@ -613,7 +649,7 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 								brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 								brett.gibMirDiePosition(liste4[0], liste4[1]).setSpielfigur(null);
 								brett.gibMirDiePosition(startID).setSpielfigur(null);
-								
+
 							}
 							System.out.println("Sie haben soeben erfolgreich geschlagen!");
 						}
@@ -705,31 +741,27 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 	 * 
 	 * @param startId
 	 * @param zielId
-	 * @return
-	 * 2 2
-	 * -2 2
-	 * 2 -2
-	 * -2 -2
+	 * @return 2 2 -2 2 2 -2 -2 -2
 	 */
 	public boolean prüfeDifSchlagen(String startId, String zielId) {
-//		int [] liste = brett.getIndexById(startId);
-//		liste[0] += 1;
-//		liste[1] += 1;
-//		
-//		if(brett.gibMirDiePosition(liste[1], liste[0]).getSpielfigur() != null){
-			int[] liste1 = brett.getIndexById(startId);
-			int[] liste2 = brett.getIndexById(zielId);
+		// int [] liste = brett.getIndexById(startId);
+		// liste[0] += 1;
+		// liste[1] += 1;
+		//
+		// if(brett.gibMirDiePosition(liste[1], liste[0]).getSpielfigur() != null){
+		int[] liste1 = brett.getIndexById(startId);
+		int[] liste2 = brett.getIndexById(zielId);
 
-			if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.weiss) {
-				return (liste2[0] - liste1[0] == 2 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == 2 || liste2[0] - liste1[0] == -2 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == 2 || liste2[0] - liste1[0] == 2 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == -2 || liste2[0] - liste1[0] == -2
-						&& Math.abs(liste2[1]) - Math.abs(liste1[1]) == -2);
-			} else if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.schwarz) {
-				return (liste2[0] - liste1[0] == 2 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == 2 || liste2[0] - liste1[0] == -2 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == 2 || liste2[0] - liste1[0] == 2 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == -2 || liste2[0] - liste1[0] == -2
-						&& Math.abs(liste2[1]) - Math.abs(liste1[1]) == -2);
-			}
-		
-			return false;
-	
+		if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.weiss) {
+			return (liste2[0] - liste1[0] == 2 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == 2 || liste2[0] - liste1[0] == -2 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == 2 || liste2[0] - liste1[0] == 2 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == -2 || liste2[0] - liste1[0] == -2
+					&& Math.abs(liste2[1]) - Math.abs(liste1[1]) == -2);
+		} else if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.schwarz) {
+			return (liste2[0] - liste1[0] == 2 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == 2 || liste2[0] - liste1[0] == -2 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == 2 || liste2[0] - liste1[0] == 2 && Math.abs(liste2[1]) - Math.abs(liste1[1]) == -2 || liste2[0] - liste1[0] == -2
+					&& Math.abs(liste2[1]) - Math.abs(liste1[1]) == -2);
+		}
+
+		return false;
+
 	}
 
 	// if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() ==
