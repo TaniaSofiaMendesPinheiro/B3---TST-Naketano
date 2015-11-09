@@ -25,6 +25,7 @@ public class Spieler implements Serializable{
 	 */
 	
 	private KI ki;
+	private boolean istKI;
 
 	/**
 	 * public Spieler for the Junit test
