@@ -63,7 +63,6 @@ public class DatenzugriffCSV implements iDatenzugriff {
 			}
 			if(readedAttributes[0] == null) {
     			return dameSpiel;
-//    			return brettle;
     		} else {
     			String name = readedAttributes[0];
     			String farbe = readedAttributes[1];
@@ -76,7 +75,6 @@ public class DatenzugriffCSV implements iDatenzugriff {
     			Spielbrett brett = new Spielbrett();
     			Spielfigur figur = new Spielfigur();
     			Spielfeld feld = new Spielfeld();
-//    			spieler.setFarbEnum((FarbEnum)farbe);
     			spieler.setName(name);
     			brett.gibMirDiePosition(iD);
     			figur.setIstDame(istDame);
@@ -92,39 +90,6 @@ public class DatenzugriffCSV implements iDatenzugriff {
 		return dameSpiel;
 	}
 
-//	@Override
-//	public Object read() throws IOException {
-//		String linie;
-//		ArrayList<String> linien = new ArrayList<String>();
-//		ArrayList<Student> students = new ArrayList<>();
-//		while((linie = br.readLine()) != null) {
-//			linien.add(linie);
-//			String[] readedAttributes = new String[7];			
-//			for(int i = 0; i < readedAttributes.length; i++) {
-//    			readedAttributes = linien.get(0).split(",");
-//    		}
-//			
-//			if(readedAttributes[0] == null) {
-//    			return students;
-//    		} else {
-//    			String studentNumber = readedAttributes[0];
-//    			String preName = readedAttributes[1];
-//    			String surName = readedAttributes[2];
-//    			String street = readedAttributes[3];
-//    			int houseNumber = Integer.parseInt(readedAttributes[4]);
-//    			String place = readedAttributes[5];
-//    			String postalCode = readedAttributes[6];
-//    			StudentAdministration sA = new StudentAdministration();
-//    			Student student = new Student();
-//    			student.setStudentNumber(studentNumber);
-//    			student.setName(new Name(preName,surName));
-//    			student.setAddress(new Address(street, houseNumber, place, postalCode));
-//    			students.add(student);
-//    		}
-//			linien.remove(linie);
-//		}			
-//		return students;
-//	}
 	
 	@Override
 	public void close(Object object) throws IOException {
