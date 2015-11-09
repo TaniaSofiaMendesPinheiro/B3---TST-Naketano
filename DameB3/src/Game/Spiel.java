@@ -370,7 +370,8 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 					zugEnde();
 					updateFeld();
 
-				}}
+				}else{throw new RuntimeException("Hallloo");
+				}
 				
 				if(brett.gibMirDiePosition(liste[0]+1, liste[1]+1).getSpielfigur() != null){
 				if (amZug.getFarbEnum().equals(brett.gibMirDiePosition(startID).getSpielfigur().getFarbEnum())) {
@@ -420,8 +421,8 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 					zugEnde();
 				}
 
-			}
-		} catch (RuntimeException re) {
+			}}}
+		 catch (RuntimeException re) {
 			System.err.println(re.getMessage());
 		}
 	}
