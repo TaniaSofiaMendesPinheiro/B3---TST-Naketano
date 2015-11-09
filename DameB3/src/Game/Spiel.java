@@ -1,7 +1,15 @@
 package Game;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Properties;
 
+import backend.Student;
+import backend.StudentAdministration;
+import classes.CSV;
+import SpeichernUndLaden.DatenzugriffCSV;
+import SpeichernUndLaden.DatenzugriffSER;
 import SpeichernUndLaden.iCSV;
 import SpeichernUndLaden.iSerialize;
 import Basisklassen.Spielbrett;
@@ -474,7 +482,7 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 							int[] liste1 = brett.getIndexById(startID);
 							liste1[0] += 1; // y-achse
 							liste1[1] += 1; // x-achse
-							if (brett.gibMirDiePosition(liste1[0], liste1[1])!= null) {
+							if (brett.gibMirDiePosition(liste1[0], liste1[1]) != null) {
 								brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 								brett.gibMirDiePosition(startID).setSpielfigur(null);
 								brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
@@ -485,7 +493,7 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 								int[] liste1 = brett.getIndexById(startID);
 								liste1[0] -= 1; // y-achse
 								liste1[1] -= 1; // x-achse
-								if (brett.gibMirDiePosition(liste1[0], liste1[1])!= null) {
+								if (brett.gibMirDiePosition(liste1[0], liste1[1]) != null) {
 									brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 									brett.gibMirDiePosition(startID).setSpielfigur(null);
 									brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
@@ -526,7 +534,8 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 							int[] liste1 = brett.getIndexById(startID);
 							liste1[0] += 1; // y-achse
 							liste1[1] += 1; // x-achse
-//							if (!(brett.gibMirDiePosition(liste1[0], liste1[1]).getSpielfigur().equals(amZug))) {
+							// if (!(brett.gibMirDiePosition(liste1[0],
+							// liste1[1]).getSpielfigur().equals(amZug))) {
 							if (brett.gibMirDiePosition(liste1[0], liste1[1]) != null) {
 								brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 								brett.gibMirDiePosition(startID).setSpielfigur(null);
@@ -539,7 +548,8 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 							int[] liste1 = brett.getIndexById(startID);
 							liste1[0] -= 1; // y-achse
 							liste1[1] -= 1; // x-achse
-//							if (!(brett.gibMirDiePosition(liste1[0], liste1[1]).getSpielfigur().equals(amZug))) {
+							// if (!(brett.gibMirDiePosition(liste1[0],
+							// liste1[1]).getSpielfigur().equals(amZug))) {
 							if (brett.gibMirDiePosition(liste1[0], liste1[1]) != null) {
 								brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 								brett.gibMirDiePosition(startID).setSpielfigur(null);
@@ -552,7 +562,8 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 							int[] liste1 = brett.getIndexById(startID);
 							liste1[0] += 1; // y-achse
 							liste1[1] -= 1; // x-achse
-//							if (!(brett.gibMirDiePosition(liste1[0], liste1[1]).getSpielfigur().equals(amZug))) {
+							// if (!(brett.gibMirDiePosition(liste1[0],
+							// liste1[1]).getSpielfigur().equals(amZug))) {
 							if (brett.gibMirDiePosition(liste1[0], liste1[1]) != null) {
 								brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 								brett.gibMirDiePosition(startID).setSpielfigur(null);
@@ -565,7 +576,8 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 							int[] liste1 = brett.getIndexById(startID);
 							liste1[0] -= 1; // y-achse
 							liste1[1] += 1; // x-achse
-//							if (!(brett.gibMirDiePosition(liste1[0], liste1[1]).getSpielfigur().equals(amZug))) {
+							// if (!(brett.gibMirDiePosition(liste1[0],
+							// liste1[1]).getSpielfigur().equals(amZug))) {
 							if (brett.gibMirDiePosition(liste1[0], liste1[1]) != null) {
 								brett.gibMirDiePosition(zielID).setSpielfigur(brett.gibMirDiePosition(startID).getSpielfigur());
 								brett.gibMirDiePosition(startID).setSpielfigur(null);
@@ -647,12 +659,17 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 		int[] liste1 = brett.getIndexById(startId);
 		int[] liste2 = brett.getIndexById(zielId);
 
-//		if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.weiss) {
-			return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == -1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1 && liste2[1] - liste1[1] == -1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1 && liste2[1] - liste1[1] == 1);
-//		} else if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.schwarz) {
-//			return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1 && liste2[1] - liste1[1] == -1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1 && liste2[1] - liste1[1] == 1);
-//		}
-//		return false;
+		// if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() ==
+		// FarbEnum.weiss) {
+		return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == 1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == 1 && liste2[1] - liste1[1] == -1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1 && liste2[1] - liste1[1] == -1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1
+				&& liste2[1] - liste1[1] == 1);
+		// } else if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum()
+		// == FarbEnum.schwarz) {
+		// return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1 && liste2[1] -
+		// liste1[1] == -1 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -1 &&
+		// liste2[1] - liste1[1] == 1);
+		// }
+		// return false;
 	}
 
 	/**
@@ -666,33 +683,43 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 	public boolean prüfeDifSchlagen(String startId, String zielId) {
 		int[] liste1 = brett.getIndexById(startId);
 		int[] liste2 = brett.getIndexById(zielId);
-		
-		return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == 2||Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == 2 ||
-				Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == -2 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == -2 );
 
-//		if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.weiss && amZug.getFarbEnum() == FarbEnum.weiss) {
-//			if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == 2) {
-//				return true;
-//			} else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == 2) {
-//				return true;
-//			} else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == -2) {
-//				return true;
-//			} else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == -2) {
-//				return true;
-//			}
-//			return false;
-//		} else if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() == FarbEnum.schwarz && amZug.getFarbEnum() == FarbEnum.schwarz) {
-//			if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == 2) {
-//				return true;
-//			} else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == -2) {
-//				return true;
-//			} else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == -2) {
-//				return true;
-//			} else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == 2) {
-//				return true;
-//			}
-//		}
-//		return false;
+		return (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == 2 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] - liste1[1] == 2 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] - liste1[1] == -2 || Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2
+				&& liste2[1] - liste1[1] == -2);
+
+		// if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum() ==
+		// FarbEnum.weiss && amZug.getFarbEnum() == FarbEnum.weiss) {
+		// if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] -
+		// liste1[1] == 2) {
+		// return true;
+		// } else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] -
+		// liste1[1] == 2) {
+		// return true;
+		// } else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] -
+		// liste1[1] == -2) {
+		// return true;
+		// } else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] -
+		// liste1[1] == -2) {
+		// return true;
+		// }
+		// return false;
+		// } else if (brett.gibMirDiePosition(startId).getSpielfigur().getFarbEnum()
+		// == FarbEnum.schwarz && amZug.getFarbEnum() == FarbEnum.schwarz) {
+		// if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] -
+		// liste1[1] == 2) {
+		// return true;
+		// } else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == -2 && liste2[1] -
+		// liste1[1] == -2) {
+		// return true;
+		// } else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] -
+		// liste1[1] == -2) {
+		// return true;
+		// } else if (Math.abs(liste2[0]) - Math.abs(liste1[0]) == 2 && liste2[1] -
+		// liste1[1] == 2) {
+		// return true;
+		// }
+		// }
+		// return false;
 	}
 
 	public boolean prüfeDifDame(String startId, String zielId) {
@@ -724,24 +751,153 @@ public class Spiel implements iBediener, iCSV, iSerialize, Serializable {
 
 	}
 
+//	public void removeSpielfigur(String startID) {
+//		int[] liste = brett.getIndexById(startID);
+//		liste[0] += 1;
+//		liste[1] += 1;
+//		if (brett.gibMirDiePosition(liste[0], liste[1]).getSpielfigur() != null) {
+//			brett.gibMirDiePosition(liste[0], liste[1]).setSpielfigur(null);
+//		}
+//		if (startID != null) {
+//			int[] liste1 = brett.getIndexById(startID);
+//			liste1[0] += 1;
+//			liste1[1] -= 1;
+//			if (brett.gibMirDiePosition(liste1[0], liste1[1]).getSpielfigur() != null) {
+//				brett.gibMirDiePosition(liste1[0], liste1[1]).setSpielfigur(null);
+//			}
+//		}
+//		if (startID != null) {
+//			int[] liste2 = brett.getIndexById(startID);
+//			liste2[0] -= 1;
+//			liste2[1] += 1;
+//			if (brett.gibMirDiePosition(liste2[0], liste2[1]).getSpielfigur() != null) {
+//				brett.gibMirDiePosition(liste2[0], liste2[1]).setSpielfigur(null);
+//			}
+//		}
+//		if (startID != null) {
+//			int[] liste3 = brett.getIndexById(startID);
+//			liste3[0] -= 1;
+//			liste3[1] -= 1;
+//			if (brett.gibMirDiePosition(liste3[0], liste3[1]).getSpielfigur() != null) {
+//				brett.gibMirDiePosition(liste3[0], liste3[1]).setSpielfigur(null);
+//			}
+//		}
+//	}
+
 	@Override
 	public void saveSerialize(String fileName) {
+		DatenzugriffSER serial = new DatenzugriffSER();
+		Properties properties = new Properties();
+		properties.setProperty("Filename", fileName + ".ser");
+		properties.setProperty("Mode", "s");
 
+		try {
+			serial.open(properties);
+			serial.write(this);
+		} catch (IOException fehler) {
+			System.err.println(fehler.getMessage());
+		} finally {
+			try {
+				serial.close(null);
+			} catch (IOException fehler) {
+				System.err.println(fehler.getMessage());
+			}
+		}
 	}
 
 	@Override
 	public Object loadSerialize(String fileName) {
+		DatenzugriffSER serial = new DatenzugriffSER();
+		Properties properties = new Properties();
+		properties.setProperty("Filename", fileName + ".ser");
+		properties.setProperty("Mode", "l");
+		try {
+			serial.open(properties);
+			Spiel spiel = (Spiel) serial.read();
+			return spiel;
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+		} finally {
+			try {
+				serial.close(null);
+			} catch (IOException fehler) {
+				System.out.println(fehler.getMessage());
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public void saveCSV(String fileName) {
+		DatenzugriffCSV csv = new DatenzugriffCSV();
+		Properties properties = new Properties();
+		properties.setProperty("Filename", fileName + ".csv");
+		properties.setProperty("Mode", "s");
 
+		try {
+			csv.open(properties);
+			String nullS = "null";
+			String nullString = "0";
+			if (studentSet.isEmpty()) {
+				for (int i = 0; i < 7; i++) {
+					if (i != 4) {
+						csv.write(nullS);
+					} else {
+						csv.write(nullString);
+					}
+				}
+			} else {
+				String ID;
+				for (Student student : studentSet) {
+					csv.write(amZug.getFarbEnum());
+					csv.write(amZug.getName());
+					csv.write(figur.toCSV());
+					csv.write(brett.gibMirDiePosition(ID).getSpielfigur().getFarbEnum());
+					csv.write("" + student.getAddress().getHouseNumber());
+					csv.write(student.getAddress().getPlace());
+					csv.write(student.getAddress().getPostalCode());
+					csv.write("#");
+				}
+			}
+		} catch (IOException error) {
+			System.err.println(error.getMessage());
+		} finally {
+			try {
+				csv.close(null);
+			} catch (IOException error) {
+				System.err.println(error.getMessage());
+			}
+		}
 	}
 
 	@Override
 	public Object loadCSV(String fileName) {
+		DatenzugriffCSV csv = new DatenzugriffCSV();
+		Properties properties = new Properties();
+		properties.setProperty("Filename", fileName + ".csv");
+		properties.setProperty("Mode", "l");
+		try {
+			csv.open(properties);
+			ArrayList<Spiel> spiel = (ArrayList<Spiel>) csv.read();
+			if (students.isEmpty()) {
+				Spiel s1 = new Spiel();
+				return s1;
+			} else {
+				Spiel sA = new Spiel();
+				for (Spieler s : spieler) {
+					sA.addSpieler(s);
+				}
+				return sA;
+			}
+		} catch (IOException error) {
+			System.err.println(error.getMessage());
+		} finally {
+			try {
+				csv.close(null);
+			} catch (IOException error) {
+				System.err.println(error.getMessage());
+			}
+		}
 		return null;
 	}
-
 }
