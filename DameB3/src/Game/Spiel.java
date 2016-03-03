@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import SpeichernUndLaden.DatenzugriffCSV;
-import SpeichernUndLaden.DatenzugriffSER;
 import SpeichernUndLaden.iCSV;
-import SpeichernUndLaden.iSerialize;
+import Basisklassen.DatenzugriffSER;
 import Basisklassen.Spielbrett;
 import Basisklassen.Spieler;
 import Basisklassen.Spielfigur;
 import Basisklassen.FarbEnum;
+import Basisklassen.iSerialize;
 
 //Implementieren Sie die Klasse Spiel testgetrieben unter Verwendung von JUnit mit nicht
 //trivialen JUnit - Tests. Jedes Spiel kennt ein Spielbrett, 2 Spieler und den Spieler,

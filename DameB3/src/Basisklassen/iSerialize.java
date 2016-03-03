@@ -1,4 +1,4 @@
-package SpeichernUndLaden;
+package Basisklassen;
 /**
  * this method contains the function of save and load serialize
  * @author informatik

@@ -1,4 +1,4 @@
-package SpeichernUndLaden;
+package Basisklassen;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Properties;
+
+import SpeichernUndLaden.iDatenzugriff;
 
 //Implementieren Sie das Interface iDatenzugriff in der Klasse DatenzugriffSER , bei dem ein Spiel mit seinem
 //gesamten Zustand serialisiert gespeichert und geladen werden kann.
@@ -36,7 +38,9 @@ public class DatenzugriffSER implements iDatenzugriff {
 		if (oos == null) {
 			throw new IOException("Stream to write not is not open!");
 		} else {
-			oos.writeObject(object);
+			FileOutputStream stream = new FileOutputStream ("das Spiel.ser");
+			oos = new ObjectOutputStream(brett.)
+			oos.writeObject();
 		}
 	}
 
